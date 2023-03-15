@@ -1,0 +1,253 @@
+{
+    "plan": {
+        "general": {
+            "displayPlanSO": {
+                "uuid": "5db40a55-a7d8-420e-beb4-55e5e5e808f6",
+                "propertyList": [
+                    {
+                        "name": "primary",
+                        "smartModel": []
+                    },
+                    {
+                        "name": "secondary",
+                        "smartModel": []
+                    },
+                    {
+                        "name": "tertiary",
+                        "smartModel": []
+                    },
+                    {
+                        "name": "icon",
+                        "smartModel": []
+                    }
+                ]
+            }
+        },
+        "poi": [],
+        "containers": []
+    },
+    "events": [
+        {
+            "key": "add-a-poi",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Ajouter un POI"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Add a POI"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "lat",
+                    "source": "map.coordinate.lat"
+                },
+                {
+                    "key": "lng",
+                    "source": "map.coordinate.lng"
+                },
+                {
+                    "key": "alt",
+                    "source": "map.coordinate.alt"
+                }
+            ]
+        },
+        {
+            "key": "rm-a-poi",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Supprimer un POI"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Remove a POI"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "lat",
+                    "source": "map.coordinate.lat"
+                },
+                {
+                    "key": "lng",
+                    "source": "map.coordinate.lng"
+                },
+                {
+                    "key": "alt",
+                    "source": "map.coordinate.alt"
+                }
+            ]
+        },
+        {
+            "key": "add-a-document",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Ajouter un document"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Add a document"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "smart-object-selected",
+                    "source": "smart-object-selected"
+                }
+            ]
+        },
+        {
+            "key": "rm-a-document",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Supprimer un document"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Remove a document"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "smart-object-selected",
+                    "source": "smart-object-selected"
+                },
+                {
+                    "key": "documents-selected",
+                    "source": "documents-selected"
+                }
+            ]
+        },
+        {
+            "key": "open-a-document",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Ouvrir un document"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Open a document"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "document-selected",
+                    "source": "document-selected"
+                }
+            ]
+        },
+        {
+            "key": "edit-a-document",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Editer un document"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Edit a document"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "smart-object-selected",
+                    "source": "smart-object-selected"
+                },
+                {
+                    "key": "document-selected",
+                    "source": "document-selected"
+                }
+            ]
+        },
+        {
+            "key": "edit-so",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Editer un Smart Object"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Edit a Smart Object"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "smart-object-selected",
+                    "source": "smart-object-selected"
+                }
+            ]
+        },
+        {
+            "key": "update-a-document",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Modifier un document"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Update a document"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "smart-object-selected",
+                    "source": "smart-object-selected"
+                },
+                {
+                    "key": "document-selected",
+                    "source": "document-selected"
+                }
+            ]
+        },
+        {
+            "key": "show-document-properties",
+            "app": "plan",
+            "system": true,
+            "displayName": [
+                {
+                    "lang": "fr-FR",
+                    "value": "Propriétés du document"
+                },
+                {
+                    "lang": "en-US",
+                    "value": "Documents's properties"
+                }
+            ],
+            "parameters": [
+                {
+                    "key": "document-selected",
+                    "source": "document-selected"
+                }
+            ]
+        }
+    ],
+    "workflows": [],
+    "agenda": [],
+    "documents": {
+        "metadatas": []
+    }
+}

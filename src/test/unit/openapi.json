@@ -1,0 +1,2834 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Smartflows Documentation",
+        "description": "Generated Smartflows documentation",
+        "contact": {
+            "name": "Algo'Tech",
+            "url": "https://www.algotech-informatique.com/",
+            "email": "contact@mail.fr"
+        },
+        "version": "1"
+    },
+    "paths": {
+        "/aaaa": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test --"
+                ]
+            }
+        },
+        "/algotech-capital": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "algotech"
+                ]
+            }
+        },
+        "/algotech-country": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "algotech"
+                ]
+            }
+        },
+        "/algotech-get-machine": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "algotech"
+                ]
+            }
+        },
+        "/algotech-machine": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "page": {
+                                        "type": "number"
+                                    },
+                                    "limit": {
+                                        "type": "number"
+                                    },
+                                    "filter": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "algotech"
+                ]
+            }
+        },
+        "/algotech-query-builder": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "algotech"
+                ]
+            }
+        },
+        "/algotech-restaurants": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "capital": {
+                                        "$ref": "#/components/schemas/capital"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "algotech"
+                ]
+            }
+        },
+        "/algotech-str": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "algotech"
+                ]
+            }
+        },
+        "/aoe2": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Test Mic"
+                ]
+            }
+        },
+        "/convert-file-convert-pdf": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "nom": {
+                                        "type": "string"
+                                    },
+                                    "file": {
+                                        "type": "string",
+                                        "format": "sys:file"
+                                    },
+                                    "objet": {
+                                        "$ref": "#/components/schemas/machine"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "convert-file"
+                ]
+            }
+        },
+        "/dernier": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/DIMO-authentication": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "DIMO"
+                ]
+            }
+        },
+        "/DIMO-creer-une-di": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "di": {
+                                        "$ref": "#/components/schemas/di"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "DIMO"
+                ]
+            }
+        },
+        "/DIMO-lister-les-assets": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "page": {
+                                        "type": "number"
+                                    },
+                                    "limit": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "DIMO"
+                ]
+            }
+        },
+        "/DIMO-lister-les-machines": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "limit": {
+                                        "type": "number"
+                                    },
+                                    "filter": {
+                                        "type": "string"
+                                    },
+                                    "page": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "DIMO"
+                ]
+            }
+        },
+        "/DIMO-lister-les-sites": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "DIMO"
+                ]
+            }
+        },
+        "/farouk-archidata-auth": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "farouk"
+                ]
+            }
+        },
+        "/get-image": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/get-issues": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "GitLab"
+                ]
+            }
+        },
+        "/getunit": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "unit_urls": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Test Mic"
+                ]
+            }
+        },
+        "/login": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "login": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "mattermost"
+                ]
+            }
+        },
+        "/Maher-email": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Maher"
+                ]
+            }
+        },
+        "/mattermost-send-file": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "login": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "file": {
+                                        "type": "string",
+                                        "format": "sys:file"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "mattermost"
+                ]
+            }
+        },
+        "/openapi-mic/{path-parameter}/{path-parameter-2}": {
+            "get": {
+                "summary": "Résumé de la doc",
+                "description": "Description de la doc OpenAPI",
+                "parameters": [
+                    {
+                        "name": "path-parameter",
+                        "description": "Ceci est un path parameter",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "path-parameter-2",
+                        "description": "Un autre path parameter de type number",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "query-parameter",
+                        "description": "Un query parameter obsolète",
+                        "deprecated": true,
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "query-parameter-2",
+                        "description": "Un autre query parameter",
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "mon-header",
+                        "description": "Un header de la requête",
+                        "required": true,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "mavariable-1": {
+                                        "type": "string"
+                                    },
+                                    "mavariable-2": {
+                                        "$ref": "#/components/schemas/civilization"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Test Mic"
+                ]
+            }
+        },
+        "/openapi-schemas-mic/{test-path}": {
+            "post": {
+                "summary": "Résumé de la doc openapi",
+                "description": "Ceci est un test de génération automatique de la doc openAPI",
+                "parameters": [
+                    {
+                        "name": "test-path",
+                        "description": "Un path parameter",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "test-header",
+                        "description": "Un header de test",
+                        "required": true,
+                        "in": "header",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "test-query",
+                        "description": "Un paramètre de query",
+                        "deprecated": true,
+                        "required": true,
+                        "in": "query",
+                        "schema": {
+                            "type": "string",
+                            "format": "so:civilization:uuid"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/civilization"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "description": "Ceci est le body de la requête",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "array",
+                                "items": {
+                                    "$ref": "#/components/schemas/civilization"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Test Mic"
+                ]
+            }
+        },
+        "/openapi-star": {
+            "post": {
+                "summary": "Smartflow that returns a skilled object",
+                "description": "Takes a so:* as body then return a sk:",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "The result",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/sk:atGeolocation"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "description": "Object that can be any model",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/so:*"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Test Mic"
+                ]
+            }
+        },
+        "/paul-a": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-create-machine": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-for-page": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "smart-object": {
+                                        "$ref": "#/components/schemas/sk:atDocument"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-for-page-image": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-get-date": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-list-machine": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-test": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "so": {
+                                        "$ref": "#/components/schemas/so:*"
+                                    },
+                                    "page": {
+                                        "type": "number"
+                                    },
+                                    "limit": {
+                                        "type": "number"
+                                    },
+                                    "filter": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-test_rapport": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-test-opti": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/paul-test2": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/peio-sf-connect": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/peio-sf-service": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/peio-sf-zip": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/peio-sn-mapped": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/peio-sn-request": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/peio-test-log": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/peio-test-sub-log": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/propositions": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "input": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/sf-liste": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/sf-machines": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "page": {
+                                        "type": "number"
+                                    },
+                                    "limit": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/sf-rapport": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/sf-return-date": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/sf-service_2": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/sf-service-3": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/sf-test-load": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "entree": {
+                                        "type": "string"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "--"
+                ]
+            }
+        },
+        "/test marie-mitsuko-standuppresence": {
+            "post": {
+                "summary": "4",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "page": {
+                                        "type": "number"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/test marie-mitsuko-standups": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/test marie-mitsuko-test": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "test": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/test marie-mitsuko-test-2": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/test marie-mitsuko-test-mmb": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "machine": {
+                                        "$ref": "#/components/schemas/machine"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/test-cache": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/test-data": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/test-encore-dernier": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "succesful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/aar"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "description": "",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/aar"
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/test-hello-world": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "paul"
+                ]
+            }
+        },
+        "/test-openapi": {
+            "delete": {
+                "summary": "",
+                "description": "4",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test marie-mitsuko"
+                ]
+            }
+        },
+        "/test-service": {
+            "get": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/test-test-pagination": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "pagination": {
+                                        "type": "string",
+                                        "format": "sys:pagination"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "test"
+                ]
+            }
+        },
+        "/testapi": {
+            "get": {
+                "summary": "",
+                "description": "test",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "peio"
+                ]
+            }
+        },
+        "/vrac": {
+            "post": {
+                "summary": "",
+                "description": "",
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "smartflow executed successfully"
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {}
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "farouk"
+                ]
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "algotech"
+        },
+        {
+            "name": "convert-file"
+        },
+        {
+            "name": "DIMO"
+        },
+        {
+            "name": "farouk"
+        },
+        {
+            "name": "GitLab"
+        },
+        {
+            "name": "Maher"
+        },
+        {
+            "name": "mattermost"
+        },
+        {
+            "name": "paul"
+        },
+        {
+            "name": "peio"
+        },
+        {
+            "name": "test"
+        },
+        {
+            "name": "test marie-mitsuko"
+        },
+        {
+            "name": "Test Mic"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "aar": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "TEST": {
+                        "type": "string"
+                    },
+                    "CHANTIER": {
+                        "$ref": "#/components/schemas/visite-chantier"
+                    },
+                    "SYS": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atGeolocation": {
+                                "type": "object",
+                                "properties": {
+                                    "geo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                },
+                                                "layerKey": {
+                                                    "type": "string"
+                                                },
+                                                "geometries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "coordinates": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "atDocument": {
+                                "type": "object",
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "capital": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "NAME": {
+                        "type": "string"
+                    },
+                    "CAPITAL": {
+                        "type": "string"
+                    },
+                    "POPULATION": {
+                        "type": "number"
+                    }
+                }
+            },
+            "civilization": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "ID": {
+                        "type": "number"
+                    },
+                    "NAME": {
+                        "type": "string"
+                    },
+                    "EXPANSION": {
+                        "type": "string"
+                    },
+                    "ARMY_TYPE": {
+                        "type": "string"
+                    },
+                    "UNIQUE_UNIT": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/unit"
+                        }
+                    },
+                    "UNIQUE_TECH": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/tech"
+                        }
+                    },
+                    "TEAM_BONUS": {
+                        "type": "string"
+                    }
+                }
+            },
+            "di": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "ASSETCODE": {
+                        "type": "string"
+                    },
+                    "BODYNAME": {
+                        "type": "string"
+                    },
+                    "REQUESTUSERNAME": {
+                        "type": "string"
+                    },
+                    "WORKREQUESTCREATIONDATETIME": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "WORKREQUESTTITLE": {
+                        "type": "string"
+                    },
+                    "URGENCYCODE": {
+                        "type": "string"
+                    }
+                }
+            },
+            "element": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "CODE": {
+                        "type": "number"
+                    },
+                    "ETUDES": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/etudes"
+                        }
+                    },
+                    "MACHINES": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/machine"
+                        }
+                    },
+                    "CLIENT": {
+                        "type": "string"
+                    },
+                    "CHARGE-D'AFFAIRES": {
+                        "type": "string"
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atGeolocation": {
+                                "type": "object",
+                                "properties": {
+                                    "geo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                },
+                                                "layerKey": {
+                                                    "type": "string"
+                                                },
+                                                "geometries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "coordinates": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "atDocument": {
+                                "type": "object",
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "etudes": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "CARACTERISTIQUES": {
+                        "type": "string"
+                    },
+                    "CHARGE-D'ETUDES": {
+                        "type": "string"
+                    },
+                    "CODE-AFFAIRE": {
+                        "type": "string"
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atGeolocation": {
+                                "type": "object",
+                                "properties": {
+                                    "geo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                },
+                                                "layerKey": {
+                                                    "type": "string"
+                                                },
+                                                "geometries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "coordinates": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "atDocument": {
+                                "type": "object",
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "machine": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "NAME": {
+                        "type": "string"
+                    },
+                    "DESIGNATION": {
+                        "type": "string"
+                    },
+                    "LINE": {
+                        "type": "string"
+                    },
+                    "TEST": {
+                        "type": "string"
+                    },
+                    "DATE": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "UTILITE": {
+                        "type": "string"
+                    },
+                    "TEST_NOM_FORMULE": {
+                        "type": "string"
+                    },
+                    "SITE": {
+                        "type": "string"
+                    },
+                    "BATIMENT": {
+                        "type": "string"
+                    },
+                    "HTML": {
+                        "type": "string",
+                        "format": "html"
+                    },
+                    "MULTI": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atGeolocation": {
+                                "type": "object",
+                                "properties": {
+                                    "geo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                },
+                                                "layerKey": {
+                                                    "type": "string"
+                                                },
+                                                "geometries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "coordinates": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "atDocument": {
+                                "type": "object",
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "atSignature": {
+                                "type": "object",
+                                "properties": {
+                                    "signatureID": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "userID": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    }
+                                }
+                            },
+                            "atTag": {
+                                "type": "object",
+                                "properties": {
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "atMagnet": {
+                                "type": "object",
+                                "properties": {
+                                    "zones": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "appKey": {
+                                                    "type": "string"
+                                                },
+                                                "magnetsZoneKey": {
+                                                    "type": "string"
+                                                },
+                                                "boardInstance": {
+                                                    "type": "string"
+                                                },
+                                                "position": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "x": {
+                                                            "type": "number"
+                                                        },
+                                                        "y": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "order": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "sk:atDocument": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "modelKey": {
+                        "type": "string"
+                    },
+                    "...props": {
+                        "type": "object"
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atDocument": {
+                                "type": "object",
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "sk:atGeolocation": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "modelKey": {
+                        "type": "string"
+                    },
+                    "...props": {
+                        "type": "object"
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atGeolocation": {
+                                "type": "object",
+                                "properties": {
+                                    "geo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                },
+                                                "layerKey": {
+                                                    "type": "string"
+                                                },
+                                                "geometries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "coordinates": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "so:*": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "modelKey": {
+                        "type": "string"
+                    },
+                    "...props": {
+                        "type": "object"
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atGeolocation": {
+                                "type": "object",
+                                "properties": {
+                                    "geo": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "uuid": {
+                                                    "type": "string",
+                                                    "format": "uuid"
+                                                },
+                                                "layerKey": {
+                                                    "type": "string"
+                                                },
+                                                "geometries": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "object",
+                                                        "properties": {
+                                                            "type": {
+                                                                "type": "string"
+                                                            },
+                                                            "coordinates": {
+                                                                "type": "array",
+                                                                "items": {}
+                                                            }
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            "atDocument": {
+                                "type": "object",
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "atSignature": {
+                                "type": "object",
+                                "properties": {
+                                    "signatureID": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    },
+                                    "date": {
+                                        "type": "string"
+                                    },
+                                    "userID": {
+                                        "type": "string",
+                                        "format": "uuid"
+                                    }
+                                }
+                            },
+                            "atTag": {
+                                "type": "object",
+                                "properties": {
+                                    "tags": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            },
+                            "atMagnet": {
+                                "type": "object",
+                                "properties": {
+                                    "zones": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "object",
+                                            "properties": {
+                                                "appKey": {
+                                                    "type": "string"
+                                                },
+                                                "magnetsZoneKey": {
+                                                    "type": "string"
+                                                },
+                                                "boardInstance": {
+                                                    "type": "string"
+                                                },
+                                                "position": {
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "x": {
+                                                            "type": "number"
+                                                        },
+                                                        "y": {
+                                                            "type": "number"
+                                                        }
+                                                    }
+                                                },
+                                                "order": {
+                                                    "type": "number"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "structure": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "ID": {
+                        "type": "number"
+                    },
+                    "NAME": {
+                        "type": "string"
+                    },
+                    "EXPANSION": {
+                        "type": "string"
+                    },
+                    "AGE": {
+                        "type": "string"
+                    }
+                }
+            },
+            "tech": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "ID": {
+                        "type": "number"
+                    },
+                    "NAME": {
+                        "type": "string"
+                    },
+                    "DESCRIPTION": {
+                        "type": "string"
+                    },
+                    "EXPANSION": {
+                        "type": "string"
+                    },
+                    "AGE": {
+                        "type": "string"
+                    },
+                    "DEVELOPS_IN": {
+                        "$ref": "#/components/schemas/structure"
+                    }
+                }
+            },
+            "unit": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "ID": {
+                        "type": "number"
+                    },
+                    "NAME": {
+                        "type": "string"
+                    },
+                    "DESCRIPTION": {
+                        "type": "string"
+                    },
+                    "EXPANSION": {
+                        "type": "string"
+                    },
+                    "AGE": {
+                        "type": "string"
+                    },
+                    "CREATED_IN": {
+                        "$ref": "#/components/schemas/structure"
+                    }
+                }
+            },
+            "visite-chantier": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "format": "uuid"
+                    },
+                    "PHASE": {
+                        "type": "string"
+                    },
+                    "PERSONNE": {
+                        "type": "string"
+                    },
+                    "~__LES-POINTS-DE-SONDAGE-SONT-ILS-TOUS-REPERES-ET-ACCESSIBLES-.comment": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "~__LES-POINTS-DE-SONDAGE-SONT-ILS-TOUS-REPERES-ET-ACCESSIBLES-.photo": {
+                        "type": "string",
+                        "format": "sys:file"
+                    },
+                    "GLIST": {
+                        "type": "string"
+                    },
+                    "CHANTIER": {
+                        "type": "string"
+                    },
+                    "~__CHANTIER.comment": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "OBJECT": {
+                        "$ref": "#/components/schemas/element"
+                    },
+                    "~__OBJECT.comment": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "MULTIPLE": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/element"
+                        }
+                    },
+                    "COMMENT": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "SERVICE": {
+                        "type": "string"
+                    },
+                    "DATE": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "DATETIME": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "~__LE-SITE-EST-IL-ACCESSIBLE-.photo": {
+                        "type": "string",
+                        "format": "sys:file"
+                    },
+                    "LES-POINTS-DE-SONDAGE-SONT-ILS-TOUS-REPERES-ET-ACCESSIBLES-": {
+                        "type": "boolean"
+                    },
+                    "EPI-CASQUE": {
+                        "type": "boolean"
+                    },
+                    "EPI-CASQUE-ANTI-BRUIT-BOUCHONS": {
+                        "type": "boolean"
+                    },
+                    "EPI-BLEU-DE-TRAVAIL-ET-GILET-FLUO": {
+                        "type": "boolean"
+                    },
+                    "EPI-CHAUSSURES-OU-BOTTES-DE-SECURITE": {
+                        "type": "boolean"
+                    },
+                    "EPI-GANTS": {
+                        "type": "boolean"
+                    },
+                    "EPI-OBSERVATION": {
+                        "type": "string"
+                    },
+                    "~__EPI-OBSERVATION.photo": {
+                        "type": "string",
+                        "format": "sys:file"
+                    },
+                    "RESEAUX-BALISES": {
+                        "type": "boolean"
+                    },
+                    "~__RESEAUX-BALISES.photo": {
+                        "type": "string",
+                        "format": "sys:file"
+                    },
+                    "~__RESEAUX-BALISES.comment": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "OBSERVATION-SUPPLEMENTAIRE": {
+                        "type": "string"
+                    },
+                    "~__OBSERVATION-SUPPLEMENTAIRE.photo": {
+                        "type": "string",
+                        "format": "sys:file"
+                    },
+                    "TEST-SOCKET": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "FILE-EXT": {
+                        "type": "string"
+                    },
+                    "~__FILE-EXT.photo": {
+                        "type": "string",
+                        "format": "sys:file"
+                    },
+                    "~__LE-SITE-EST-IL-ACCESSIBLE-.comment": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "TIME": {
+                        "type": "string",
+                        "format": "time"
+                    },
+                    "~__FILE-EXT.comment": {
+                        "type": "string",
+                        "format": "sys:comment"
+                    },
+                    "LE-SITE-EST-IL-ACCESSIBLE-": {
+                        "type": "boolean"
+                    },
+                    "HTML": {
+                        "type": "string",
+                        "format": "html"
+                    },
+                    "STRMULTIPLE": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "EPI-LUNETTES": {
+                        "type": "boolean"
+                    },
+                    "skills": {
+                        "type": "object",
+                        "properties": {
+                            "atDocument": {
+                                "type": "object",
+                                "properties": {
+                                    "documents": {
+                                        "type": "array",
+                                        "items": {
+                                            "type": "string"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

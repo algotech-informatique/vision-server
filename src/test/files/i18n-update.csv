@@ -1,0 +1,12 @@
+context,fr-FR,en-US,es-ES,id
+workflow,Test Model-01,UPDATE,test model-01,:bfd4aaff-e4d0-c7ff-70b5-d1fb8b4c1a00-displayName
+workflow,Test Model-02,test model en-02,test model es-02,:3b01859b-d9cf-f650-8187-aa46ac487663-displayName
+workflow,Nouveau SnModel Test,New SnModel Test,UPDATE,:c0a9e078-7a48-4a05-8a90-a382226fc636-displayName
+glists,Poste,Position,,:71c81d8e-f4cb-41b3-943e-023780c8e972-displayName
+glists,Directeur,Head,,:71c81d8e-f4cb-41b3-943e-023780c8e972-values:head-value
+glists,Développeur,Developer,,:71c81d8e-f4cb-41b3-943e-023780c8e972-values:developer-value
+settings,Site Ouest,West Site,,:d806e514-4bf0-11e9-8646-d663bd873d93-plan:plan-containers:9aa4aed8-4c7f-11e9-8646-d663bd873d93-layers:734d94e1-3717-4111-ae5e-c54e6b3f1a6c-displayName
+settings,Raster batiment,Building Raster,,:d806e514-4bf0-11e9-8646-d663bd873d93-plan:plan-containers:9aa4aed8-4c7f-11e9-8646-d663bd873d93-layers:734d94e1-3717-4111-ae5e-c54e6b3f1a6c-rasters:a423af96-4bf2-11e9-8646-d663bd873d93-displayName
+settings,CHLS-1C-E,CHLS-1C-E,,:d806e514-4bf0-11e9-8646-d663bd873d93-plan:plan-containers:e1d57b3e-4c7f-11e9-8646-d663bd873d93-displayName
+tags,Liste 1,List 1,Lista 1,fakeid
+tags,Etude,Study,Estudio,fakeid

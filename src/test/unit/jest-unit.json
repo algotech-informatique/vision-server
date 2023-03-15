@@ -1,0 +1,17 @@
+{
+  "moduleFileExtensions": ["js", "json", "ts"],
+  "rootDir": ".",
+  "testEnvironment": "node",
+  "testRunner": "jest-jasmine2",
+  "testRegex": ".test.ts$",
+  "transform": {
+    "^.+\\.(t|j)s$": "ts-jest"
+  },
+  "reporters": [ 
+    "default", 
+    [ "jest-junit", {
+      "outputDirectory": "./test-reports",
+      "outputName": "junit.xml"
+    }]
+  ]
+}
