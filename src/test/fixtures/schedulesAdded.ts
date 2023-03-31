@@ -1,4 +1,4 @@
-import { ScheduleDto } from '@algotech/core';
+import { ScheduleDto } from '@algotech-ce/core';
 
 export const scheduleInBaseUpdated: ScheduleDto = {
     uuid: '',

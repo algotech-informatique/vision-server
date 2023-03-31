@@ -2,11 +2,7 @@ FROM registry.myalgotech.io/algo-node:18.13.0-alpine
 
 WORKDIR /usr/src/app
 
-COPY .npmrc ~/.npmrc
-COPY .npmrc ./.npmrc
 COPY package.json ./
-
-COPY .npmrc ./
 
 RUN npm i --force
 

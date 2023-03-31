@@ -6,7 +6,7 @@ import { createSnModel, createSnModelService, duplicateNewSnModelService, listSn
     snModelTest1, snModelTest2 } from '../fixtures/smartnodes';
 import * as _ from 'lodash';
 import { SmartNodesHead } from '../../providers';
-import { CacheDto, PatchPropertyDto, SnModelDto } from '@algotech/core';
+import { CacheDto, PatchPropertyDto, SnModelDto } from '@algotech-ce/core';
 
 declare const describe, beforeAll, afterAll, expect, it: any;
 

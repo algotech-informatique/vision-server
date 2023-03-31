@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { smartModel1, smartModelPermR } from '../fixtures/smartmodels';
-import { SmartModelDto, PatchPropertyDto } from '@algotech/core';
+import { SmartModelDto, PatchPropertyDto } from '@algotech-ce/core';
 import { TestUtils } from '../utils';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;

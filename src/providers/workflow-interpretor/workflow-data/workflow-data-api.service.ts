@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
-import { InterpretorDataApi, SaveOperationMode } from '@algotech/interpretor';
+import { InterpretorDataApi, SaveOperationMode } from '@algotech-ce/interpretor';
 import {
     WorkflowTaskActionDto, SmartObjectDto, PatchPropertyDto, WorkflowInstanceDto,
     WorkflowInstanceContextDto, ReportGenerateDto, ReportPreviewDto, WorkflowOperationDto, CrudDto, Metadata, WorkflowLaunchOptionsDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { Observable, concat, of, Subject } from 'rxjs';
 import { catchError, map, mergeMap, reduce, timeout } from 'rxjs/operators';
 import { WorkflowInstancesService } from '../../workflow-instances/workflow-instances.service';

@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { connectorsParameters, connectorsParametersUpdate, environment } from '../fixtures/environment';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;

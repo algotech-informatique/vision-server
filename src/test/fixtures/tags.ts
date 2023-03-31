@@ -1,4 +1,4 @@
-import { TagDto, TagListDto } from '@algotech/core';
+import { TagDto, TagListDto } from '@algotech-ce/core';
 
 export const listTag: TagListDto = {
     uuid: 'e8dfa860-01ff-11ea-8d71-362b9e155667',

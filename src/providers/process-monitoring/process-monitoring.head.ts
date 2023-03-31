@@ -1,4 +1,4 @@
-import { ProcessMonitoringSearchDto, ProcessMonitoringType } from '@algotech/core';
+import { ProcessMonitoringSearchDto, ProcessMonitoringType } from '@algotech-ce/core';
 import { Injectable } from '@nestjs/common';
 import { ProcessMonitoring } from 'interfaces/process-monitoring/process-monitoring.interface';
 import { ProcessMonitoringService } from './process-monitoring.service';

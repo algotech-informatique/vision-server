@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import * as _ from 'lodash';
 
 import { workflowModel1 } from '../fixtures/workflowmodels';
-import { PatchPropertyDto, WorkflowModelDto } from '@algotech/core';
+import { PatchPropertyDto, WorkflowModelDto } from '@algotech-ce/core';
 import { TestUtils } from '../utils';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;

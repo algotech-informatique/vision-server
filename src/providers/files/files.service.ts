@@ -5,7 +5,7 @@ import { map, mergeMap, tap, catchError } from 'rxjs/operators';
 import moment from 'moment';
 import { UUID } from 'angular2-uuid';
 import { Connection, Model } from 'mongoose';
-import { FileInfo, Metadata } from '@algotech/core';
+import { FileInfo, Metadata } from '@algotech-ce/core';
 import { IdentityRequest, UploadFile } from '../../interfaces';
 import { Readable } from 'stream';
 import { IGridFSObject, MongoGridFS } from 'mongo-gridfs';

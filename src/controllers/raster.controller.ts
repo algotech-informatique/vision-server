@@ -5,7 +5,7 @@ import {
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { Observable } from 'rxjs';
-import { Metadata } from '@algotech/core';
+import { Metadata } from '@algotech-ce/core';
 import { NatsService, RasterHead } from '../providers';
 import { IdentityRequest, NatsResponse } from '../interfaces';
 import { Identity } from '../common/@decorators';

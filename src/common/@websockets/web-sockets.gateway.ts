@@ -2,7 +2,7 @@ import {
     OnGatewayConnection, OnGatewayDisconnect, OnGatewayInit, SubscribeMessage, WsResponse, WebSocketGateway, WebSocketServer,
 } from '@nestjs/websockets';
 import { Observable } from 'rxjs';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { UsePipes, ValidationPipe } from '@nestjs/common';
 import { WebSocketService, BroadcastingMode } from './web-sockets.service';
 import { EnvironmentHead, SmartNodesHead } from '../../providers';

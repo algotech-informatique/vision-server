@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { listTag, createListTag, modifyDuplicateTagKey } from '../fixtures/tags';
 import { TestUtils } from '../utils';
-import { TagListDto } from '@algotech/core';
+import { TagListDto } from '@algotech-ce/core';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;
 

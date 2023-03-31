@@ -5,7 +5,7 @@ import { SmartTasksLogsService } from './smart-tasks-logs.service';
 import { Model } from 'mongoose';
 
 import { catchError, map, mergeMap } from 'rxjs/operators';
-import { NotificationDto, PairDto, SmartTaskDto, WorkflowLaunchOptionsDto } from '@algotech/core';
+import { NotificationDto, PairDto, SmartTaskDto, WorkflowLaunchOptionsDto } from '@algotech-ce/core';
 import { IdentityRequest, SmartTask, SmartTaskLog, SmartTaskPeriodicity, SmartTaskRepetition, User } from '../../interfaces';
 import { UUID } from 'angular2-uuid';
 

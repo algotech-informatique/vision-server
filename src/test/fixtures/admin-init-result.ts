@@ -1,4 +1,4 @@
-import { CustomerInitResultDto } from '@algotech/core';
+import { CustomerInitResultDto } from '@algotech-ce/core';
 
 export const initOk: CustomerInitResultDto[] = [
     { key: 'customers', value: 'ok' },

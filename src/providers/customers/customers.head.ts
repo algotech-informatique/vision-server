@@ -4,7 +4,7 @@ import { catchError, mergeMap } from 'rxjs/operators';
 import { of, Observable, throwError } from 'rxjs';
 import { LicenceService } from '../admin/licence.service';
 import { Customer, CustomerLicence, IdentityRequest } from '../../interfaces';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 
 @Injectable()
 export class CustomerHead {

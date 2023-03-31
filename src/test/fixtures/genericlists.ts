@@ -1,4 +1,4 @@
-import { GenericListDto } from '@algotech/core';
+import { GenericListDto } from '@algotech-ce/core';
 
 export const gList1: GenericListDto = {
     uuid: '71c81d8e-f4cb-41b3-943e-023780c8e972',

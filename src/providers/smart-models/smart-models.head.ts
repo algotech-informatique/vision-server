@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { SmartModelsService } from './smart-models.service';
-import { PatchPropertyDto, QuerySearchDto } from '@algotech/core';
+import { PatchPropertyDto, QuerySearchDto } from '@algotech-ce/core';
 import { IdentityRequest, SmartModel } from '../../interfaces';
 
 @Injectable()

@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
 import { WorkflowInstancesService } from './workflow-instances.service';
-import { PatchPropertyDto, PairDto, WorkflowOperationDto, WorkflowInstanceContextDto, WorkflowInstanceAbstractDto } from '@algotech/core';
+import { PatchPropertyDto, PairDto, WorkflowOperationDto, WorkflowInstanceContextDto, WorkflowInstanceAbstractDto } from '@algotech-ce/core';
 import { WorkflowDataApiService } from '../workflow-interpretor/workflow-data/workflow-data-api.service';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { IdentityRequest, WorkflowInstance } from '../../interfaces';

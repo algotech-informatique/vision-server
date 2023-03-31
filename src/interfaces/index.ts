@@ -62,7 +62,6 @@ export { GroupApplication } from './groups/group-application.interface';
 
 // icons
 export { FileIcon } from './icons/file-icon.interface';
-export { IconMetadata } from './icons/icon-metadata.interface';
 
 // identity-request
 export { IdentityRequest } from './identity-request/identity-request';

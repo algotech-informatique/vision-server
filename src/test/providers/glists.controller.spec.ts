@@ -3,7 +3,7 @@ import { IdentityRequest } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { createGList, gList1, gList2, gList3, gList4, patchPush, patchSet, updateGList } from '../fixtures/glist';
-import { CacheDto, GenericListDto, GenericListValueDto, PatchPropertyDto } from '@algotech/core';
+import { CacheDto, GenericListDto, GenericListValueDto, PatchPropertyDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 

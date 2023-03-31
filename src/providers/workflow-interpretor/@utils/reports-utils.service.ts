@@ -2,16 +2,16 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import {
     ReportGenerateDto, SmartObjectDto, ReportPreviewDto, WorkflowInstanceContextDto,
     PairDto, WorkflowVariableModelDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import * as _ from 'lodash';
-import { ReportsUtils } from '@algotech/interpretor';
+import { ReportsUtils } from '@algotech-ce/interpretor';
 import { of, Observable, zip } from 'rxjs';
 import { mergeMap, map } from 'rxjs/operators';
 import { SoUtilsService } from './so-utils.service';
 import { WorkflowMessageService } from '../workflow-message/workflow-message.service';
 import { FilesService } from '../../files/files.service';
 import { DocumentsHead } from '../../documents/documents.head';
-import { FileUtils } from '@algotech/core';
+import { FileUtils } from '@algotech-ce/core';
 
 @Injectable()
 export class ReportsUtilsService extends ReportsUtils {

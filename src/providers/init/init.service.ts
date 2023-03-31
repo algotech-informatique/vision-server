@@ -2,7 +2,7 @@ import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/mongoose';
 import { Observable, from, of, zip } from 'rxjs';
 import { tap, catchError, retryWhen } from 'rxjs/operators';
-import { CustomerInitDto } from '@algotech/core';
+import { CustomerInitDto } from '@algotech-ce/core';
 import { AdminHead } from '../admin/admin.head';
 import { AuditTrailHead } from '../audit-trail/audit-trail.head';
 import { RxExtendService } from '../rx-extend/rx-extend.service';

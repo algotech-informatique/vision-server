@@ -3,7 +3,7 @@ import moment = require('moment');
 import { Observable, of, zip, from, identity } from 'rxjs';
 import { UUID } from 'angular2-uuid';
 import { catchError, mergeMap, map } from 'rxjs/operators';
-import { PatchPropertyDto, SysFile } from '@algotech/core';
+import { PatchPropertyDto, SysFile } from '@algotech-ce/core';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { SmartObjectsHead } from '../smart-objects/smart-objects.head';

@@ -1,4 +1,4 @@
-import { ScheduleSearchDto } from '@algotech/core';
+import { ScheduleSearchDto } from '@algotech-ce/core';
 
 export const scheduleSearchAllOptions: ScheduleSearchDto = {
     scheduleTypeKey: [

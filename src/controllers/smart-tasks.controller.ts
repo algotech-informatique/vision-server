@@ -4,7 +4,7 @@ import { Body, Controller, Delete, Get, Param, Patch, Post, Query, UseGuards, Us
 import { NatsService, SmartTasksHead } from '../providers';
 import { ActionCode, Identity } from '../common/@decorators';
 import { IdentityRequest } from '../interfaces';
-import { SmartTaskDto, SmartTaskLogDto } from '@algotech/core';
+import { SmartTaskDto, SmartTaskLogDto } from '@algotech-ce/core';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { tap } from 'rxjs/operators';
 import { ApiTags } from '@nestjs/swagger';

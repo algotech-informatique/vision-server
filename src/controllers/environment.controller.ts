@@ -1,7 +1,7 @@
 import { Controller, Param, Body, Get, Post, Put, UseGuards, Patch, UseInterceptors } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
-import { PatchPropertyDto, EnvironmentDto, EnvironmentConnectorDto } from '@algotech/core';
+import { PatchPropertyDto, EnvironmentDto, EnvironmentConnectorDto } from '@algotech-ce/core';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { NatsService, EnvironmentHead } from '../providers';
 import { Environment, IdentityRequest } from '../interfaces';

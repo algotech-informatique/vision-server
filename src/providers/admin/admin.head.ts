@@ -1,4 +1,4 @@
-import { CustomerInitDto, CustomerInitResultDto } from '@algotech/core';
+import { CustomerInitDto, CustomerInitResultDto } from '@algotech-ce/core';
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Customer, CustomerInit, CustomerInitResult, CustomerSearch } from '../../interfaces';

@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Param, UseGuards, Delete, Patch, Query, UseInterceptors, Put } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { WorkflowModelDto, PatchPropertyDto, DeleteDto, CacheDto } from '@algotech/core';
+import { WorkflowModelDto, PatchPropertyDto, DeleteDto, CacheDto } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { NatsService, WorkflowModelsHead } from '../providers';

@@ -4,7 +4,7 @@ import { GroupHead, NatsService } from '../providers';
 import { Controller, Param, Body, Get, Post, Delete, Put, UseGuards, UseInterceptors, BadRequestException } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
-import { CacheDto, GroupDto } from '@algotech/core';
+import { CacheDto, GroupDto } from '@algotech-ce/core';
 import { ApiTags } from '@nestjs/swagger';
 import { Roles } from '../common/@decorators/roles/roles.decorator';
 import { SettingsDataInterceptor } from '../common/@interceptors/settings-data.interceptor';

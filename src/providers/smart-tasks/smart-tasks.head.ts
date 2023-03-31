@@ -1,4 +1,4 @@
-import { SmartTaskDto } from '@algotech/core';
+import { SmartTaskDto } from '@algotech-ce/core';
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';

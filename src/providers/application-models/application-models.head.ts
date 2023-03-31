@@ -1,4 +1,4 @@
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { Observable, of, throwError } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';

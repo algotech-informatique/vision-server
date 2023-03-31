@@ -1,4 +1,4 @@
-import { WorkflowModelDto } from '@algotech/core';
+import { WorkflowModelDto } from '@algotech-ce/core';
 
 
 export const workflowModel1: WorkflowModelDto = {

@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { WorkflowAbstractService } from '../../workflow-abstract/workflow-abstract.service';
-import { InterpretorSo } from '@algotech/interpretor';
+import { InterpretorSo } from '@algotech-ce/interpretor';
 import { SoUtilsService } from '../../@utils/so-utils.service';
 
 @Injectable()

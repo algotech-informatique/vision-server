@@ -2,7 +2,7 @@ import { INestApplication } from '@nestjs/common';
 import { smartTask1, disabledSmartTask, updateSmartTask1 } from '../fixtures/smart-taks';
 import { TestUtils } from '../utils';
 import moment from 'moment';
-import { SmartTaskDto } from '@algotech/core';
+import { SmartTaskDto } from '@algotech-ce/core';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;
 

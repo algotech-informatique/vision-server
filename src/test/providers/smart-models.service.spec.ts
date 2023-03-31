@@ -7,7 +7,7 @@ import {
     patchSetNoRespectModel, recursiveModel, smartModel1, smartModelPermR, smartModulePatched
 } from '../fixtures/smartmodels';
 import * as _ from 'lodash';
-import { CacheDto, PatchPropertyDto, QuerySearchDto, SmartModelDto } from '@algotech/core';
+import { CacheDto, PatchPropertyDto, QuerySearchDto, SmartModelDto } from '@algotech-ce/core';
 
 declare const describe, jasmine, beforeAll, afterAll, expect, it: any;
 

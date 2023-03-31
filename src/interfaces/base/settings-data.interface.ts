@@ -1,4 +1,4 @@
-import { ApplicationModelDto, EnvironmentDto, GenericListDto, GroupDto, SettingsDto, SmartModelDto } from '@algotech/core';
+import { ApplicationModelDto, EnvironmentDto, GenericListDto, GroupDto, SettingsDto, SmartModelDto } from '@algotech-ce/core';
 
 export interface SettingsData {
     apps: ApplicationModelDto[];

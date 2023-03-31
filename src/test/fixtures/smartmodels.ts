@@ -1,4 +1,4 @@
-import { PatchPropertyDto, SmartModelDto } from '@algotech/core';
+import { PatchPropertyDto, SmartModelDto } from '@algotech-ce/core';
 
 export const smartModel1: SmartModelDto = {
     uuid: '4e4551fa-e964-4492-99ff-171cea42791c',

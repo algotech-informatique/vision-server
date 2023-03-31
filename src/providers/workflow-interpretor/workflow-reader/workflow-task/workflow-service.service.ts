@@ -1,13 +1,13 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { ServiceReturnModelDto } from '@algotech/core';
-import { SmartObjectDto, PairDto, WorkflowInstanceContextDto } from '@algotech/core';
+import { ServiceReturnModelDto } from '@algotech-ce/core';
+import { SmartObjectDto, PairDto, WorkflowInstanceContextDto } from '@algotech-ce/core';
 import { Observable, throwError } from 'rxjs';
-import { InterpretorFormData, InterpretorService } from '@algotech/interpretor';
+import { InterpretorFormData, InterpretorService } from '@algotech-ce/interpretor';
 import { map, catchError } from 'rxjs/operators';
 import { AxiosResponse, AxiosRequestConfig } from 'axios';
 import { WorkflowServiceBridgeToHeadService } from './workflow-service-bridge-to-head.service';
-import { ATHttpException } from '@algotech/interpretor';
+import { ATHttpException } from '@algotech-ce/interpretor';
 
 @Injectable()
 export class WorkflowServiceService extends InterpretorService {

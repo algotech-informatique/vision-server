@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { WorkflowModelsService } from './workflow-models.service';
 import { Observable, of, throwError } from 'rxjs';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { mergeMap } from 'rxjs/operators';
 import { IdentityRequest, WorkflowModel } from '../../interfaces';
 

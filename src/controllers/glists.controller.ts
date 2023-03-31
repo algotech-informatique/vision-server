@@ -1,7 +1,7 @@
 import { Controller, Param, Get, UseGuards, Post, Body, Delete, Patch, Put, UseInterceptors } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { Observable } from 'rxjs';
-import { CacheDto, GenericListDto, GenericListValueDto, PatchPropertyDto } from '@algotech/core';
+import { CacheDto, GenericListDto, GenericListValueDto, PatchPropertyDto } from '@algotech-ce/core';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { GenericListsHead, NatsService } from '../providers';
 import { GenericList, IdentityRequest } from '../interfaces';

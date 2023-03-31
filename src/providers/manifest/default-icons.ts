@@ -1,4 +1,4 @@
-import { PlayerManifestIconDto } from '@algotech/core';
+import { PlayerManifestIconDto } from '@algotech-ce/core';
 
 export const IconsPlayer: PlayerManifestIconDto[] = [
     {

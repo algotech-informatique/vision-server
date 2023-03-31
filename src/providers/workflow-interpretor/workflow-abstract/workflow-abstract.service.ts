@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { SmartObjectDto, LangDto, WorkflowInstanceContextDto, DocumentDto } from '@algotech/core';
-import { InterpretorAbstract, InterpretorMetricsKeys } from '@algotech/interpretor';
+import { SmartObjectDto, LangDto, WorkflowInstanceContextDto, DocumentDto } from '@algotech-ce/core';
+import { InterpretorAbstract, InterpretorMetricsKeys } from '@algotech-ce/interpretor';
 import { WorkflowMessageService } from '../workflow-message/workflow-message.service';
 import { SmartObjectsHead } from '../../smart-objects/smart-objects.head';
 import { defer, Observable, of } from 'rxjs';
@@ -9,7 +9,7 @@ import { DocumentsHead } from '../../documents/documents.head';
 import { IdentityRequest } from '../../../interfaces';
 import { map, tap } from 'rxjs/operators';
 import { WorkflowMetricsService } from '../workflow-metrics/workflow-metrics.service';
-import { FileUtils } from '@algotech/core';
+import { FileUtils } from '@algotech-ce/core';
 
 @Injectable()
 export class WorkflowAbstractService extends InterpretorAbstract {

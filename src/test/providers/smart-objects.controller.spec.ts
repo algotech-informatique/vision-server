@@ -3,7 +3,7 @@ import { IdentityRequest } from '../../interfaces';
 import { BadRequestException, INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { CacheDto, DeleteDto, GeoSettingsDto, PatchPropertyDto,
-    SmartObjectDto, SmartObjectTreeQuery } from '@algotech/core';
+    SmartObjectDto, SmartObjectTreeQuery } from '@algotech-ce/core';
 import { createSmartObectGeo, createSmartObject, receiveSmartModel, removeSmartObectGeoLayer,
     searchByDoc, smartObject1, smartObject3, smartObject4, smartObjectMultiple,
     smartObjectMultipleUpdate, smartObjectsRecursive, smartObjectsTree } from '../fixtures/smartobjects';

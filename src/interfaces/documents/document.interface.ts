@@ -1,4 +1,4 @@
-import { IndexStatus } from '@algotech/core';
+import { IndexStatus } from '@algotech-ce/core';
 import { BaseDocument } from '../base/base.interface';
 import { SmartPropertyObject } from '../smart-objects/smart-property-object.interface';
 import { DocumentLockState } from './document-lock.interface';

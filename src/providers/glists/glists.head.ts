@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Observable, of, throwError } from 'rxjs';
 import { GenericListsSevice } from './glists.service';
 import { catchError, mergeMap } from 'rxjs/operators';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { GenericList, GenericListValue, IdentityRequest } from '../../interfaces';
 
 @Injectable()

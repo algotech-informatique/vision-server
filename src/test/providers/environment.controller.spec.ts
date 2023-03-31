@@ -3,7 +3,7 @@ import { IdentityRequest } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { createEnvironment, environment, patchPull, patchPush, patchRemove, patchSet, updateEnvironment } from '../fixtures/environment';
-import { EnvironmentDto, PatchPropertyDto } from '@algotech/core';
+import { EnvironmentDto, PatchPropertyDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 

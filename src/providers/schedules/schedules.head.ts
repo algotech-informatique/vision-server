@@ -1,6 +1,6 @@
 import { Observable, of, throwError } from 'rxjs';
 import { SchedulesService } from './schedules.service';
-import { PatchPropertyDto, SmartObjectDto } from '@algotech/core';
+import { PatchPropertyDto, SmartObjectDto } from '@algotech-ce/core';
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { IdentityRequest, Schedule, ScheduleSearch, SmartObject } from '../../interfaces';
 import { mergeMap } from 'rxjs/operators';

@@ -3,7 +3,7 @@ import { Observable, from, of, zip, throwError, concat } from 'rxjs';
 import * as _ from 'lodash';
 import { catchError, map, mergeMap, toArray } from 'rxjs/operators';
 import { InjectConnection } from '@nestjs/mongoose';
-import { EMailDto } from '@algotech/core';
+import { EMailDto } from '@algotech-ce/core';
 import { MailerService } from '@nest-modules/mailer';
 import { Group, IdentityRequest, User } from '../../interfaces';
 import { UsersService } from '../users/users.service';

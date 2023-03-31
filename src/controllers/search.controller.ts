@@ -1,6 +1,6 @@
 import { Controller, Post, Query, Body, BadRequestException, UseGuards } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { QuerySearchDto, SearchSODto, SmartObjectDto } from '@algotech/core';
+import { QuerySearchDto, SearchSODto, SmartObjectDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { SearchHead, NatsService } from '../providers';

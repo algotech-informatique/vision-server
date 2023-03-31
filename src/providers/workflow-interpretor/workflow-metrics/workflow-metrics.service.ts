@@ -1,4 +1,4 @@
-import { InterpretorMetrics } from '@algotech/interpretor';
+import { InterpretorMetrics } from '@algotech-ce/interpretor';
 import { Injectable } from '@nestjs/common';
 
 @Injectable()

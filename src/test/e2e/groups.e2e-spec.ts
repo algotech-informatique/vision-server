@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { group1, group2, group3, group4, group5 } from '../fixtures/groups';
 import { TestUtils } from '../utils';
-import { GroupDto } from '@algotech/core';
+import { GroupDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import request from 'supertest';
 

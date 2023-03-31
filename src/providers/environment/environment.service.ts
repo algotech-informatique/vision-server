@@ -6,7 +6,7 @@ import { map, catchError, mergeMap } from 'rxjs/operators';
 import { DefaultEnvironment } from './default-environment';
 import { Environment, CustomerInitResult, CustomerInit } from '../../interfaces';
 import { BaseService } from '../@base/base.service';
-import { EnvironmentConnectorDto } from '@algotech/core';
+import { EnvironmentConnectorDto } from '@algotech-ce/core';
 
 @Injectable()
 export class EnvironmentService extends BaseService<Environment> {

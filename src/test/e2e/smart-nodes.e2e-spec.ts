@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { listSnModel, createSnModel } from '../fixtures/snmodels';
 import { TestUtils } from '../utils';
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 import { SnModel } from '../../interfaces';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;

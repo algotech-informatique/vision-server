@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { ScheduleUtils } from '@algotech/interpretor';
+import { ScheduleUtils } from '@algotech-ce/interpretor';
 import { WorkflowAbstractService } from '../workflow-abstract/workflow-abstract.service';
 
 @Injectable()

@@ -1,4 +1,4 @@
-import { DocumentDto } from '@algotech/core';
+import { DocumentDto } from '@algotech-ce/core';
 
 export const document1: DocumentDto = {
     uuid: '3c731aa0-025c-4d70-8587-be8371194d0b',

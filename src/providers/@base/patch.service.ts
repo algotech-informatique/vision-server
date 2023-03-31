@@ -1,4 +1,4 @@
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { FilterQuery, Model, UpdateQuery } from 'mongoose';
 import { Observable, from, of, concat, throwError } from 'rxjs';
 import { mergeMap, toArray, catchError, map, filter } from 'rxjs/operators';

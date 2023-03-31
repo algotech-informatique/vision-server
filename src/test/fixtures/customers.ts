@@ -1,4 +1,4 @@
-import { CustomerDto, PatchPropertyDto } from '@algotech/core';
+import { CustomerDto, PatchPropertyDto } from '@algotech-ce/core';
 
 export let customer1: CustomerDto = {
     uuid: 'd3f179ac-3415-49e9-857b-ead1b70cee92',

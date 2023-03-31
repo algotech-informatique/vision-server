@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { InterpretorUtils } from '@algotech/interpretor';
+import { InterpretorUtils } from '@algotech-ce/interpretor';
 import { ReportsUtilsService } from '../@utils/reports-utils.service';
 import { ScheduleUtilsService } from '../@utils/schedule-utils.service';
 import { SkillsUtilsService } from '../@utils/skills-utils.service';

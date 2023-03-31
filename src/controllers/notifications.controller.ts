@@ -1,6 +1,6 @@
 import { Controller, Get, Param, UseGuards, Query, Post, Body, Delete, Patch } from '@nestjs/common';
 import { Observable, of } from 'rxjs';
-import { PatchPropertyDto, DeleteDto, NotificationDto } from '@algotech/core';
+import { PatchPropertyDto, DeleteDto, NotificationDto } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { NatsService, NotificationsHead, UsersHead } from '../providers';
 import { tap, mergeMap, map } from 'rxjs/operators';

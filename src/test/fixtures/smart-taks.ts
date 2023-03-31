@@ -1,4 +1,4 @@
-import { SmartTaskDto } from '@algotech/core';
+import { SmartTaskDto } from '@algotech-ce/core';
 
 export const smartTask1: SmartTaskDto = {
   enabled: true,

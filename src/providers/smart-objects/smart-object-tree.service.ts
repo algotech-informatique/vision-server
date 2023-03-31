@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { SmartObjectTreeQuery, SmartObjectTreeNavigation } from '@algotech/core';
+import { SmartObjectTreeQuery, SmartObjectTreeNavigation } from '@algotech-ce/core';
 import { Observable, of, zip } from 'rxjs';
 import { SmartObjectsService } from './smart-objects.service';
 import * as _ from 'lodash';

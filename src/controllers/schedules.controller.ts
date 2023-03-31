@@ -1,7 +1,7 @@
 import { Controller, UseGuards, Post, Query, BadRequestException, Body, Patch, Delete, Param } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { Observable } from 'rxjs';
-import { DeleteDto, ScheduleDto, PatchPropertyDto, ScheduleSearchDto, SmartObjectDto } from '@algotech/core';
+import { DeleteDto, ScheduleDto, PatchPropertyDto, ScheduleSearchDto, SmartObjectDto } from '@algotech-ce/core';
 import { IdentityRequest, ScheduleSearch } from '../interfaces';
 import { NatsService, SchedulesHead } from '../providers';
 import { ActionCode, Identity } from '../common/@decorators';

@@ -1,4 +1,4 @@
-import { UserDto } from '@algotech/core';
+import { UserDto } from '@algotech-ce/core';
 
 export const user1: UserDto = {
     customerKey: 'algotech',

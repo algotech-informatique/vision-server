@@ -3,7 +3,7 @@ import { IdentityRequest } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { createCustomer, customer1, customer2, updateCustomer } from '../fixtures/customers';
-import { CustomerDto } from '@algotech/core';
+import { CustomerDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 

@@ -1,4 +1,4 @@
-import { EnvironmentConnectorDto, EnvironmentDto, PatchPropertyDto } from '@algotech/core';
+import { EnvironmentConnectorDto, EnvironmentDto, PatchPropertyDto } from '@algotech-ce/core';
 
 export const environment: EnvironmentDto = {
     uuid: '6ae1f52f-b7f2-401d-bb87-6d16d443d0b6',

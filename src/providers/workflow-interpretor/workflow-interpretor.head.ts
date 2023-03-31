@@ -4,11 +4,11 @@ import { WorkflowInterpretorService } from './workflow-interpretor.service';
 import {
     WorkflowInstanceContextDto, WorkflowSettingsDto, WorkflowModelDto, SettingsDto,
     WorkflowSettingsSecurityGroupsDto, TaskModelDto, WorkflowLaunchOptionsDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { zip } from 'rxjs';
 import { mergeMap, map, catchError } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { InterpretorTaskDto, WorkflowErrorUnauthorizedProfil } from '@algotech/interpretor';
+import { InterpretorTaskDto, WorkflowErrorUnauthorizedProfil } from '@algotech-ce/interpretor';
 import { WorkflowDataService } from './workflow-data/workflow-data.service';
 import { WorkflowUtilsService } from './workflow-utils/workflow-utils.service';
 import { WorkflowMessageService } from './workflow-message/workflow-message.service';

@@ -1,4 +1,4 @@
-import { TagListDto } from '@algotech/core';
+import { TagListDto } from '@algotech-ce/core';
 import { INestApplication } from '@nestjs/common';
 import { IdentityRequest, TagList } from '../../interfaces';
 import { TagsHead } from '../../providers';

@@ -1,6 +1,6 @@
 import { Controller, Body, UseGuards, Query, UseInterceptors, Post } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { ProcessMonitoringDto, ProcessMonitoringSearchDto, ProcessMonitoringType } from '@algotech/core';
+import { ProcessMonitoringDto, ProcessMonitoringSearchDto, ProcessMonitoringType } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { AuthorizationInterceptor } from '../auth/interceptors/authorization.interceptor';
 import * as _ from 'lodash';

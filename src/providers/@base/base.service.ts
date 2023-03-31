@@ -5,7 +5,7 @@ import { BaseDocument } from '../../interfaces';
 import * as _ from 'lodash';
 import { UUID } from 'angular2-uuid';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { CacheDto, PatchPropertyDto } from '@algotech/core';
+import { CacheDto, PatchPropertyDto } from '@algotech-ce/core';
 import { PatchPropertyService } from './patch.service';
 
 @Injectable()

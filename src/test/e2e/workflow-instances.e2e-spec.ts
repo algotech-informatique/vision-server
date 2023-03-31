@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import * as _ from 'lodash';
 import { TestUtils } from '../utils';
-import { WorkflowInstanceDto, SmartObjectDto, ScheduleSearchDto } from '@algotech/core';
+import { WorkflowInstanceDto, SmartObjectDto, ScheduleSearchDto } from '@algotech-ce/core';
 import {
     workflowInstance1, workflowInstance2, operationAddObject, operationPatchObject,
     operationSignObject, soAfterOperation,

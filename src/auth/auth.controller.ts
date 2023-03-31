@@ -1,6 +1,6 @@
 import { Controller, Post, Body } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { SignInDto } from '@algotech/core';
+import { SignInDto } from '@algotech-ce/core';
 import { AuthHead, NatsService } from '../providers';
 import { ApiTags } from '@nestjs/swagger';
 

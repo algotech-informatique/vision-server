@@ -1,6 +1,6 @@
 import { identity, Observable, tap } from 'rxjs';
 import { Injectable } from '@nestjs/common';
-import { EnvironmentConnectorDto, PatchPropertyDto } from '@algotech/core';
+import { EnvironmentConnectorDto, PatchPropertyDto } from '@algotech-ce/core';
 import { EnvironmentService } from './environment.service';
 import { CustomerInit, CustomerInitResult, Environment, IdentityRequest } from '../../interfaces';
 import cluster from 'cluster';

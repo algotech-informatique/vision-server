@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import * as path from 'path';
-import { ProcessMonitoringSearchDto } from '@algotech/core';
+import { ProcessMonitoringSearchDto } from '@algotech-ce/core';
 import { timer } from 'rxjs';
 import { mergeMap } from 'rxjs/operators';
 

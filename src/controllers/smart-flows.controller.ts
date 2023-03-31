@@ -1,7 +1,7 @@
 /* eslint-disable prettier/prettier */
 import { Controller, Post, Body, Get, Param, UseGuards, Put, Delete, Patch, UseInterceptors, Query, Res, HttpStatus } from '@nestjs/common';
 import { defer, from, Observable } from 'rxjs';
-import { PatchPropertyDto, WorkflowModelDto, WorkflowLaunchOptionsDto, CacheDto } from '@algotech/core';
+import { PatchPropertyDto, WorkflowModelDto, WorkflowLaunchOptionsDto, CacheDto } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import * as _ from 'lodash';

@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
-import { ScheduleDto, PatchPropertyDto } from '@algotech/core';
+import { ScheduleDto, PatchPropertyDto } from '@algotech-ce/core';
 import { scheduleSearchAllOptions } from '../fixtures/schedule-search-all-options';
 import { scheduleInBase, scheduleToAdd, scheduleToAdd1 } from '../fixtures/schedulesToAdd';
 import { scheduleAdded, scheduleAdded1, scheduleInBaseUpdated } from '../fixtures/schedulesAdded';

@@ -2,7 +2,7 @@ import { AdminController } from '../../controllers';
 import { IdentityRequest } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
-import { CustomerDto, CustomerInitResultDto, CustomerSearchDto } from '@algotech/core';
+import { CustomerDto, CustomerInitResultDto, CustomerSearchDto } from '@algotech-ce/core';
 import { customer1, initCustomer } from '../fixtures/admin';
 import * as _ from 'lodash';
 

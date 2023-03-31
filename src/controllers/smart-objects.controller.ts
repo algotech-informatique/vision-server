@@ -3,7 +3,7 @@ import { Observable, of } from 'rxjs';
 import {
     SmartObjectDto, SmartObjectGeoBoxDto, SmartObjectSearchDto, PatchPropertyDto, DeleteDto, GeoSettingsDto,
     GeoPOIDto, SmartObjectTreeQuery, QuerySearchDto, CacheDto, SearchSODto, IndexationOptionsDto, CustomerInitDto, ImportSoDto, ImportSoResultDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { AuthorizationInterceptor } from '../auth/interceptors/authorization.interceptor';
 import { tap, mergeMap, catchError } from 'rxjs/operators';

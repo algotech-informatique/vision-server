@@ -1,4 +1,4 @@
-import { SearchSOFilterDto, SmartModelDto } from '@algotech/core';
+import { SearchSOFilterDto, SmartModelDto } from '@algotech-ce/core';
 import { FacetAggregationPipeline } from '../../interfaces';
 
 export const model1: SmartModelDto = {

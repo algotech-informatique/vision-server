@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { WorkflowServiceService } from './workflow-service.service';
 import { WorkflowProfilesService } from '../workflow-profiles/workflow-profiles.service';
 import { WorkflowAbstractService } from '../../workflow-abstract/workflow-abstract.service';
-import { InterpretorTask } from '@algotech/interpretor';
+import { InterpretorTask } from '@algotech-ce/interpretor';
 import { WorkflowUtilsService } from '../../workflow-utils/workflow-utils.service';
 import { WorkflowMetricsService } from '../../workflow-metrics/workflow-metrics.service';
 

@@ -1,7 +1,7 @@
 import { from, Observable, of } from 'rxjs';
 import { catchError, mergeMap } from 'rxjs/operators';
 import { URL } from 'url';
-import { WsUserDto, UserDto } from '@algotech/core';
+import { WsUserDto, UserDto } from '@algotech-ce/core';
 import { ClassConstructor } from 'class-transformer';
 import { Injectable } from '@nestjs/common';
 import * as _ from 'lodash';
@@ -52,7 +52,7 @@ export class WebSocketService {
     }
 
     handleConnection(client: any, args) {
-        const url = new URL(`${process.env.NATS_URL}${args.url}`);
+        const url = new URL(`http://socket${args.url}`);
         const token = url.searchParams.get('jwt');
         const namespace = url.pathname;
 

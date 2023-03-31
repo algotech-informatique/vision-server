@@ -1,7 +1,7 @@
 import { NestInterceptor, ExecutionContext, CallHandler, Injectable, BadRequestException, ForbiddenException } from '@nestjs/common';
 import { Observable, zip, throwError, of } from 'rxjs';
 import { map, mergeMap, catchError } from 'rxjs/operators';
-import { SmartObjectDto, SmartModelDto, GeoPOIDto } from '@algotech/core';
+import { SmartObjectDto, SmartModelDto, GeoPOIDto } from '@algotech-ce/core';
 import { AuthorizationService } from '../services/authorization.service';
 import * as _ from 'lodash';
 import { IdentityRequest, SmartModel } from '../../interfaces';

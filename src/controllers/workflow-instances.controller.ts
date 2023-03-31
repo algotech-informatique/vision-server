@@ -4,7 +4,7 @@ import {
     DeleteDto, WorkflowInstanceDto, PatchPropertyDto, PairDto, WorkflowInstanceUpdateDto, WorkflowOperationDto,
     WorkflowInstanceAbstractDto,
     WorkflowLaunchOptionsDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { NatsService, WorkflowInstancesHead } from '../providers';

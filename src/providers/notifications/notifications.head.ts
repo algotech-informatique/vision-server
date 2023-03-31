@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { NotificationsService } from './notifications.service';
 import { IdentityRequest, Notification } from '../../interfaces';
 

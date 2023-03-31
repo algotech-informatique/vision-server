@@ -1,4 +1,4 @@
-import { SmartObjectDto } from '@algotech/core';
+import { SmartObjectDto } from '@algotech-ce/core';
 
 export const smartObject1: SmartObjectDto = {
     uuid: '5594b3cf-8d93-4da2-a3f0-e65277a9af99',

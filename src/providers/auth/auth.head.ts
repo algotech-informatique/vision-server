@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { KeycloakService } from '../admin/keycloak.service';
-import { SignInDto } from '@algotech/core';
+import { SignInDto } from '@algotech-ce/core';
 
 @Injectable()
 export class AuthHead {

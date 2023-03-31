@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, UseGuards, Body, Param, Delete, UnauthorizedException, Patch } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { Observable } from 'rxjs';
-import { CustomerDto, PatchPropertyDto } from '@algotech/core';
+import { CustomerDto, PatchPropertyDto } from '@algotech-ce/core';
 import { ActionCode, Identity } from '../common/@decorators';
 import { NatsService, CustomerHead } from '../providers';
 import { Customer, IdentityRequest } from '../interfaces';

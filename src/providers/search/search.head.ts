@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException, Inject, forwardRef } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
 import * as _ from 'lodash';
-import { QuerySearchDto, QuerySearchResultDto, SearchSODto, SearchSOFilterDto, SmartModelDto, SmartObjectDto } from '@algotech/core';
+import { QuerySearchDto, QuerySearchResultDto, SearchSODto, SearchSOFilterDto, SmartModelDto, SmartObjectDto } from '@algotech-ce/core';
 import { AxiosRequestConfig } from 'axios';
 import { defer, Observable, of, zip } from 'rxjs';
 import { map, catchError, mergeMap } from 'rxjs/operators';

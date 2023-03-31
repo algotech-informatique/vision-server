@@ -5,7 +5,7 @@ import { map, mergeMap } from 'rxjs/operators';
 import { IdentityRequest, UploadFile } from '../../interfaces';
 import { FilesService } from '../files/files.service';
 import * as _ from 'lodash';
-import { Metadata } from '@algotech/core';
+import { Metadata } from '@algotech-ce/core';
 import { MongoGridFS } from 'mongo-gridfs';
 
 @Injectable()

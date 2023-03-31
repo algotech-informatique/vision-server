@@ -1,4 +1,4 @@
-import { EleJsonDto } from '@algotech/core';
+import { EleJsonDto } from '@algotech-ce/core';
 
 export const eleJson: EleJsonDto = {
     uuid: '800fefb0-4004-11e9-b210-d663bd873d93',

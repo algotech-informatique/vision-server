@@ -1,6 +1,6 @@
 import { Controller, Post, Body, Get, Param, UseGuards, Put, Delete, Patch, UseInterceptors, Query } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { SmartModelDto, DeleteDto, PatchPropertyDto, CacheDto } from '@algotech/core';
+import { SmartModelDto, DeleteDto, PatchPropertyDto, CacheDto } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { ActionCode, Identity } from '../common/@decorators';

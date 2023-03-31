@@ -1,4 +1,4 @@
-import { IndexStatus } from '@algotech/core';
+import { IndexStatus } from '@algotech-ce/core';
 import { ATSkills } from '../atskills/atskills.interface';
 import { BaseDocument } from '../base/base.interface';
 

@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import * as _ from 'lodash';
-import { ApplicationModelDto, PatchPropertyDto } from '@algotech/core';
+import { ApplicationModelDto, PatchPropertyDto } from '@algotech-ce/core';
 import { TestUtils } from '../utils';
 import { applicationModel1 } from '../fixtures/applicationmodels';
 

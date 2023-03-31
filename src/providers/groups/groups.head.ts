@@ -3,7 +3,7 @@ import { GroupService } from './groups.service';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { Observable, of } from 'rxjs';
 import { CustomerInit, CustomerInitResult, Group, IdentityRequest } from '../../interfaces';
-import { ATGroupUtils } from '@algotech/core';
+import { ATGroupUtils } from '@algotech-ce/core';
 import * as _ from 'lodash';
 
 @Injectable()

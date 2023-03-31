@@ -8,7 +8,7 @@ import {
 import { Model } from "mongoose";
 import { from, Observable } from "rxjs";
 import { map } from "rxjs/operators";
-import { BaseModel } from "@algotech/core";
+import { BaseModel } from "@algotech-ce/core";
 
 @Injectable()
 export class MetricsService {

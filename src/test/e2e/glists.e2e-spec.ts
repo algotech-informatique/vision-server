@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { gList1, gList2, gList3, gList4 } from '../fixtures/genericlists';
-import { GenericListDto, PatchPropertyDto } from '@algotech/core';
+import { GenericListDto, PatchPropertyDto } from '@algotech-ce/core';
 import { TestUtils } from '../utils';
 import { GenericListValue } from '../../interfaces';
 

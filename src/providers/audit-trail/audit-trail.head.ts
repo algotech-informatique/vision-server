@@ -5,7 +5,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { AuditLog, IdentityRequest } from '../../interfaces';
 import { SettingsDataService } from '../@base/settings-data.service';
-import { SettingsDto } from '@algotech/core';
+import { SettingsDto } from '@algotech-ce/core';
 
 @Injectable()
 export class AuditTrailHead {

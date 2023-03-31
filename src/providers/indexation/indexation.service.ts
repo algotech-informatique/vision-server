@@ -3,7 +3,7 @@ import { forwardRef, Inject, Injectable, InternalServerErrorException } from '@n
 import { HttpService } from '@nestjs/axios';
 import { map, catchError, mergeMap, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { IndexStatus, Metadata, SmartObjectDto } from '@algotech/core';
+import { IndexStatus, Metadata, SmartObjectDto } from '@algotech-ce/core';
 import moment = require('moment');
 import { Document, IdentityRequest, IndexationError, SmartModel, SmartObject } from '../../interfaces';
 import { FilesService } from '../files/files.service';

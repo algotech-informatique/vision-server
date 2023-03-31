@@ -1,7 +1,7 @@
 import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
-import { WorkflowInstanceContextDto, WorkflowLaunchOptionsDto } from '@algotech/core';
+import { WorkflowInstanceContextDto, WorkflowLaunchOptionsDto } from '@algotech-ce/core';
 import { Observable, throwError } from 'rxjs';
-import { ATHttpException, SmartFlowUtils } from '@algotech/interpretor';
+import { ATHttpException, SmartFlowUtils } from '@algotech-ce/interpretor';
 import { catchError, map } from 'rxjs/operators';
 import { DatabaseService } from '../../database/database.service';
 import { WorkflowMessageService } from '../workflow-message/workflow-message.service';

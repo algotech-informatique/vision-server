@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { createCustomer, customer1, customer2, patchSet, updateCustomer } from '../fixtures/customers';
 import { CustomerHead } from '../../providers';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 
 declare const jasmine, describe, afterAll, beforeAll, expect, it: any;
 

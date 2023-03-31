@@ -1,4 +1,4 @@
-import { PatchPropertyDto, SettingsDto } from '@algotech/core';
+import { PatchPropertyDto, SettingsDto } from '@algotech-ce/core';
 
 export const settings: SettingsDto = {
     uuid: 'd806e514-4bf0-11e9-8646-d663bd873d93',

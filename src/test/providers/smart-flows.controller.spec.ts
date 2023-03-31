@@ -2,7 +2,7 @@ import { SmartFlowsController } from '../../controllers';
 import { IdentityRequest } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
-import { CacheDto, PatchPropertyDto, WorkflowModelDto } from '@algotech/core';
+import { CacheDto, PatchPropertyDto, WorkflowModelDto } from '@algotech-ce/core';
 import { createFlowsModel, flowsModel1, flowsModel2,
     flowsModel3, patchPull, patchPush, patchRemove, patchSet } from '../fixtures/smartflowmodels';
 

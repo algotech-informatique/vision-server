@@ -8,7 +8,7 @@ import { createSmartObectGeo, createSmartObject, createSOProperties, receiveSmar
     smartObjectsRecursive, smartObjectsTree} from '../fixtures/smartobjects';
 import { SmartObject } from '../../interfaces';
 import { GeoSettingsDto, PatchPropertyDto, SmartObjectDto, SmartObjectSearchDto,
-    SmartObjectTreeQuery } from '@algotech/core';
+    SmartObjectTreeQuery } from '@algotech-ce/core';
 import * as _ from 'lodash';
 
 declare const describe, jasmine, beforeAll, afterAll, expect, it: any;

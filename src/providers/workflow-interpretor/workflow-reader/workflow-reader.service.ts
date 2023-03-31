@@ -5,9 +5,9 @@ import { WorkflowUtilsService } from '../workflow-utils/workflow-utils.service';
 import { WorkflowBreadCrumbService } from './workflow-breadcrumb/workflow-breadcrumb.service';
 import { WorkflowSoService } from './workflow-so/workflow-so.service';
 import { WorkflowAbstractService } from '../workflow-abstract/workflow-abstract.service';
-import { InterpretorReader } from '@algotech/interpretor';
+import { InterpretorReader } from '@algotech-ce/interpretor';
 import { WorkflowMetricsService } from '../workflow-metrics/workflow-metrics.service';
-import { WorkflowInstanceDto } from '@algotech/core';
+import { WorkflowInstanceDto } from '@algotech-ce/core';
 
 @Injectable()
 export class WorkflowReaderService extends InterpretorReader {

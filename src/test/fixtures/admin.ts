@@ -1,4 +1,4 @@
-import { CustomerDto, CustomerInitDto, CustomerInitResultDto, UserDto } from '@algotech/core';
+import { CustomerDto, CustomerInitDto, CustomerInitResultDto, UserDto } from '@algotech-ce/core';
 
 export const initCustomer: CustomerInitDto = {
     customerKey: 'nouveau',

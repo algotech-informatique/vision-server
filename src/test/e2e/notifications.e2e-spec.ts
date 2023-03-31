@@ -1,6 +1,6 @@
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
-import { NotificationDto } from '@algotech/core';
+import { NotificationDto } from '@algotech-ce/core';
 import {
     notificationAdminAndRead, notificationUserAndUnread, notificationTechnicianAndUnread, notificationUserAndUnreadMobile,
     notificationUserAndUnreadWebMobile, notificationUserAndUnreadWeb,

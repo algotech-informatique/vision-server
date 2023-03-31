@@ -1,6 +1,6 @@
 import { TagsController } from '../../controllers';
 import { IdentityRequest } from '../../interfaces';
-import { TagListDto } from '@algotech/core';
+import { TagListDto } from '@algotech-ce/core';
 import { addTag, createTagListController, ExistingList, tagsListWithTags } from '../fixtures/tags';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';

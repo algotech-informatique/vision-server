@@ -6,7 +6,7 @@ import { Model } from 'mongoose';
 import {
     SmartObjectGeoBoxDto,
     GeoPOIDto, PatchPropertyDto, SmartObjectDto, GeoSettingsDto, PatchService, SearchSODto, ImportSoDto, ImportSoResultDto, ImportOptionsDto, SmartModelDto, SmartPropertyModelDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { mergeMap, map, catchError, toArray, first } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { IdentityRequest, SettingsData, SmartModel, SmartObject, SmartPropertyModel, SmartPropertyObject } from '../../interfaces';

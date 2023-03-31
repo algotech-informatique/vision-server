@@ -1,4 +1,4 @@
-import { ProcessMonitoringState, ProcessMonitoringType } from '@algotech/core';
+import { ProcessMonitoringState, ProcessMonitoringType } from '@algotech-ce/core';
 import { BaseDocument } from '../base/base.interface';
 
 export interface ProcessMonitoring extends BaseDocument {

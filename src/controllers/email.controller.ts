@@ -1,7 +1,7 @@
 import { Controller, Post, Body, UseGuards } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
-import { EMailDto } from '@algotech/core';
+import { EMailDto } from '@algotech-ce/core';
 import { ActionCode, Identity } from '../common/@decorators';
 import { NatsService, EmailHead } from '../providers';
 import { IdentityRequest } from '../interfaces';

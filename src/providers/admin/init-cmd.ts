@@ -1,4 +1,4 @@
-import { CustomerInitResultDto } from '@algotech/core';
+import { CustomerInitResultDto } from '@algotech-ce/core';
 
 const es_url = process.env.ES_URL ? process.env.ES_URL : 'http://ms-search:9200';
 

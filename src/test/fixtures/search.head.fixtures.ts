@@ -1,4 +1,4 @@
-import { SearchSODto, SearchSOFilterDto } from "@algotech/core";
+import { SearchSODto, SearchSOFilterDto } from "@algotech-ce/core";
 import { SearchSOCombinedFilters } from "../../interfaces";
 
 export const filter1: SearchSOFilterDto = {

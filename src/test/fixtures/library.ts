@@ -1,4 +1,4 @@
-import { LibraryDto } from '@algotech/core';
+import { LibraryDto } from '@algotech-ce/core';
 
 export const library1: LibraryDto = {
     uuid: 'ea72651e-3ff4-11e9-b210-d663bd873d93',

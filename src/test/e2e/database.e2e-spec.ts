@@ -6,7 +6,7 @@ import {
     child1, child2, child3, child4, child5, child6, child7, nature, documentNoLinkNature
 } from '../fixtures/database';
 import { empty } from 'rxjs';
-import { SearchSODto, SysQueryDto } from '@algotech/core';
+import { SearchSODto, SysQueryDto } from '@algotech-ce/core';
 
 declare const describe, expect, beforeAll, afterAll, it: any;
 

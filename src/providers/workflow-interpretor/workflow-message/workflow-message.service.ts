@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { PairDto, UserDto, WorkflowInstanceContextDto } from '@algotech/core';
+import { PairDto, UserDto, WorkflowInstanceContextDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';

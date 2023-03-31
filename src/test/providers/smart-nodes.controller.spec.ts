@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { createSnModel, listSnModel, modifyCreatedSnModel, snModelTest1 } from '../fixtures/smartnodes';
 import { SmartNodesController } from '../../controllers';
-import { CacheDto, DeleteDto, PatchPropertyDto, SnModelDto } from '@algotech/core';
+import { CacheDto, DeleteDto, PatchPropertyDto, SnModelDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 

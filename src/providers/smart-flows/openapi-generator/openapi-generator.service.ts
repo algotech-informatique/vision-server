@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { OpenAPIObject, PathItemObject, SecuritySchemeObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
 import { forkJoin, from, Observable, of, zip } from 'rxjs';
-import { map, mergeMap } from 'rxjs/operators';
+import { catchError, map, mergeMap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { Environment, EnvironmentDirectory, IdentityRequest, SmartModel, SnModel, WorkflowModel } from '../../../interfaces';
 import OpenAPIConverters from './openapi-converters';
@@ -213,6 +213,7 @@ export class OpenAPIGeneratorService {
                     return this.smartModelsHead
                         .find({ identity, key: modelKey, submodel: true, ignoreModelKeys: schemas })
                         .pipe(
+                            catchError(() => of([])),
                             map((modelAndSubModels: SmartModel | SmartModel[]): SmartModel[] => OpenAPIUtils.toArray(modelAndSubModels))
                         );
                 }

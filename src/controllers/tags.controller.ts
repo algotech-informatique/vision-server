@@ -4,7 +4,7 @@ import { NatsService, TagsHead } from '../providers';
 import { Controller, Param, Body, Get, Post, Delete, Put, UseGuards, UseInterceptors } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
-import { CacheDto, TagListDto } from '@algotech/core';
+import { CacheDto, TagListDto } from '@algotech-ce/core';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { ApiTags } from '@nestjs/swagger';
 import { Roles } from '../common/@decorators/roles/roles.decorator';

@@ -3,7 +3,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { Observable, from } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { PairDto, WorkflowInstanceAbstractDto, WorkflowStackTaskDto } from '@algotech/core';
+import { PairDto, WorkflowInstanceAbstractDto, WorkflowStackTaskDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import moment = require('moment');
 import { BaseService } from '../@base/base.service';

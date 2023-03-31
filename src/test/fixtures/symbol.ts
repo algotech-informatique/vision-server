@@ -1,4 +1,4 @@
-import { SymboleDto } from '@algotech/core';
+import { SymboleDto } from '@algotech-ce/core';
 
 export const symbole1: SymboleDto = {
     uuid: '7aa15b86-3ff5-11e9-b210-d663bd873d93',

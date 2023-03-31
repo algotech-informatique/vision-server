@@ -1,11 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import {
     WorkflowInstanceDto, WorkflowModelDto, WorkflowInstanceContextDto, EnvironmentParameterDto,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { Observable, of, concat, throwError } from 'rxjs';
 import * as _ from 'lodash';
 import { WorkflowSoService } from '../workflow-reader/workflow-so/workflow-so.service';
-import { InterpretorData, InterpretorMetricsKeys, SaveOperationMode } from '@algotech/interpretor';
+import { InterpretorData, InterpretorMetricsKeys, SaveOperationMode } from '@algotech-ce/interpretor';
 import { map, first, catchError, reduce, tap, mergeMap } from 'rxjs/operators';
 import { WorkflowDataApiService } from './workflow-data-api.service';
 import { SmartFlowsService } from '../../smart-flows/smart-flows.service';

@@ -1,6 +1,6 @@
 import { Controller, Post, Body, BadRequestException, Get, Query, Logger, Delete, UseGuards } from '@nestjs/common';
 import { Observable, of, throwError } from 'rxjs';
-import { CustomerDto, CustomerSearchDto, CustomerInitDto, CustomerInitResultDto } from '@algotech/core';
+import { CustomerDto, CustomerSearchDto, CustomerInitDto, CustomerInitResultDto } from '@algotech-ce/core';
 import { catchError, mergeMap, tap } from 'rxjs/operators';
 import { AdminHead, DocumentsHead, NatsService, UtilsService } from '../providers';
 import { Customer, IdentityRequest } from '../interfaces';

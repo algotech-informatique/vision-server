@@ -1,4 +1,4 @@
-import { SnModelDto } from '@algotech/core';
+import { SnModelDto } from '@algotech-ce/core';
 
 export const listSnModel: SnModelDto[] = [
     {

@@ -6,7 +6,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Observable, from, of } from 'rxjs';
 import { map, catchError, mergeMap } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { CacheDto, PatchPropertyDto } from '@algotech/core';
+import { CacheDto, PatchPropertyDto } from '@algotech-ce/core';
 import { BaseService } from '../@base/base.service';
 
 @Injectable()

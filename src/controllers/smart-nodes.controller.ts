@@ -3,7 +3,7 @@ import { Identity } from '../common/@decorators';
 import { NatsService, SmartNodesHead } from '../providers';
 import { Controller, Post, Body, Get, Param, UseGuards, Put, Delete, Patch, UseInterceptors } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { SnModelDto, PatchPropertyDto, CacheDto } from '@algotech/core';
+import { SnModelDto, PatchPropertyDto, CacheDto } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { ApiTags } from '@nestjs/swagger';

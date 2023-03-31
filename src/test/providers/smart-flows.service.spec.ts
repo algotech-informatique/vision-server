@@ -8,7 +8,7 @@ import {
     publishFlowsModel, publishNewSmartFlow
 } from '../fixtures/smartflowmodels';
 import { SmartFlowsHead } from '../../providers';
-import { CacheDto, PatchPropertyDto, SmartObjectDto, WorkflowLaunchOptionsDto } from '@algotech/core';
+import { CacheDto, PatchPropertyDto, SmartObjectDto, WorkflowLaunchOptionsDto } from '@algotech-ce/core';
 
 declare const jasmine, describe, beforeAll, afterAll, expect, it: any;
 

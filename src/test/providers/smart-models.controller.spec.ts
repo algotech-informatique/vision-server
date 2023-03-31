@@ -4,7 +4,7 @@ import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { createsmartModel, patchPull, patchSet,
     smartModel1 } from '../fixtures/smartmodels';
-import { CacheDto, DeleteDto, PatchPropertyDto, SmartModelDto } from '@algotech/core';
+import { CacheDto, DeleteDto, PatchPropertyDto, SmartModelDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 

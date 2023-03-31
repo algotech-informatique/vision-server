@@ -6,7 +6,7 @@ import { map, mergeMap, tap } from 'rxjs/operators';
 import { SmartModel, SmartObject } from '../../interfaces';
 import { BaseService } from '../@base/base.service';
 import * as _ from 'lodash';
-import { CacheDto, PatchPropertyDto, SmartObjectDto } from '@algotech/core';
+import { CacheDto, PatchPropertyDto, SmartObjectDto } from '@algotech-ce/core';
 import { SettingsDataService } from '../@base/settings-data.service';
 import moment from 'moment';
 @Injectable()

@@ -1,5 +1,5 @@
 
-import { WsUserDto } from '@algotech/core';
+import { WsUserDto } from '@algotech-ce/core';
 import { IdentityRequest } from '../identity-request/identity-request';
 
 export interface WsClient {

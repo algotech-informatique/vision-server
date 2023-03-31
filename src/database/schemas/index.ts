@@ -56,7 +56,6 @@ export { GroupApplicationSchema } from './groups/group-application.schema';
 
 // icons
 export { FileIconSchema } from './icons/file-icon.schema';
-export { IconMetadataSchema } from './icons/icon-metadata.schema';
 
 // lang
 export { LangSchema } from './lang/lang.schema';

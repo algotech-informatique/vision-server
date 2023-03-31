@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { listFlowsModel } from '../fixtures/flowsmodels';
 import { TestUtils } from '../utils';
-import { PatchPropertyDto, WorkflowModelDto, SmartObjectDto } from '@algotech/core';
+import { PatchPropertyDto, WorkflowModelDto, SmartObjectDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;

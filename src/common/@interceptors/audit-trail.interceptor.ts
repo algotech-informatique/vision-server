@@ -6,7 +6,7 @@ import { mergeMap, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { UUID } from 'angular2-uuid';
 import { Reflector } from '@nestjs/core';
-import { SmartObjectDto } from '@algotech/core';
+import { SmartObjectDto } from '@algotech-ce/core';
 import { AuditTrailHead, LokiLogger } from '../../providers';
 import { AuditLog, IdentityRequest } from '../../interfaces';
 import { identityDecode } from '../@decorators';

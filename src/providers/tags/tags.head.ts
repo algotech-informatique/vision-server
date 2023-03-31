@@ -3,7 +3,7 @@ import { IdentityRequest, TagList } from '../../interfaces';
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { TagsService } from './tags.service';
 import { of, Observable, throwError } from 'rxjs';
-import { CacheDto } from '@algotech/core';
+import { CacheDto } from '@algotech-ce/core';
 
 @Injectable()
 export class TagsHead {

@@ -4,9 +4,9 @@ import {
 } from '@nestjs/common';
 import { FileInterceptor, FilesInterceptor } from '@nestjs/platform-express';
 import { Observable, of, throwError } from 'rxjs';
-import { FileUploadDto } from '@algotech/core';
+import { FileUploadDto } from '@algotech-ce/core';
 import { catchError, map, tap } from 'rxjs/operators';
-import { ATSignatureDto, FileEditDto } from '@algotech/core';
+import { ATSignatureDto, FileEditDto } from '@algotech-ce/core';
 import { ActionCode, Identity } from '../common/@decorators';
 import { FilesHead, NatsService, UtilsService } from '../providers';
 import { Document, IdentityRequest, SmartObject } from '../interfaces';

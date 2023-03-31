@@ -1,4 +1,4 @@
-import { SmartPropertyModelDto } from "@algotech/core";
+import { SmartPropertyModelDto } from "@algotech-ce/core";
 import { WorkflowModel, WorkflowVariableModel } from "../../interfaces";
 import { formDataFileNotFound } from "./smartflows-head-unit-test";
 

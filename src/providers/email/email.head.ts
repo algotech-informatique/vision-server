@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EMailDto } from '@algotech/core';
+import { EMailDto } from '@algotech-ce/core';
 import { EmailService } from './email.service';
 import { IdentityRequest } from '../../interfaces';
 

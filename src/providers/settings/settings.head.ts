@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { SettingsService } from './settings.service';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { Observable } from 'rxjs';
 import { CustomerInit, CustomerInitResult, IdentityRequest, Settings } from '../../interfaces';
 

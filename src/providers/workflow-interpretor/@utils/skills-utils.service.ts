@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { SkillsUtils } from '@algotech/interpretor';
+import { SkillsUtils } from '@algotech-ce/interpretor';
 import { SoUtilsService } from './so-utils.service';
 import { SmartObjectsHead } from '../../smart-objects/smart-objects.head';
-import { SmartObjectDto, WorkflowInstanceContextDto } from '@algotech/core';
+import { SmartObjectDto, WorkflowInstanceContextDto } from '@algotech-ce/core';
 import { WorkflowMessageService } from '../workflow-message/workflow-message.service';
 import { Observable } from 'rxjs';
 

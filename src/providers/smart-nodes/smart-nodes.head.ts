@@ -3,7 +3,7 @@ import { Injectable, BadRequestException } from '@nestjs/common';
 import { SmartNodesService } from './smart-nodes.service';
 import { Observable, of, zip } from 'rxjs';
 import { catchError, delayWhen, mergeMap } from 'rxjs/operators';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 import { WorkflowModelsHead } from '../workflow-models/workflow-models.head';
 import { SmartFlowsHead } from '../smart-flows/smart-flows.head';
 import { ApplicationModelsHead } from '../application-models/application-models.head';

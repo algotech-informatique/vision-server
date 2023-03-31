@@ -5,9 +5,9 @@ import {
     PatchPropertyDto, SmartObjectDto,
     WorkflowInstanceContextDto, WorkflowSettingsDto,
     WorkflowStackTaskDto, WorkflowInstanceDto, WorkflowDataDto, WorkflowLaunchOptionsDto, WorkflowVariableModelDto, SysFile,
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { SmartFlowsService } from './smart-flows.service';
-import { InterpretorMetricsKeys, InterpretorTaskDto, WorkflowErrorUnauthorizedProfil } from '@algotech/interpretor';
+import { InterpretorMetricsKeys, InterpretorTaskDto, WorkflowErrorUnauthorizedProfil } from '@algotech-ce/interpretor';
 import { UUID } from 'angular2-uuid';
 import * as _ from 'lodash';
 import { WorkflowAbstractService, WorkflowMessageService, WorkflowUtilsService, WorkflowInterpretorService, WorkflowMetricsService } from '../workflow-interpretor';

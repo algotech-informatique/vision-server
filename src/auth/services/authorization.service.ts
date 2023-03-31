@@ -1,6 +1,6 @@
 import { Injectable, ForbiddenException, BadRequestException } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { SmartModelDto, SmartObjectDto } from '@algotech/core';
+import { SmartModelDto, SmartObjectDto } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import { SettingsDataService, SmartObjectsHead } from '../../providers';
 import { SmartObject } from '../../interfaces';

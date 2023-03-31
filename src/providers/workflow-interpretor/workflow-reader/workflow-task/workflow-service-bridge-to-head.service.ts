@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { WorkflowInstanceContextDto } from '@algotech/core';
+import { WorkflowInstanceContextDto } from '@algotech-ce/core';
 import { Observable, of, throwError } from 'rxjs';
 import { SmartObjectsHead } from '../../../smart-objects/smart-objects.head';
 import { WorkflowMessageService } from '../../workflow-message/workflow-message.service';

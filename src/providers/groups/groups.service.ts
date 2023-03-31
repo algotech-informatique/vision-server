@@ -5,7 +5,7 @@ import { mergeMap, map, catchError } from 'rxjs/operators';
 import { CustomerInit, CustomerInitResult, Group } from '../../interfaces';
 import { RxExtendService } from '../rx-extend/rx-extend.service';
 import { KeycloakService } from '../admin/keycloak.service';
-import { ATGroupUtils } from '@algotech/core';
+import { ATGroupUtils } from '@algotech-ce/core';
 import { UtilsService } from '../utils/utils.service';
 
 @Injectable()

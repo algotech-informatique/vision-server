@@ -1,4 +1,4 @@
-import { WorkflowLaunchOptionsDto } from '@algotech/core';
+import { WorkflowLaunchOptionsDto } from '@algotech-ce/core';
 import { of } from 'rxjs';
 import { IdentityRequest } from '../../interfaces';
 import { AuthHead, DocumentsHead, SmartFlowsHead, SmartFlowsInput, SmartFlowsService } from '../../providers';

@@ -4,7 +4,7 @@ import { TestUtils } from '../utils';
 import { createEnvironment, environment, patchPush, patchSet, patchPull,
     patchRemove, patchSetNoRespectModel, updateEnvironment } from '../fixtures/environment';
 import { EnvironmentHead } from '../../providers';
-import { PatchPropertyDto } from '@algotech/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 

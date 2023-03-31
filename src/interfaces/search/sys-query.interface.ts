@@ -1,4 +1,4 @@
-import { SearchSOFilterDto } from '@algotech/core';
+import { SearchSOFilterDto } from '@algotech-ce/core';
 
 export interface SysQuery {
   search?: string;

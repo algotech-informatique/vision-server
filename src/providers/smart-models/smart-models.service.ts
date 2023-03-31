@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { Observable, from, of } from 'rxjs';
 import { catchError, map, mergeMap, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { PatchPropertyDto, QuerySearchDto } from '@algotech/core';
+import { PatchPropertyDto, QuerySearchDto } from '@algotech-ce/core';
 import { IdentityRequest, SettingsData, SmartModel } from '../../interfaces';
 import { BaseService } from '../@base/base.service';
 import { SettingsDataService } from '../../providers/@base/settings-data.service';

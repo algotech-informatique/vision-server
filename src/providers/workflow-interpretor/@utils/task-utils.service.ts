@@ -1,4 +1,4 @@
-import { ATHttpException, InterpretorTaskDto, TaskUtils, NgComponentError } from '@algotech/interpretor';
+import { ATHttpException, InterpretorTaskDto, TaskUtils, NgComponentError } from '@algotech-ce/interpretor';
 import { Injectable } from '@nestjs/common';
 import { ClassConstructor } from 'class-transformer';
 import { throwError } from 'rxjs';

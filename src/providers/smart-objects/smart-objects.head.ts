@@ -3,7 +3,7 @@ import { Observable, of, throwError, zip } from 'rxjs';
 import {
     SmartObjectSearchDto, PatchPropertyDto, SmartObjectGeoBoxDto, SmartObjectTreeQuery,
     GeoSettingsDto, SmartObjectDto, GeoPOIDto, QuerySearchDto, CustomerInitDto, ImportSoDto, ProcessMonitoringState, SearchSODto
-} from '@algotech/core';
+} from '@algotech-ce/core';
 import { SmartObjectsService } from './smart-objects.service';
 import { mergeMap, map, catchError, tap } from 'rxjs/operators';
 import { SmartObjectTreeService } from './smart-object-tree.service';

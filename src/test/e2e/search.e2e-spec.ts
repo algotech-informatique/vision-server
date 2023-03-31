@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import * as _ from 'lodash';
 
-import { SmartObjectDto, SearchSODto } from '@algotech/core';
+import { SmartObjectDto, SearchSODto } from '@algotech-ce/core';
 import { TestUtils } from '../utils';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;

@@ -1,4 +1,4 @@
-import { PatchPropertyDto, SmartObjectDto, WorkflowModelDto } from '@algotech/core';
+import { PatchPropertyDto, SmartObjectDto, WorkflowModelDto } from '@algotech-ce/core';
 
 export const createFlowsModel: WorkflowModelDto = {
     key: 'new_smartflow',

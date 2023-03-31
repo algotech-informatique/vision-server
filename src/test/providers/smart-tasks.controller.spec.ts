@@ -2,7 +2,7 @@ import { SmartTasksController } from '../../controllers';
 import { IdentityRequest } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
-import { SmartTaskDto, SmartTaskLogDto } from '@algotech/core';
+import { SmartTaskDto, SmartTaskLogDto } from '@algotech-ce/core';
 import { smartTask1, updateSmartTask1 } from '../fixtures/smarttasks';
 
 declare const jasmine, describe, afterAll, beforeAll, expect, it: any;

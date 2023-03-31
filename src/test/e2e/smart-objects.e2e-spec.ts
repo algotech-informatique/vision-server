@@ -20,7 +20,7 @@ import {
     user,
     smartObjectAllTypes,
 } from '../fixtures/smartobjects';
-import { SmartObjectDto, SmartObjectSearchDto, PatchPropertyDto, SmartPropertyObjectDto, ProcessMonitoringSearchDto, SearchSODto } from '@algotech/core';
+import { SmartObjectDto, SmartObjectSearchDto, PatchPropertyDto, SmartPropertyObjectDto, ProcessMonitoringSearchDto, SearchSODto } from '@algotech-ce/core';
 import { TestUtils } from '../utils';
 import * as path from 'path';
 import { timer } from 'rxjs';

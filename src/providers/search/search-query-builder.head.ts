@@ -1,4 +1,4 @@
-import { PairDto, QuerySearchDto, SearchSOFilterDto, SearchSOFilterValueDto, SmartModelDto, SmartPropertyModelDto } from '@algotech/core';
+import { PairDto, QuerySearchDto, SearchSOFilterDto, SearchSOFilterValueDto, SmartModelDto, SmartPropertyModelDto } from '@algotech-ce/core';
 import { Injectable } from '@nestjs/common';
 import * as _ from 'lodash';
 import { EsdocQueryModel, FacetAggregationPipeline } from '../../interfaces';

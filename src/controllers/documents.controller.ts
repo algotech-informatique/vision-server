@@ -1,7 +1,7 @@
 import { Controller, Param, Get, UseGuards, Query, UseInterceptors, Body, Post } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { Observable } from 'rxjs';
-import { CacheDto, DocumentDto } from '@algotech/core';
+import { CacheDto, DocumentDto } from '@algotech-ce/core';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { ActionCode, Identity } from '../common/@decorators';
 import { DocumentsHead, NatsService } from '../providers';

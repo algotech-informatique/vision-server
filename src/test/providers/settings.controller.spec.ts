@@ -2,7 +2,7 @@ import { IdentityRequest } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { createSettings, patchPull, patchPush, patchRemove, patchSet, settings, updateSettings } from '../fixtures/settings';
-import { PatchPropertyDto, SettingsDto } from '@algotech/core';
+import { PatchPropertyDto, SettingsDto } from '@algotech-ce/core';
 import { SettingsController } from '../../controllers';
 
 declare const describe, afterAll, beforeAll, expect, it: any;

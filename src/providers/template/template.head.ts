@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable } from '@nestjs/common';
 import { mergeMap } from 'rxjs/operators';
 import { Observable, of, throwError } from 'rxjs';
-import { Metadata } from '@algotech/core';
+import { Metadata } from '@algotech-ce/core';
 import { FilesService } from '../files/files.service';
 import { IdentityRequest, UploadFile } from '../../interfaces';
 

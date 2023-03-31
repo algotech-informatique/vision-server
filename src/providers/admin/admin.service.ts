@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 import { UsersService } from '../users/users.service';
 import { Customer, CustomerInit, CustomerInitResult, CustomerSearch, User } from '../../interfaces';
 import { RxExtendService } from '../rx-extend/rx-extend.service';
-import { CustomerInitDto, CustomerInitResultDto } from '@algotech/core';
+import { CustomerInitDto, CustomerInitResultDto } from '@algotech-ce/core';
 import { deleteDocQuery, deletequeries, docIndexQuery, putqueries, postqueries, pipelineQuery } from './init-cmd';
 
 @Injectable()

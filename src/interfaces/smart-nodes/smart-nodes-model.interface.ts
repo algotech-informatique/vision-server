@@ -1,5 +1,5 @@
 import { BaseDocument } from '../base/base.interface';
-import { LangDto } from '@algotech/core';
+import { LangDto } from '@algotech-ce/core';
 import { SnVersion } from './smart-nodes-version.interface';
 
 export interface SnModel extends BaseDocument {

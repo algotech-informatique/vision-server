@@ -1,7 +1,7 @@
 import { BadRequestException, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { catchError, mergeMap, map, toArray } from 'rxjs/operators';
 import { Observable, of, zip, concat, throwError, ReplaySubject } from 'rxjs';
-import { PatchPropertyDto, SmartObjectDto, ATSignatureDto, FileEditDto, SysFile } from '@algotech/core';
+import { PatchPropertyDto, SmartObjectDto, ATSignatureDto, FileEditDto, SysFile } from '@algotech-ce/core';
 import * as _ from 'lodash';
 import moment = require('moment');
 import { FilesService } from '../files/files.service';

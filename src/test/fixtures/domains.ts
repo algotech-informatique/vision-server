@@ -1,4 +1,4 @@
-import { DomainDto } from '@algotech/core';
+import { DomainDto } from '@algotech-ce/core';
 
 export const domain1: DomainDto = {
   uuid: '74ec8f7b-04b2-4975-a533-bc1ad6b6a6ec',

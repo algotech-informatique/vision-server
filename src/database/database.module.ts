@@ -16,7 +16,7 @@ import * as schema from './schemas';
             { name: 'GenericList', schema: schema.GenericListSchema, collection: 'genericlists' },
             { name: 'Group', schema: schema.GroupSchema },
             { name: 'IndexationError', schema: schema.IndexationErrorSchema, collection: 'indexationErrors' },
-            { name: 'Icon', schema: schema.FileIconSchema, collection: 'icons.files' },
+            { name: 'Icons', schema: schema.FileIconSchema, collection: 'icons' },
             { name: 'Notification', schema: schema.NotificationSchema },
             { name: 'Schedule', schema: schema.ScheduleSchema },
             { name: 'Setting', schema: schema.SettingsSchema },

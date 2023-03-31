@@ -1,4 +1,4 @@
-import { WorkflowInstanceDto, WorkflowOperationDto, SmartObjectDto, DocumentDto } from '@algotech/core';
+import { WorkflowInstanceDto, WorkflowOperationDto, SmartObjectDto, DocumentDto } from '@algotech-ce/core';
 import { workflowModel1 } from './workflowmodels';
 
 export const workflowInstance1: WorkflowInstanceDto = {

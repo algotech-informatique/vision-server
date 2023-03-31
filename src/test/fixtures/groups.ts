@@ -1,4 +1,4 @@
-import { GroupDto } from '@algotech/core';
+import { GroupDto } from '@algotech-ce/core';
 import { CustomerInit } from 'interfaces';
 
 export const group1: GroupDto = {

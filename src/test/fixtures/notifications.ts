@@ -1,4 +1,4 @@
-import { NotificationDto } from '@algotech/core';
+import { NotificationDto } from '@algotech-ce/core';
 
 export const notificationTechnicianAndUnread: NotificationDto = {
     uuid: '50d322b8-d162-4f70-9714-0a613a3d50b8',

@@ -1,4 +1,4 @@
-import { ProcessMonitoringSearchDto } from '@algotech/core';
+import { ProcessMonitoringSearchDto } from '@algotech-ce/core';
 import { INestApplication } from '@nestjs/common';
 import * as _ from 'lodash';
 import { importDoccanceled, importDocsucceeded, importSosError, importSossucceeded, indexationDocsucceeded, indexationSossucceeded } from '../fixtures/monitoring';

@@ -3,7 +3,7 @@ import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { SettingsHead } from '../../providers';
 import { createSettings, patchPull, patchPush, patchRemove, patchSet, patchSetError, settings, updateSettings } from '../fixtures/settings';
-import { CustomerInitDto, PatchPropertyDto } from '@algotech/core';
+import { CustomerInitDto, PatchPropertyDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 

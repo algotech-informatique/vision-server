@@ -1,7 +1,7 @@
 import { Controller, Param, Body, Get, Post, Delete, Put, Patch, UseGuards, UseInterceptors, Query } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { AssignPasswordDto } from '@algotech/core';
-import { UserDto } from '@algotech/core';
+import { AssignPasswordDto } from '@algotech-ce/core';
+import { UserDto } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { NatsService, UsersHead } from '../providers';
 import { ActionCode, Identity } from '../common/@decorators';

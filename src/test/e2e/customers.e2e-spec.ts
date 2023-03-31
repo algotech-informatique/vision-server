@@ -1,7 +1,7 @@
 import { INestApplication } from '@nestjs/common';
 import { customer1 } from '../fixtures/customers';
 import { TestUtils } from '../utils';
-import { CustomerDto } from '@algotech/core';
+import { CustomerDto } from '@algotech-ce/core';
 
 declare const describe, jasmine, expect, beforeAll, afterAll, it: any;
 

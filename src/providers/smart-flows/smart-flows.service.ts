@@ -4,7 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Observable, from, of } from 'rxjs';
 import { mergeMap, map } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { PatchPropertyDto, SmartPropertyModelDto, WorkflowLaunchOptionsDto } from '@algotech/core';
+import { PatchPropertyDto, SmartPropertyModelDto, WorkflowLaunchOptionsDto } from '@algotech-ce/core';
 import { WorkflowModel, WorkflowVariableModel } from '../../interfaces';
 import { BaseService } from '../@base/base.service';
 import { SoUtilsService } from '../../providers/workflow-interpretor/@utils/so-utils.service';
