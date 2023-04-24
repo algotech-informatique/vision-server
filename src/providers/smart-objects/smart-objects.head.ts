@@ -2,7 +2,7 @@ import { BadRequestException, Injectable } from '@nestjs/common';
 import { Observable, of, throwError, zip } from 'rxjs';
 import {
     SmartObjectSearchDto, PatchPropertyDto, SmartObjectGeoBoxDto, SmartObjectTreeQuery,
-    GeoSettingsDto, SmartObjectDto, GeoPOIDto, QuerySearchDto, CustomerInitDto, ImportSoDto, ProcessMonitoringState, SearchSODto
+    GeoSettingsDto, SmartObjectDto, GeoPOIDto, ImportSoDto, ProcessMonitoringState, SearchSODto
 } from '@algotech-ce/core';
 import { SmartObjectsService } from './smart-objects.service';
 import { mergeMap, map, catchError, tap } from 'rxjs/operators';

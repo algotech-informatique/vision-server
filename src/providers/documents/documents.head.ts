@@ -283,11 +283,13 @@ export class DocumentsHead {
             mergeMap((patches: PatchPropertyDto[]) => {
                 return this.documentsService.patchProperty(data.identity.customerKey, data.update.uuid, patches).pipe(
                     mergeMap(() => {
-                        let raw = JSON.stringify(
-                            { update: { _index: `${data.identity.customerKey}_doc_index`, _id: data.update.uuid } },
-                        ) + '\n';
-                        raw += JSON.stringify({ doc: indexProps }) + '\n';
-                        this.indexationService.esRequest(data.identity.customerKey, raw).subscribe();
+                        if (process.env.ES_URL) {
+                            let raw = JSON.stringify(
+                                { update: { _index: `${data.identity.customerKey}_doc_index`, _id: data.update.uuid } },
+                            ) + '\n';
+                            raw += JSON.stringify({ doc: indexProps }) + '\n';
+                            this.indexationService.esRequest(data.identity.customerKey, raw).subscribe();
+                        }
                         return this.documentsService.getDocument(data.identity.customerKey, data.update.uuid);
                     },
                     ));
@@ -331,19 +333,23 @@ export class DocumentsHead {
                             return this.indexationService.getSoContains(data.identity, documentID).pipe(
                                 mergeMap((smartobjects: SmartObjectDto[]) => {
                                     if (smartobjects.length > 0) {
-                                        const modelKeys = _.uniq(_.map(smartobjects, (smartObject) => smartObject.modelKey));
-                                        let raw = JSON.stringify(
-                                            { update: { _index: `${data.identity.customerKey}_doc_index`, _id: documentID } },
-                                        ) + '\n';
-                                        raw += JSON.stringify({ doc: { modelKeys } }) + '\n';
-                                        this.indexationService.esRequest(data.identity.customerKey, raw).subscribe();
+                                        if (process.env.ES_URL) {
+                                            const modelKeys = _.uniq(_.map(smartobjects, (smartObject) => smartObject.modelKey));
+                                            let raw = JSON.stringify(
+                                                { update: { _index: `${data.identity.customerKey}_doc_index`, _id: documentID } },
+                                            ) + '\n';
+                                            raw += JSON.stringify({ doc: { modelKeys } }) + '\n';
+                                            this.indexationService.esRequest(data.identity.customerKey, raw).subscribe();
+                                        }
                                         return of({});
                                     } else {
-                                        // Delete indexation
-                                        const raw = JSON.stringify(
-                                            { delete: { _index: `${data.identity.customerKey}_doc_index`, _id: documentID } },
-                                        ) + '\n';
-                                        this.indexationService.esRequest(data.identity.customerKey, raw).subscribe();
+                                        if (process.env.ES_URL) {
+                                            // Delete indexation
+                                            const raw = JSON.stringify(
+                                                { delete: { _index: `${data.identity.customerKey}_doc_index`, _id: documentID } },
+                                            ) + '\n';
+                                            this.indexationService.esRequest(data.identity.customerKey, raw).subscribe();
+                                        }
                                         return this.documentsService.delete(data.identity.customerKey, documentID);
                                     }
                                 }),

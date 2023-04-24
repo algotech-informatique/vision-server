@@ -32,9 +32,9 @@ export class GroupService {
                 name: group.name,
                 description: '',
                 application: {
-                    authorized: [],
+                    authorized: customer.defaultapplications,
                     default: {
-                        web: '',
+                        web: customer.defaultapplications.length > 0 ? customer.defaultapplications[0] : '',
                         mobile: '',
                     },
                 },

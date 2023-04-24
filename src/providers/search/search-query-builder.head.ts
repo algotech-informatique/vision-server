@@ -202,15 +202,22 @@ export class SearchQueryBuilderHead {
             case 'contains':
                 return this._contains(`${formatedValues}`, SmartObjectsBaseService.SEARCH_KEY);
             case 'equals':
-                return value.type === 'so:' ? {
-                    $or: models.map((model: SmartModelDto) =>
-                        model.properties.reduce((results, currentValue: SmartPropertyModelDto) => {
-                            if (currentValue.keyType.startsWith('so:')) {
-                                results.push(this._isIn(Array.isArray(formatedValues) ? formatedValues : [formatedValues], currentValue.key))
-                            }
-                            return results;
-                        }, [])).flat()
-                } : this._contains(`¤${formatedValues}¤`, SmartObjectsBaseService.SEARCH_KEY);
+                if (value.type === 'so:') {
+                    const req = {
+                        $or: models.map((model: SmartModelDto) =>
+                            model.properties.reduce((results, currentValue: SmartPropertyModelDto) => {
+                                if (currentValue.keyType.startsWith('so:')) {
+                                    results.push(this._isIn(Array.isArray(formatedValues) ? formatedValues : [formatedValues], currentValue.key))
+                                }
+                                return results;
+                            }, [])).flat()
+                    };
+                    if (req.$or.length === 0){
+                        return { falseProperty: true};//pour que la recherche type SO renvoie 0 objets
+                    }
+                    return req;
+                } 
+                return this._contains(`¤${formatedValues}¤`, SmartObjectsBaseService.SEARCH_KEY); 
             case 'different':
                 return this._doesntContain(`¤${formatedValues}¤`, SmartObjectsBaseService.SEARCH_KEY);
             case 'in':

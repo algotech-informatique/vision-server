@@ -1,9 +1,9 @@
 import { Controller, Post, Body, BadRequestException, Get, Query, Logger, Delete, UseGuards } from '@nestjs/common';
 import { Observable, of, throwError } from 'rxjs';
-import { CustomerDto, CustomerSearchDto, CustomerInitDto, CustomerInitResultDto } from '@algotech-ce/core';
+import { CustomerDto, CustomerSearchDto, CustomerInitResultDto } from '@algotech-ce/core';
 import { catchError, mergeMap, tap } from 'rxjs/operators';
 import { AdminHead, DocumentsHead, NatsService, UtilsService } from '../providers';
-import { Customer, IdentityRequest } from '../interfaces';
+import { Customer, CustomerInit, IdentityRequest } from '../interfaces';
 import { ApiTags } from '@nestjs/swagger';
 import { Identity } from '../common/@decorators';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
@@ -53,7 +53,7 @@ export class AdminController {
     @Post('customers/init')
     @UseGuards(JwtAuthGuard)
     @KcAdmin()
-    initCustomer(@Body() customer/* : CustomerInitDto */, @Query('keycloakOnly') keycloakOnly,
+    initCustomer(@Body() customer: CustomerInit, @Query('keycloakOnly') keycloakOnly,
         @Query('ignoreEmail') ignoreEmail): Observable<any/* CustomerInitResultDto[] */> {
         const customerSearch: CustomerSearchDto = { customerKey: [] };
         customerSearch.customerKey.push(customer.customerKey);
@@ -89,7 +89,11 @@ export class AdminController {
         @Query('start') start?: string,
         @Query('end') end?: string,
         @Query('max') max?: string): Observable<any> {
-
+        
+        if (!process.env.ES_URL) {
+            return of(false)
+        }
+        
         let data = { identity };
         data = soUuid ? Object.assign(data, { soUuid }) : data;
         data = fileId ? Object.assign(data, { fileId }) : data;
@@ -98,8 +102,8 @@ export class AdminController {
         data = end ? Object.assign(data, { end }) : data;
         data = max ? Object.assign(data, { max: parseInt(max, 10) }) : data;
 
-        const customer: CustomerInitDto = {
-            customerKey: identity.customerKey, name: '', email: '', languages: [], licenceKey: '', login: '', password: '',
+        const customer: CustomerInit = {
+            customerKey: identity.customerKey, firstName: '', lastName: '', email: '', languages: [], login: '', password: '', defaultapplications: []
         };
         if (soUuid || fileId || docUuid) {
             return this.nats.httpResult(this.documentsHead.indexation(data).pipe(

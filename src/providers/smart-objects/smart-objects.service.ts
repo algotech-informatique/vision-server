@@ -94,20 +94,17 @@ export class SmartObjectsService extends SmartObjectsBaseService {
 
     doDelete(identity: IdentityRequest, id: string, real?: boolean): Observable<boolean> {
         // detach so
-        console.log('doDelete')
         return this.findSubDocByUuid(identity.customerKey, id, { deep: true, excludeRoot: false, composition: true, includeDeleted: real }).pipe(
             mergeMap((smartObjects: SmartObjectDto[]) => concat(this.detachSmartObject(identity, id), of(smartObjects))),
             toArray(),
             catchError((err) => of([false])),
             mergeMap((data) => {
-                console.log('je passe ici')
                 const rootDetached = data[0]
                 if (!rootDetached) {
                     throwError(() => new Error('error in  detachSmartObject'));
                 }
                 const smartObjects = data[1];
 
-                console.log('je passe ici', JSON.stringify((smartObjects as SmartObject[]).map((so) => so.uuid)))
                 const $obsDelete: Observable<string>[] = _.reduce(smartObjects, (results, so: SmartObject) => {
                     if (so.uuid !== id) {
                         results.push(this.findByProperty(identity, so.uuid).pipe(
@@ -117,7 +114,6 @@ export class SmartObjectsService extends SmartObjectsBaseService {
                             }),
                         ))
                     } else {
-                        console.log('delete so: ' + so.uuid);
                         results.push(super.delete(identity.customerKey, so.uuid, real));
                     }
                     return results;

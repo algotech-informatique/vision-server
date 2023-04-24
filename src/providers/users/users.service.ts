@@ -1,10 +1,9 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
-import { Observable, of, zip } from 'rxjs';
+import { Observable, of, throwError, zip } from 'rxjs';
 import { mergeMap, catchError, map, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { User } from '../../interfaces';
 import { KeycloakService } from '../admin/keycloak.service';
-import { UtilsService } from '../utils/utils.service';
 
 interface Rules {
     rule: string;
@@ -16,7 +15,6 @@ interface Rules {
 export class UsersService {
 
     constructor(
-        private utils: UtilsService,
         protected keycloakService: KeycloakService,
     ) { }
 
@@ -50,6 +48,24 @@ export class UsersService {
             mergeMap(() => {
                 return this.findOneByLogin(customerKey, user.username);
             }),
+        );
+    }
+
+    setUpPassword(user: User, customerKey: string, passsord: string) {
+        return this.keycloakService.requestKeyCloak(customerKey, {
+            url: `/admin/realms/vision/users/${user.uuid}/reset-password`,
+            method: 'PUT',
+            data: {
+                'type': 'password',
+                'value': passsord,
+                'temporary': false
+            },
+        }).pipe(
+            catchError((err) => {
+                console.log(err);
+                
+                return of(null)}),
+            map(() => user)
         );
     }
 
@@ -291,7 +307,7 @@ export class UsersService {
                 documents: user.attributes.favoritesDoc || [],
                 smartObjects: user.attributes.favoritesSo || [],
             },
-            mobileToken: user.attributes.mobileToken && user.attributes.mobileToken.length === 1?user.attributes.mobileToken[0] : '',
+            mobileToken: user.attributes.mobileToken && user.attributes.mobileToken.length === 1 ? user.attributes.mobileToken[0] : '',
         };
     }
 

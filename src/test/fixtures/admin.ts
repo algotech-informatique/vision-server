@@ -1,23 +1,26 @@
-import { CustomerDto, CustomerInitDto, CustomerInitResultDto, UserDto } from '@algotech-ce/core';
+import { CustomerDto, CustomerInitResultDto, UserDto } from '@algotech-ce/core';
+import {CustomerInit} from '../../interfaces/customers/customer-init';
 
-export const initCustomer: CustomerInitDto = {
+export const initCustomer: CustomerInit = {
     customerKey: 'nouveau',
-    name: 'Le nouveau client',
+    firstName: 'John',
+    lastName: 'Doe',
     login: 'sadmin-nouveaux',
     email: 'abc@abc.com',
     password: '123456',
     languages: [{ lang: 'fr-FR', value: 'français' }, { lang: 'en-US', value: 'English' }],
-    licenceKey: 'dsqdsqds',
+    defaultapplications: []
 };
 
-export const initDatabase: CustomerInitDto = {
+export const initDatabase: CustomerInit = {
     customerKey: 'nouveau-database',
-    name: 'Le nouveau client',
+    firstName: 'John',
+    lastName: 'Doe',
     login: 'sadmin-nouveaux',
     email: 'abc@database.com',
     password: '123456',
     languages: [{ lang: 'fr-FR', value: 'français' }, { lang: 'en-US', value: 'English' }],
-    licenceKey: 'dsqdsqds',
+    defaultapplications: []
 };
 
 export const initOk: CustomerInitResultDto[] = [

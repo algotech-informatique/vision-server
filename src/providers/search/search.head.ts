@@ -10,7 +10,7 @@ import { IdentityRequest, SearchSOCombinedFilters, Search, FacetAggregationPipel
 import { SearchQueryBuilderHead } from './search-query-builder.head';
 import { SettingsDataService } from '../../providers/@base/settings-data.service';
 
-const es_url = process.env.ES_URL ? process.env.ES_URL : 'http://ms-search:9200';
+const es_url = process.env.ES_URL ? process.env.ES_URL : false;
 
 @Injectable()
 export class SearchHead {
@@ -76,9 +76,11 @@ export class SearchHead {
                 mergeMap((context: SettingsData) => {
                     const hasTagsOrMetadatas = query.tags.length > 0 || query.metadatas.length > 0;
                     if (query.so.length === 0 && (hasTagsOrMetadatas || (query.texts.length > 0 && (target === '' || target.startsWith('file:'))))) {
-                        $queries.push(this.sendSearchRequest(identity.customerKey,
-                            [this.searchQueryBuilderHead.setdocQueries(identity.customerKey, skip, limit, query,
-                                context.smartmodels.map((model: SmartModel) => model.key))]))
+                        if (es_url) {
+                            $queries.push(this.sendSearchRequest(identity.customerKey,
+                                [this.searchQueryBuilderHead.setdocQueries(identity.customerKey, skip, limit, query,
+                                    context.smartmodels.map((model: SmartModel) => model.key))]))
+                        }
                     }
 
                     if (hasTagsOrMetadatas || (query.so.length > 0 || query.texts.length > 0) && (target === '' || target.startsWith('so:'))) {
@@ -242,6 +244,9 @@ export class SearchHead {
 
     sendSearchRequest(customerKey: string, queries): Observable<QuerySearchResultDto[]> {
         return defer(() => {
+            if (!es_url) {
+                return of([]);
+            }
             let raws = '';
             const config: AxiosRequestConfig = {
                 url: `${es_url}/_msearch/template`,

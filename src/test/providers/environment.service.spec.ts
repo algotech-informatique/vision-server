@@ -156,8 +156,10 @@ describe('EnvironmentHead', () => {
             email: 'abc@abc.com',
             languages: [ {lang: 'fr', value: 'fr-FR'}],
             login: 'newlogin',
-            name: 'New Login',
+            firstName: 'John',
+            lastName: 'Doe',
             password: '123456',
+            defaultapplications: []
         };
         environmentHead.init({ customer }).subscribe({
             next: (res: CustomerInitResult) => {

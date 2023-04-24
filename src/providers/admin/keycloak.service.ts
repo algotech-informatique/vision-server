@@ -1,9 +1,9 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
-import { concat, Observable, of, pipe, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { HttpService } from '@nestjs/axios'; 
-import { map, mergeMap, concatAll, catchError } from 'rxjs/operators';
+import { map, mergeMap, catchError } from 'rxjs/operators';
 import * as _ from 'lodash';
-import { Customer, CustomerInit, CustomerInitResult, CustomerSearch, User, UserSearch } from '../../interfaces';
+import { CustomerInit, CustomerInitResult } from '../../interfaces';
 import * as qs from 'qs';
 import { AxiosResponse } from 'axios';
 import { addRealm, generateSecret, revokeOfflineToken, sendEmailAfterRegister } from './keycloak-cmd';
@@ -188,6 +188,22 @@ export class KeycloakService {
                 return (resHttp && resHttp.data) ?
                     of(resHttp.data) : of(null);
             }),
+        );
+    }
+
+    checkKeyCloak() {
+        return this.requestKeyCloak('', {
+            url: '/health/ready',
+            method: 'GET',
+            data: {}
+        }).pipe(
+            catchError(() => of(false)),
+            mergeMap((data:any) => {
+                if (data) {
+                    return of(data.status === "UP");
+                }
+                return of(data);
+            })
         );
     }
 

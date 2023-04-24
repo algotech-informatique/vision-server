@@ -24,7 +24,8 @@ const identityError: IdentityRequest = {
 
 const customerInit: CustomerInit = {
     customerKey: identity.customerKey,
-    name: 'jford',
+    firstName: 'John',
+    lastName: 'Doe',
     login: 'jford',
     email: 'test@test.fr',
     password: '123456',
@@ -42,11 +43,13 @@ const customerInit: CustomerInit = {
             value: 'espagnol',
         },
     ],
+    defaultapplications: []
 };
 
 const customerInitError: CustomerInit = {
     customerKey: '',
-    name: '',
+    firstName: 'John',
+    lastName: 'Doe',
     login: '',
     email: 'test@test.fr',
     password: '123456',
@@ -56,6 +59,7 @@ const customerInitError: CustomerInit = {
             value: 'français',
         },
     ],
+    defaultapplications: []
 };
 
 describe('SmartNodesHead', () => {

@@ -1,5 +1,5 @@
 import { GroupDto } from '@algotech-ce/core';
-import { CustomerInit } from 'interfaces';
+import { CustomerInit } from '../../interfaces';
 
 export const group1: GroupDto = {
     "application": {
@@ -97,7 +97,8 @@ export const updateGroup: GroupDto = {
 
 export const customer: CustomerInit = {
     customerKey: 'nouveau',
-    name: 'new-customer',
+    firstName: 'John',
+    lastName: 'Doe',
     login: 'newCust',
     email: 'abc@abc.com',
     password: '123456',
@@ -105,5 +106,6 @@ export const customer: CustomerInit = {
         lang: 'fr',
         value: 'fr-FR',
     }],
+    defaultapplications: []
 };
 

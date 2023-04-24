@@ -10,7 +10,6 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
-.gitlab-ci.yml
 .npmrc
 Dockerfile-prod
 sonar-project.properties

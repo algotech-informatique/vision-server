@@ -9,7 +9,7 @@ import * as _ from 'lodash';
 import { UsersService } from '../users/users.service';
 import { Customer, CustomerInit, CustomerInitResult, CustomerSearch, User } from '../../interfaces';
 import { RxExtendService } from '../rx-extend/rx-extend.service';
-import { CustomerInitDto, CustomerInitResultDto } from '@algotech-ce/core';
+import { CustomerInitResultDto } from '@algotech-ce/core';
 import { deleteDocQuery, deletequeries, docIndexQuery, putqueries, postqueries, pipelineQuery } from './init-cmd';
 
 @Injectable()
@@ -25,11 +25,6 @@ export class AdminService {
         const aggregates = _.assign(this.getPipelineFromSearch(search));
         return from(this.customerModel.aggregate(aggregates)) as Observable<[]>;
     }
-
-    /* private aggregateUsersfromSearch(search): Observable<[]>{
-        const aggregates = _.assign(this.getPipelineFromSearch(search));
-        return from(this.userModel.aggregate(aggregates)) as Observable<[]>;
-    } */
 
     listCustomer(customerSearch: CustomerSearch): Observable<Customer[]> {
         if (customerSearch.all) {
@@ -102,8 +97,8 @@ export class AdminService {
             preferedLang: _.size(object.languages) > 0 ? object.languages[0].lang : 'fr-FR',
             username: object.login,
             email: object.email,
-            firstName: '',
-            lastName: '',
+            firstName: object.firstName,
+            lastName: object.lastName,
             customerKey: object.customerKey,
             pictureUrl: 'https://',
             following: [],
@@ -114,6 +109,12 @@ export class AdminService {
         };
         Logger.log('users/init');
         return this.usersService.create(object.customerKey, newUser, ignoreEmail).pipe(
+            mergeMap((user) => {
+                if (user && object.password && object.password.trim() !== '') {
+                    return this.usersService.setUpPassword(user, object.customerKey, object.password);
+                }
+                return of(user);
+            }),
             map((user) => {
                 if (user) {
                     result.value = 'ok';
@@ -164,7 +165,7 @@ export class AdminService {
         return pripeline;
     }
 
-    _setPutESQuery(customer: CustomerInitDto, query: CustomerInitResultDto): Observable<CustomerInitResultDto> {
+    _setPutESQuery(customer: CustomerInit, query: CustomerInitResultDto): Observable<CustomerInitResultDto> {
         const result: CustomerInitResultDto = {
             key: query.key,
             value: 'ko',
@@ -185,7 +186,7 @@ export class AdminService {
                 }, (err) => { result.value = 'ko'; return result; }));
     }
 
-    _setPostESQuery(customer: CustomerInitDto, query: CustomerInitResultDto): Observable<CustomerInitResultDto> {
+    _setPostESQuery(customer: CustomerInit, query: CustomerInitResultDto): Observable<CustomerInitResultDto> {
         const result: CustomerInitResultDto = {
             key: query.key,
             value: 'ko',
@@ -231,8 +232,8 @@ export class AdminService {
                 }));
     }
 
-    initDataBase(customer: CustomerInitDto, cmds$: Observable<CustomerInitResultDto>[], keycloakOnly: boolean): Observable<CustomerInitResultDto[]> {
-        if (!keycloakOnly) {
+    initDataBase(customer: CustomerInit, cmds$: Observable<CustomerInitResultDto>[], keycloakOnly: boolean): Observable<CustomerInitResultDto[]> {
+        if (!keycloakOnly && process.env.ES_URL) {
             // Set ES indexes & pipeline
             _.forEach(putqueries, (putQuery) => cmds$.push(this._setPutESQuery(customer, putQuery)));
         }
@@ -246,10 +247,16 @@ export class AdminService {
     }
 
     deleteESindexAndPipeline(customerKey: string): Observable<CustomerInitResultDto[]> {
+        if (!process.env.ES_URL) {
+            return of([]);
+        }
         return this.rxExt.sequence(_.map(deletequeries, (deleteQuery) => this._setDeleteESQuery(customerKey, deleteQuery)));
     }
 
-    resetdocIndex(customer: CustomerInitDto): Observable<CustomerInitResultDto[]> {
+    resetdocIndex(customer: CustomerInit): Observable<CustomerInitResultDto[]> {
+        if (!process.env.ES_URL) {
+            return of([]);
+        }
         const cmds$: Observable<CustomerInitResultDto>[] = [
             this._setDeleteESQuery(customer.customerKey, deleteDocQuery).pipe(
                 catchError(() => of(deleteDocQuery))),
@@ -258,7 +265,10 @@ export class AdminService {
         return this.rxExt.sequence(cmds$);
     }
 
-    resetESPipelineAndTempates(customer: CustomerInitDto): Observable<CustomerInitResultDto[]> {
+    resetESPipelineAndTempates(customer: CustomerInit): Observable<CustomerInitResultDto[]> {
+        if (!process.env.ES_URL) {
+            return of([]);
+        }
         const cmds$: Observable<CustomerInitResultDto>[] = [this._setPutESQuery(customer, pipelineQuery)];
 
         _.forEach(postqueries, (query) => cmds$.push(this._setPostESQuery(customer, query)));

@@ -180,6 +180,7 @@ export class TestUtils {
                 login: user2.username,
                 customerKey: user2.customerKey,
                 email: user2.email,
+                password: '123456',
                 firstName: user2.firstName,
                 lastName: user2.lastName,
                 languages: [
@@ -188,24 +189,8 @@ export class TestUtils {
                         value: 'Français'
                     }
                 ],
+                defaultapplications: []
             }).catch(err => { throw new Error('Initialize Keycloak Realm ' + err); });
-
-        // Search SAdmin User
-        const resSadmin = await axios.get(process.env.KEYCLOAK_URL + '/admin/realms/vision/users/?username=' + user2.username,
-            {
-                headers: { 'Authorization': 'Bearer ' + this.adminAuthorizationJWT },
-            }).catch(err => { throw new Error('Search SAdmin User ' + err); });
-
-        if (resSadmin.status !== 200 || resSadmin.data.length !== 1) {
-            throw new Error('Unable to retrieve sadmin user');
-        }
-
-        // Set Up Password for admin user
-        await axios.put(process.env.KEYCLOAK_URL + '/admin/realms/vision/users/' + resSadmin.data[0].id + '/reset-password',
-            { "type": "password", "value": "123456", "temporary": false },
-            {
-                headers: { 'Authorization': 'Bearer ' + this.adminAuthorizationJWT },
-            }).catch(err => { throw new Error('Set Up Password for admin user ' + err); });
 
         // SignIn Sadmin
         const signInSadmin = await axios.post(process.env.KEYCLOAK_URL + '/realms/vision/protocol/openid-connect/token',
@@ -244,13 +229,13 @@ export class TestUtils {
                 headers: { 'Authorization': 'Bearer ' + this.adminAuthorizationJWT },
             }).catch(err => { throw new Error('Search SAdmin User ' + err); });
 
-        if (resSadmin.status !== 200 || resSadmin.data.length !== 1) {
+        if (resJsmith.status !== 200 || resJsmith.data.length !== 1) {
             throw new Error('Unable to retrieve sadmin user');
         }
 
         // Set Up Password for admin user
         await axios.put(process.env.KEYCLOAK_URL + '/admin/realms/vision/users/' + resJsmith.data[0].id + '/reset-password',
-            { "type": "password", "value": "123456", "temporary": false },
+            { 'type': 'password', 'value': '123456', 'temporary': false },
             {
                 headers: { 'Authorization': 'Bearer ' + this.adminAuthorizationJWT },
             }).catch(err => { throw new Error('Set Up Password for admin user ' + err); });

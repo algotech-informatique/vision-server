@@ -34,8 +34,7 @@ const domain_name = process.env.DOMAIN_NAME ? process.env.DOMAIN_NAME : '';
 
 export const clients = [
     { baseUrl: '/studio', id: 'pwa-studio', bearerOnly: false, publicClient: true, protocolMappers, serviceAccountsEnabled: false, redirectUris: ["/studio/*"], rootUrl: domain_name, directAccessGrantsEnabled: true },
-    { baseUrl: '/player', id: 'pwa-player', bearerOnly: false, publicClient: true, protocolMappers, serviceAccountsEnabled: false, redirectUris: ["/player/*"], rootUrl: domain_name, directAccessGrantsEnabled: true },
-    { baseUrl: '/', id: 'pwa-plan', bearerOnly: false, publicClient: true, protocolMappers, serviceAccountsEnabled: false, redirectUris: ["/*"], rootUrl: domain_name, directAccessGrantsEnabled: true },
+    { baseUrl: '/', id: 'pwa-player', bearerOnly: false, publicClient: true, protocolMappers, serviceAccountsEnabled: false, redirectUris: ["/*"], rootUrl: domain_name, directAccessGrantsEnabled: true },
     { baseUrl: '/', id: 'vision-mobile-app', bearerOnly: false, publicClient: true, protocolMappers, serviceAccountsEnabled: false, redirectUris: ["http://localhost"], rootUrl: 'http://localhost', webOrigins: ["http://localhost"], directAccessGrantsEnabled: true },
     { baseUrl: '/', id: 'vision-server', bearerOnly: true, publicClient: false, protocolMappers, serviceAccountsEnabled: true },
 ];

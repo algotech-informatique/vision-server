@@ -2,13 +2,11 @@ import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/mongoose';
 import { Observable, from, of, zip } from 'rxjs';
 import { tap, catchError, retryWhen } from 'rxjs/operators';
-import { CustomerInitDto } from '@algotech-ce/core';
 import { AdminHead } from '../admin/admin.head';
-import { AuditTrailHead } from '../audit-trail/audit-trail.head';
 import { RxExtendService } from '../rx-extend/rx-extend.service';
 import { SmartTasksHead } from '../smart-tasks/smart-tasks.head';
 import { ProcessMonitoringHead } from '../process-monitoring/process-monitoring.head';
-import { WorkerMessage } from '../../interfaces';
+import { CustomerInit, WorkerMessage } from '../../interfaces';
 
 @Injectable()
 export class InitService implements OnApplicationBootstrap {
@@ -17,7 +15,6 @@ export class InitService implements OnApplicationBootstrap {
         @InjectConnection() private readonly connection,
         private readonly rxExtend: RxExtendService,
         private readonly adminHead: AdminHead,
-        private readonly auditTrailHead: AuditTrailHead,
         private readonly smartTasks: SmartTasksHead,
         private readonly monitoringHead: ProcessMonitoringHead
     ) {
@@ -48,22 +45,25 @@ export class InitService implements OnApplicationBootstrap {
     }
 
     createPipelineAndTemplates() {
-        const customer: CustomerInitDto = {
-            customerKey: '', name: '', email: '', languages: [], licenceKey: '', login: '', password: '',
-        };
+        if (process.env.ES_URL) {
+            const customer: CustomerInit = {
+                customerKey: '', firstName: '', lastName: '', email: '', languages: [], login: '', password: '', defaultapplications: []
+            };
 
-        this.adminHead.resetESPipelineAndTempates(customer).pipe(
-            retryWhen(this.rxExtend.genericRetryStrategy(8, 15000)),
-            tap((res) => {
-                Logger.log('Reset ES Pipeine And templates')
-                res.forEach(res => Logger.log(`${res.key}: ${res.value}`))
-            }),
-            catchError((e) => {
-                Logger.log('Error: Reset ES Pipeine And templates ' + e);
-                return of({});
-            }),
-        ).subscribe();
+            this.adminHead.resetESPipelineAndTempates(customer).pipe(
+                retryWhen(this.rxExtend.genericRetryStrategy(8, 15000)),
+                tap((res) => {
+                    Logger.log('Reset ES Pipeine And templates')
+                    res.forEach(res => Logger.log(`${res.key}: ${res.value}`))
+                }),
+                catchError((e) => {
+                    Logger.log('Error: Reset ES Pipeine And templates ' + e);
+                    return of({});
+                }),
+            ).subscribe();
+        }
     }
+
     applyMongoIndexes() {
         const indexes$ = [
             this._indexCreator('customers', { customerKey: 1 }),

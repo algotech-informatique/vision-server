@@ -2,7 +2,7 @@ import { Controller, Post, Body, Get, Param, Put, UseGuards, Patch, Query, BadRe
 import { Observable, of } from 'rxjs';
 import {
     SmartObjectDto, SmartObjectGeoBoxDto, SmartObjectSearchDto, PatchPropertyDto, DeleteDto, GeoSettingsDto,
-    GeoPOIDto, SmartObjectTreeQuery, QuerySearchDto, CacheDto, SearchSODto, IndexationOptionsDto, CustomerInitDto, ImportSoDto, ImportSoResultDto,
+    GeoPOIDto, SmartObjectTreeQuery, QuerySearchDto, CacheDto, SearchSODto, ImportSoDto, ImportSoResultDto,
 } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { AuthorizationInterceptor } from '../auth/interceptors/authorization.interceptor';
@@ -10,7 +10,7 @@ import { tap, mergeMap, catchError } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { ActionCode, Identity } from '../common/@decorators';
-import { AuditLog, IdentityRequest, SmartObject } from '../interfaces';
+import { AuditLog, CustomerInit, IdentityRequest, SmartObject } from '../interfaces';
 import { AdminHead, AuditTrailHead, DocumentsHead, NatsService, SearchHead, SearchQueryBuilderHead, SmartModelsHead, SmartObjectsHead, UtilsService } from '../providers';
 import { BroadcastingMode } from '../common/@websockets/web-sockets.service';
 import { ApiTags } from '@nestjs/swagger';
@@ -426,6 +426,10 @@ export class SmartObjectsController {
         @Query('end') end?: string,
         @Query('max') max?: string): Observable<any> {
 
+        if (!process.env.ES_URL) {
+            return of(false)
+        }
+        
         let data = { identity };
         data = soUuid ? Object.assign(data, { soUuid }) : data;
         data = fileId ? Object.assign(data, { fileId }) : data;
@@ -434,8 +438,8 @@ export class SmartObjectsController {
         data = end ? Object.assign(data, { end }) : data;
         data = max ? Object.assign(data, { max: parseInt(max, 10) }) : data;
 
-        const customer: CustomerInitDto = {
-            customerKey: identity.customerKey, name: '', email: '', languages: [], licenceKey: '', login: '', password: '',
+        const customer: CustomerInit = {
+            customerKey: identity.customerKey, firstName: '', lastName: '', email: '', languages: [], login: '', password: '', defaultapplications: []
         };
         if (soUuid || fileId || docUuid) {
             return this.documentsHead.indexation(data).pipe(

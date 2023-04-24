@@ -1,9 +1,9 @@
-import { CustomerInitResult, IdentityRequest, Settings } from '../../interfaces';
+import { CustomerInit, CustomerInitResult, IdentityRequest, Settings } from '../../interfaces';
 import { INestApplication } from '@nestjs/common';
 import { TestUtils } from '../utils';
 import { SettingsHead } from '../../providers';
 import { createSettings, patchPull, patchPush, patchRemove, patchSet, patchSetError, settings, updateSettings } from '../fixtures/settings';
-import { CustomerInitDto, PatchPropertyDto } from '@algotech-ce/core';
+import { PatchPropertyDto } from '@algotech-ce/core';
 
 declare const describe, afterAll, beforeAll, expect, it: any;
 
@@ -13,14 +13,15 @@ const identity: IdentityRequest = {
     customerKey: 'algotech',
 };
 
-const initCustomer: CustomerInitDto = {
+const initCustomer: CustomerInit = {
     customerKey: 'nouveau',
-    name: 'Le nouveau client',
+    firstName: 'John',
+    lastName: 'Doe',
     login: 'sadmin-nouveaux',
     email: 'abc@abc.com',
     password: '123456',
     languages: [{ lang: 'fr-FR', value: 'français' }, { lang: 'en-US', value: 'English' }],
-    licenceKey: 'dsqdsqds',
+    defaultapplications: []
 };
 
 const identityCreate: IdentityRequest = {

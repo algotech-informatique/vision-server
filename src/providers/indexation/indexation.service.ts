@@ -9,7 +9,6 @@ import { Document, IdentityRequest, IndexationError, SmartModel, SmartObject } f
 import { FilesService } from '../files/files.service';
 import { SmartModelsHead } from '../smart-models/smart-models.head';
 import { SmartObjectsHead } from '../smart-objects/smart-objects.head';
-import { ModuleRef } from '@nestjs/core';
 import { UUID } from 'angular2-uuid';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
@@ -18,7 +17,7 @@ import { ProcessMonitoringHead } from '../../providers/process-monitoring/proces
 import { RxExtendService } from '../../providers/rx-extend/rx-extend.service';
 import { DocumentsHead } from '../documents/documents.head';
 
-const es_url = process.env.ES_URL ? process.env.ES_URL : 'http://ms-search:9200';
+const es_url = process.env.ES_URL ? process.env.ES_URL : false;
 
 interface IndexationResult {
     name: string;
@@ -33,7 +32,6 @@ export class IndexationService {
     constructor(
         private readonly smartObjectsHead: SmartObjectsHead,
         private readonly smartModelsHead: SmartModelsHead,
-        private readonly moduleRef: ModuleRef,
         private readonly processMonitoringHead: ProcessMonitoringHead,
         @Inject(forwardRef(() => DocumentsHead))
         private readonly documentsHead: DocumentsHead,
@@ -65,6 +63,9 @@ export class IndexationService {
     }
 
     public indexWithES(customerKey: string, base64: string, fileId: string, document: Document, modelKeys: string[]): Observable<boolean> {
+        if (!es_url) {
+            return of(false);
+        }
         console.log('Request ES', fileId);
         console.log('doc-uuid : ', document.uuid);
         const headers = { 'Content-Type': 'application/json' };

@@ -1,4 +1,4 @@
-import { CustomerInitDto, CustomerInitResultDto } from '@algotech-ce/core';
+import { CustomerInitResultDto } from '@algotech-ce/core';
 import { Injectable } from '@nestjs/common';
 import { Observable } from 'rxjs';
 import { Customer, CustomerInit, CustomerInitResult, CustomerSearch } from '../../interfaces';
@@ -51,7 +51,7 @@ export class AdminHead {
         return this.adminService.deleteESindexAndPipeline(customerKey);
     }
 
-    initDataBase(customer: CustomerInitDto, keycloakOnly: boolean, ignoreEmail: boolean): Observable<CustomerInitResultDto[]> {
+    initDataBase(customer: CustomerInit, keycloakOnly: boolean, ignoreEmail: boolean): Observable<CustomerInitResultDto[]> {
         const cmds$ = [
             this.initKeyCloak({ customer }),
             this.groupHead.init({ customer }),
@@ -70,11 +70,11 @@ export class AdminHead {
         return this.adminService.initDataBase(customer, cmds$, keycloakOnly);
     }
 
-    resetESPipelineAndTempates(customer: CustomerInitDto): Observable<CustomerInitResultDto[]> {
+    resetESPipelineAndTempates(customer: CustomerInit): Observable<CustomerInitResultDto[]> {
         return this.adminService.resetESPipelineAndTempates(customer);
     }
 
-    resetdocIndex(customer: CustomerInitDto): Observable<CustomerInitResultDto[]> {
+    resetdocIndex(customer: CustomerInit): Observable<CustomerInitResultDto[]> {
         return this.adminService.resetdocIndex(customer);
     }
 }
