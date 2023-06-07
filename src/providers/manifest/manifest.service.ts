@@ -29,8 +29,8 @@ export class ManifestService {
                         display: settings?.player?.display ? settings?.player?.display : 'standalone',
                         orientation: settings?.player?.orientation ? settings?.player?.orientation : 'portrait-primary',
                         id: `${process.env.DOMAIN_NAME}/player/`,
-                        start_url: `${process.env.DOMAIN_NAME}/player/`,
-                        scope: `${process.env.DOMAIN_NAME}/player/`,
+                        start_url: `${process.env.DOMAIN_NAME}/`,
+                        scope: `${process.env.DOMAIN_NAME}/`,
                         icons: [],
                         related_applications: [
                             {
