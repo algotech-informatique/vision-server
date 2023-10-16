@@ -1,4 +1,4 @@
-import { CustomerInit } from "../../interfaces";
+import { CustomerInit } from '../../interfaces';
 
 const protocolMappers = [
     {
@@ -11,8 +11,8 @@ const protocolMappers = [
             'id.token.claim': 'true',
             'access.token.claim': 'true',
             'claim.name': 'groups',
-            'userinfo.token.claim': 'true'
-        }
+            'userinfo.token.claim': 'true',
+        },
     },
     {
         name: 'mobileToken',
@@ -26,8 +26,8 @@ const protocolMappers = [
             'claim.name': 'mobileToken',
             'jsonType.label': 'String',
             'userinfo.token.claim': 'true',
-        }
-    }
+        },
+    },
 ];
 
 const domain_name = process.env.DOMAIN_NAME ? process.env.DOMAIN_NAME : '';
@@ -67,27 +67,29 @@ export const addRealm = (customer: CustomerInit) => {
                 port: process.env.SMTP_PORT,
                 host: process.env.SMTP_HOST,
                 from: process.env.SMTP_FROM,
-                user: process.env.SMTP_USER
-            }
-        }
-    }
+                user: process.env.SMTP_USER,
+                fromDisplayName: 'Vision',
+            },
+        },
+    };
 };
 
 export const revokeOfflineToken = (realm: string, userId: string, clientId: string) => ({
     url: `/admin/realms/${realm}/users/${userId}/consents/${clientId}`,
     method: 'DELETE',
-    data: {
-    }
-})
+    data: {},
+});
 
 export const generateSecret = (customer, realm, clientId) => ({
     url: `/admin/realms/${realm}/clients/${clientId}/client-secret`,
     method: 'POST',
-    data: {}
+    data: {},
 });
 
 export const sendEmailAfterRegister = (customer, realm, userId: string, lifespan = 259200) => ({
-    url: `/admin/realms/${realm}/users/${userId}/execute-actions-email?lifespan=${lifespan}`,
+    url: `/admin/realms/${realm}/users/${userId}/execute-actions-email?lifespan=${lifespan}&client_id=pwa-player&redirect_uri=${encodeURI(
+        process.env.DOMAIN_NAME,
+    )}`,
     method: 'PUT',
-    data: ["UPDATE_PASSWORD"]
+    data: ['UPDATE_PASSWORD'],
 });

@@ -126,7 +126,6 @@ export class KeycloakService {
             }),
             map((clientSecret: { type: string, value: string }) => {
                 if (!clientSecret || !clientSecret.value) {
-                    console.log(clientSecret);
                     throw new Error('Unable to retrieve the client-secret');
                 }
 

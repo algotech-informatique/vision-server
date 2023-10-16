@@ -240,7 +240,6 @@ export class AdminService {
 
         return this.rxExt.sequence(cmds$).pipe(
             catchError((err) => {
-                console.log(err);
                 return of(err);
             }),
         );

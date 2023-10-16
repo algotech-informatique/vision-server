@@ -11,7 +11,6 @@ import { AuditTrailInterceptor } from '../../common/@interceptors/audit-trail.in
 import { serve } from 'swagger-ui-express';
 import { WebSocketsModule } from '../../common/@websockets/web-sockets.module';
 import { JwtAuthGuard } from '../../auth/guards/jwt-auth-guard';
-import { MailerModule, PugAdapter } from '@nest-modules/mailer';
 import { InitService } from '../../providers';
 
 @Module({
@@ -24,11 +23,6 @@ import { InitService } from '../../providers';
         AuthModule,
         ProvidersModule,
         WebSocketsModule,
-        MailerModule.forRoot({
-            transport: {
-                service: 'ovh',
-            },
-        }),
         MongooseModule.forRootAsync({
             useFactory: () => ({
                 // tslint:disable-next-line:max-line-length
@@ -44,7 +38,8 @@ import { InitService } from '../../providers';
         {
             provide: APP_INTERCEPTOR,
             useClass: AuditTrailInterceptor,
-        }],
+        },
+    ],
 })
 export class AppModuleMock {
     configure(consumer: MiddlewareConsumer) {

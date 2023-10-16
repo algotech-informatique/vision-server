@@ -1,12 +1,17 @@
 import { INestApplication } from '@nestjs/common';
-import { CustomerInit, CustomerInitResult, IdentityRequest, SnModel } from '../../interfaces';
+import { CustomerInit, CustomerInitResult, IdentityRequest, ProcessMonitoring, SnModel } from '../../interfaces';
 import { TestUtils } from '../utils';
-import { createSnModel, createSnModelService, duplicateNewSnModelService, listSnModel, modifyCreatedSnModel,
+import {
+    createSnModel, createSnModelService, duplicateNewSnModelService, listSnModel, modifyCreatedSnModel,
     modifyCreatedSnModelService,
-    snModelTest1, snModelTest2 } from '../fixtures/smartnodes';
+    node,
+    snModelSearchTest,
+    snModelTest1, snModelTest2
+} from '../fixtures/smartnodes';
 import * as _ from 'lodash';
-import { SmartNodesHead } from '../../providers';
-import { CacheDto, PatchPropertyDto, SnModelDto } from '@algotech-ce/core';
+import { ProcessMonitoringService, SmartNodesHead } from '../../providers';
+import { CacheDto, PatchPropertyDto, SnSynoticSearchQueryDto } from '@algotech-ce/core';
+import { mergeMap } from 'rxjs/operators';
 
 declare const describe, beforeAll, afterAll, expect, it: any;
 
@@ -64,6 +69,7 @@ const customerInitError: CustomerInit = {
 
 describe('SmartNodesHead', () => {
     let smartNodesHead: SmartNodesHead;
+    let monitoring: ProcessMonitoringService;
     const utils: TestUtils = new TestUtils();
     const request = require('supertest');
     let app: INestApplication;
@@ -72,12 +78,12 @@ describe('SmartNodesHead', () => {
     beforeAll(async () => {
         app = await utils.InitializeApp();
         smartNodesHead = app.get<SmartNodesHead>(SmartNodesHead);
-
-        await utils.Before(app, 'snmodels', request);
+        monitoring = app.get<ProcessMonitoringService>(ProcessMonitoringService);
+        await utils.Before(app, ['snsynoticsearches', 'monitoring', 'snmodels'], request);
     });
 
     afterAll(async () => {
-        await utils.After();
+        await utils.AfterArray(['snsynoticsearches', 'monitoring', 'snmodels']);
     });
 
     it('CREATE INSTANCE', () => {
@@ -102,7 +108,7 @@ describe('SmartNodesHead', () => {
         smartNodesHead.find(data).subscribe({
             next: (res: SnModel | SnModel[]) => {
                 const sModel: SnModel = res as SnModel;
-                expect(sModel.key).toMatchPartialObject('smartmodel');
+                expect(sModel.key).toEqual('smartmodel');
                 initUuid = sModel.uuid;
                 done();
             },
@@ -230,12 +236,12 @@ describe('SmartNodesHead', () => {
     it('/PATCH', (done) => {
         const patch: PatchPropertyDto[] = [
             {
-                op : 'replace',
-                path : '/type/',
-                value : 'workflow-1',
+                op: 'replace',
+                path: '/type/',
+                value: 'workflow-1',
             },
         ];
-        const data = { identity, data: {uuid: modifyCreatedSnModel.uuid, patches: patch } };
+        const data = { identity, data: { uuid: modifyCreatedSnModel.uuid, patches: patch } };
         smartNodesHead.patch(data).subscribe({
             next: (res: PatchPropertyDto[]) => {
                 expect(res).toMatchPartialObject(patch);
@@ -250,12 +256,12 @@ describe('SmartNodesHead', () => {
     it('/PATCH (version)', (done) => {
         const patch: PatchPropertyDto[] = [
             {
-                op : 'replace',
-                path : '/versions/[uuid:cda86945-7e47-4a81-845b-bfe93acc50c9]/creatorUuid/',
-                value : 'workflow-100292-100292-100292',
+                op: 'replace',
+                path: '/versions/[uuid:cda86945-7e47-4a81-845b-bfe93acc50c9]/creatorUuid/',
+                value: 'workflow-100292-100292-100292',
             },
         ];
-        const data = { identity, data: {uuid: modifyCreatedSnModel.uuid, patches: patch } };
+        const data = { identity, data: { uuid: modifyCreatedSnModel.uuid, patches: patch } };
         smartNodesHead.patch(data).subscribe({
             next: (res: PatchPropertyDto[]) => {
                 expect(res).toMatchPartialObject(patch);
@@ -268,7 +274,7 @@ describe('SmartNodesHead', () => {
     });
 
     it('/DELETE ', (done) => {
-        const data = { identity, data:  createSnModel.uuid };
+        const data = { identity, data: createSnModel.uuid };
         smartNodesHead.delete(data).subscribe({
             next: (res: boolean) => {
                 done();
@@ -280,7 +286,7 @@ describe('SmartNodesHead', () => {
     });
 
     it('/DELETE (init snmodel)', (done) => {
-        const data = { identity, data:  initUuid };
+        const data = { identity, data: initUuid };
         smartNodesHead.delete(data).subscribe({
             next: (res: boolean) => {
                 done();
@@ -292,7 +298,7 @@ describe('SmartNodesHead', () => {
     });
 
     it('/DELETE (with error - validate delete)', (done) => {
-        const data = { identity, data:  createSnModel.uuid };
+        const data = { identity, data: createSnModel.uuid };
         smartNodesHead.delete(data).subscribe({
             next: (res: boolean) => {
                 return Promise.reject('No correctly delete Smart Nodes');
@@ -330,7 +336,7 @@ describe('SmartNodesHead', () => {
     it('CACHE', (done) => {
         const d = new Date();
         d.setHours(d.getHours() - 1);
-        const data = {identity, date: d.toISOString() };
+        const data = { identity, date: d.toISOString() };
         smartNodesHead.cache(data).subscribe({
             next: (res: CacheDto) => {
                 expect(res.deleted).toEqual([
@@ -344,5 +350,237 @@ describe('SmartNodesHead', () => {
             },
         });
     });
+
+    describe('snModels indexation process', () => {
+        let lock : ProcessMonitoring;
+        let snModelSearchTestUuid = '';
+        let updateDate;
+        it('should not index aany snModels', (done) => {
+            smartNodesHead.tryIndexsnModels().subscribe({
+                next: (results) => {
+                    expect(results[1]).toEqual(false);
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should index all snModels failed');
+                },
+            });
+        });
+
+        it('should not index only one Model', (done) => {
+            const data = { identity, data: snModelSearchTest };
+            smartNodesHead.create(data).pipe(
+                mergeMap((created) => {
+                    snModelSearchTestUuid = created.uuid;
+                    
+                    return smartNodesHead.tryIndexsnModels()}),
+            )
+            .subscribe({
+                next: (results) => {
+                    lock = results[0];
+                    const succeeded = results[1];
+                    expect(lock.processState).toEqual('succeeded');
+                    expect(lock.total).toBeGreaterThan(0);
+                    expect(succeeded).toEqual(true);
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index only one Model failed');
+                },
+            });
+        });
+        
+        it('smartNodesHead.search should find only one objet exactValue = null, caseSensitive = null', (done) => {
+            snModelSearchTest.displayName.push({lang: 'es', value: 'test model en-023333333'}) ;
+            const data = { identity, data: snModelSearchTest };
+            const query: SnSynoticSearchQueryDto = {
+                search: 'en-023333333',
+                versions: [ snModelSearchTest.versions[0].uuid] 
+            }
+            smartNodesHead.update(data).pipe(
+                mergeMap((updated) => {
+                    updateDate = updated.updateDate;
+                    return smartNodesHead.search(query,0,1);
+                },
+            ))
+            .subscribe({
+                next: (results) => {
+                    expect(results.length).toEqual(1);
+                    expect(results[0]).toMatchObject({
+                        updateDate: updateDate,
+                        key: snModelSearchTest.key,
+                        snModelUuid: snModelSearchTestUuid,
+                        snVersionUuid: snModelSearchTest.versions[0].uuid,
+                        snViewUuid: snModelSearchTest.versions[0].view.id,
+                        elementUuid: '',
+                        displayName: snModelSearchTest.displayName,
+                        connectedTo: [],
+                        type: 'view',
+                    });
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index only onde Model failed');
+                },
+            });
+        });
+
+        it('smartNodesHead.search should find only one objet exactValue = false, caseSensitive = false', (done) => {
+            const query: SnSynoticSearchQueryDto = {
+                search: 'Model en-023333333',
+                versions: [ snModelSearchTest.versions[0].uuid],
+                exactValue: false,
+                caseSensitive: false
+            }
+            smartNodesHead.search(query,0,1)
+            .subscribe({
+                next: (results) => {
+                    expect(results.length).toEqual(1);
+                    expect(results[0]).toMatchObject({
+                        updateDate: updateDate,
+                        key: snModelSearchTest.key,
+                        snModelUuid: snModelSearchTestUuid,
+                        snVersionUuid: snModelSearchTest.versions[0].uuid,
+                        snViewUuid: snModelSearchTest.versions[0].view.id,
+                        elementUuid: '',
+                        displayName: snModelSearchTest.displayName,
+                        connectedTo: [],
+                        type: 'view',
+                    });
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index only onde Model failed');
+                },
+            });
+        });
+        
+        it('smartNodesHead.search should find only one objet exactValue = true, caseSensitive = false', (done) => {
+            const query: SnSynoticSearchQueryDto = {
+                search: 'TEST model en-023333333',
+                versions: [ snModelSearchTest.versions[0].uuid],
+                exactValue: true,
+                caseSensitive: false
+            }
+            smartNodesHead.search(query,0,1)
+            .subscribe({
+                next: (results) => {
+                    expect(results.length).toEqual(1);
+                    expect(results[0]).toMatchObject({
+                        updateDate: updateDate,
+                        key: snModelSearchTest.key,
+                        snModelUuid: snModelSearchTestUuid,
+                        snVersionUuid: snModelSearchTest.versions[0].uuid,
+                        snViewUuid: snModelSearchTest.versions[0].view.id,
+                        elementUuid: '',
+                        displayName: snModelSearchTest.displayName,
+                        connectedTo: [],
+                        type: 'view',
+                    });
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index only onde Model failed');
+                },
+            });
+        });
+
+        it('smartNodesHead.search should find only one objet exactValue = true, caseSensitive = true', (done) => {
+            const query: SnSynoticSearchQueryDto = {
+                search: 'TEST model en-023333333',
+                versions: [ snModelSearchTest.versions[0].uuid],
+                exactValue: true,
+                caseSensitive: true
+            }
+            smartNodesHead.search(query,0,1)
+            .subscribe({
+                next: (results) => {
+                    expect(results.length).toEqual(0);                    
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index only onde Model failed');
+                },
+            });
+        });
+
+        it('smartNodesHead.search should find only one objet exactValue = true, caseSensitive = true', (done) => {
+            const query: SnSynoticSearchQueryDto = {
+                search: 'test model en-023333333',
+                versions: [ snModelSearchTest.versions[0].uuid],
+                exactValue: true,
+                caseSensitive: true
+            }
+            smartNodesHead.search(query,0,1)
+            .subscribe({
+                next: (results) => {
+                    expect(results.length).toEqual(1);
+                    expect(results[0]).toMatchObject({
+                        updateDate: updateDate,
+                        key: snModelSearchTest.key,
+                        snModelUuid: snModelSearchTestUuid,
+                        snVersionUuid: snModelSearchTest.versions[0].uuid,
+                        snViewUuid: snModelSearchTest.versions[0].view.id,
+                        elementUuid: '',
+                        displayName: snModelSearchTest.displayName,
+                        connectedTo: [],
+                        type: 'view',
+                    });                 
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index only onde Model failed');
+                },
+            });
+        });
+
+        
+
+        it('smartNodesHead.search should find only onde objet', (done) => {
+            const query: SnSynoticSearchQueryDto = {
+                ressource: 'wf:create-Model-test',
+                versions: [ snModelSearchTest.versions[0].uuid] 
+            }
+            smartNodesHead.search(query,0,1).subscribe({
+                next: (results) => {
+                    expect(results.length).toEqual(1);
+                    expect(results[0]).toMatchObject({
+                        key: snModelSearchTest.key,
+                        snModelUuid: snModelSearchTest.uuid,
+                        snVersionUuid: snModelSearchTest.versions[0].uuid,
+                        snViewUuid: snModelSearchTest.versions[0].view.id,
+                        elementUuid: node.id,
+                        displayName: node.displayName,
+                        connectedTo: [ 'wf:create-Model-test', 'so:typeSoNode4'],
+                        type: 'node',
+                    });
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index only onde Model failed');
+                },
+            });
+        });
+
+        it('should not index any model because of lock', (done) => {
+            lock.processState = 'inProgress';
+            monitoring.update(identity.customerKey, lock, false).pipe(
+                mergeMap(() => smartNodesHead.tryIndexsnModels()),
+            )
+            .subscribe({
+                next: (results) => {
+                    const succeeded = results[1];
+                    expect(succeeded).toEqual(false);
+                    done();
+                },
+                error: (err) => {
+                    return Promise.reject('should not index any model because of lock failed');
+                },
+            });
+        });
+
+        
+    })
+
 
 });

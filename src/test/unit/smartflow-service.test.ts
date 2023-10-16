@@ -51,9 +51,9 @@ describe(SmartFlowsService.name, () => {
       expect(res).toBe(20.52);
     });
 
-    it('_getformattedValue(date) should return 2020-12-12T00:00:00+01:00', () => {
+    it('_getformattedValue(date) should return 2020-12-12T00:00:00Z', () => {
       const res = smartFlowsService._getformattedValue(dateProp, '2020/12/12')
-      expect(res).toBe(moment('2020/12/12').startOf('day').format());
+      expect(res).toBe(moment('2020/12/12').utc(true).startOf('day').format());
     });
 
 
@@ -95,9 +95,9 @@ describe(SmartFlowsService.name, () => {
       expect(res).toStrictEqual({ value: 20.52 });
     });
 
-    it('_tryGetSimpleValue(date) should return 2020-12-12T00:00:00+01:00', () => {
+    it('_tryGetSimpleValue(date) should return 2020-12-12T00:00:00Z', () => {
       const res = smartFlowsService._tryGetSimpleValue(dateProp, '2020/12/12', 'reason')
-      expect(res).toStrictEqual({ value: moment('2020/12/12').startOf('day').format() });
+      expect(res).toStrictEqual({ value: moment('2020/12/12').utc(true).startOf('day').format() });
     });
 
     it('_tryGetSimpleValue(str, not str) should return error', () => {

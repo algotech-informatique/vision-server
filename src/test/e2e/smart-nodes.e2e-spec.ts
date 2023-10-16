@@ -68,7 +68,16 @@ const snModelTest2: SnModelDto = {
                 comments: [],
                 drawing: {
                     lines: [],
-                    elements: [],
+                    elements: [],
+                },
+                options: {
+                    variables: [
+                        {
+                            key: 'varKey1',
+                            value: 'val1',
+                            type: 'so:varType1'
+                        }
+                    ]
                 },
                 id: '727fce50-cd9d-d57b-168c-006846f20fa1',
             },
@@ -143,13 +152,157 @@ describe('SnModels', () => {
     // Initialisation
     beforeAll(() => {
         return utils.InitializeApp().then((nestApp) => {
-        app = nestApp;
-        return utils.Before(app, 'snmodels', request);});
+            app = nestApp;
+            return utils.Before(app, ['snsynoticsearches', 'monitoring', 'snmodels'], request);
+        });
     });
 
     // Finalisation
     afterAll(() => {
-        return utils.After();
+        return utils.AfterArray(['snsynoticsearches', 'monitoring', 'snmodels']);
+    });
+
+    // recherche fullText
+    it('/smartnodes/search fullText (POST)', () => {
+        return request(app.getHttpServer())
+            .post('/smartnodes/search?skip=0&limit=10')
+            .set('Authorization', utils.authorizationJWT)
+            .send({
+                search: 'Model en-'
+            })
+            .expect(201)
+            .then((response) => {
+                const results: any = utils.clearDates(response.body);
+               
+                expect(results[0]).toMatchObject({
+                    key: 'testModel02',
+                    snModelUuid: '3b01859b-d9cf-f650-8187-aa46ac487663',
+                    snViewUuid: '727fce50-cd9d-d57b-168c-006846f20fa1',
+                    snVersionUuid: 'e8dfa860-01ff-11ea-8d71-362b9e155661',
+                    elementUuid: '',
+                    displayName: [
+                        {
+                            lang: 'fr-FR',
+                            value: 'Test Model-02'
+                        },
+                        {
+                            lang: 'en-US',
+                            value: 'test model en-02'
+                        },
+                        {
+                            lang: 'es-ES',
+                            value: 'test model es-02'
+                        }
+                    ],
+                    type: 'view',
+                    connectedTo:[
+                             'so:varType1',
+                        ],
+                    texts: '¤testModel02¤Test Model-02¤test model en-02¤test model es-02¤varKey1¤so:varType1¤'
+                });
+            });
+    });
+
+    // recherche fullText
+    it('/smartnodes/search fullText exactValue: true and caseSensitive = true (POST)', () => {
+        return request(app.getHttpServer())
+            .post('/smartnodes/search?skip=0&limit=10')
+            .set('Authorization', utils.authorizationJWT)
+            .send({
+                search: 'Test Model-02',
+                exactValue: true,
+                caseSensitive: true
+            })
+            .expect(201)
+            .then((response) => {
+                const results: any = utils.clearDates(response.body);
+               
+                expect(results[0]).toMatchObject({
+                    key: 'testModel02',
+                    snModelUuid: '3b01859b-d9cf-f650-8187-aa46ac487663',
+                    snViewUuid: '727fce50-cd9d-d57b-168c-006846f20fa1',
+                    snVersionUuid: 'e8dfa860-01ff-11ea-8d71-362b9e155661',
+                    elementUuid: '',
+                    displayName: [
+                        {
+                            lang: 'fr-FR',
+                            value: 'Test Model-02'
+                        },
+                        {
+                            lang: 'en-US',
+                            value: 'test model en-02'
+                        },
+                        {
+                            lang: 'es-ES',
+                            value: 'test model es-02'
+                        }
+                    ],
+                    type: 'view',
+                    connectedTo:[
+                             'so:varType1',
+                        ],
+                    texts: '¤testModel02¤Test Model-02¤test model en-02¤test model es-02¤varKey1¤so:varType1¤'
+                });
+            });
+    });
+
+    // recherche fullText
+    it('/smartnodes/search fullText exactValue: true and caseSensitive = true no results (POST)', () => {
+        return request(app.getHttpServer())
+            .post('/smartnodes/search?skip=0&limit=10')
+            .set('Authorization', utils.authorizationJWT)
+            .send({
+                search: 'Model en-',
+                exactValue: true,
+                caseSensitive: true
+            })
+            .expect(201)
+            .then((response) => {
+                const results: any = utils.clearDates(response.body);
+               
+                expect(results.length).toEqual(0);
+            });
+    });
+
+    // recherche par référence
+    it('/smartnodes/search référence (POST)', () => {
+        return request(app.getHttpServer())
+            .post('/smartnodes/search?skip=0&limit=10')
+            .set('Authorization', utils.authorizationJWT)
+            .send({
+                refrence: ['so:varType1']
+            })
+            .expect(201)
+            .then((response) => {
+                const results: any = utils.clearDates(response.body);
+                
+                expect(results[0]).toMatchObject({
+                    key: 'testModel02',
+                    snModelUuid: '3b01859b-d9cf-f650-8187-aa46ac487663',
+                    snViewUuid: '727fce50-cd9d-d57b-168c-006846f20fa1',
+                    snVersionUuid: 'e8dfa860-01ff-11ea-8d71-362b9e155661',
+                    elementUuid: '',
+                    displayName: [
+                        {
+                            lang: 'fr-FR',
+                            value: 'Test Model-02'
+                        },
+                        {
+                            lang: 'en-US',
+                            value: 'test model en-02'
+                        },
+                        {
+                            lang: 'es-ES',
+                            value: 'test model es-02'
+                        }
+                    ],
+                    type: 'view',
+                    connectedTo:[
+                        'so:varType1',
+                   ],
+                    texts: '¤testModel02¤Test Model-02¤test model en-02¤test model es-02¤varKey1¤so:varType1¤'
+                });
+            });
     });
 
     // Test recuperation SnModels
@@ -222,6 +375,8 @@ describe('SnModels', () => {
             });
     });
 
+    
+
     // Test de l'ajout d'un SnModel avec key existante
     it('/smartnodes/ - key existant (POST)', () => {
         return request(app.getHttpServer())
@@ -264,7 +419,7 @@ describe('SnModels', () => {
             .then(response => {
                 expect(response.body).toEqual({
                     updated: jasmine.arrayContaining([
-                        jasmine.objectContaining({uuid: NewSnModel.uuid}),
+                        jasmine.objectContaining({ uuid: NewSnModel.uuid }),
                     ]),
                     deleted: [createSnModel.uuid],
                 });

@@ -20,11 +20,11 @@ export class WorkflowServiceService extends InterpretorService {
         this.api = '';
     }
 
-    serviceConnection(route: string, headers: any, body: any, type: string, responseType: 'text' | 'blob' = 'text'): Observable<any> {
+    serviceConnection(route: string, headers: any, body: any, type: string, responseType: 'blob' | 'json' = 'json'): Observable<any> {
         let obs: Observable<any> = null;
         const config: AxiosRequestConfig = {
             headers,
-            responseType: (responseType === 'blob') ? 'arraybuffer' : responseType
+            responseType: responseType === 'blob' ? 'arraybuffer' : 'json'
         }
 
         switch (type) {
@@ -55,7 +55,7 @@ export class WorkflowServiceService extends InterpretorService {
 
     call(url: string, headers: PairDto[], body: InterpretorFormData,
         type: 'get' | 'patch' | 'post' | 'put' | 'delete' | 'update',
-        responseType: 'text' | 'blob' = 'text', handleError = true): Observable<any> {
+        responseType: 'blob' | 'json' = 'json', handleError = true): Observable<any> {
 
         const bodyData = this._createCallBody(body, headers);
         const heads = this.getHeadersCall(headers);        
@@ -70,14 +70,8 @@ export class WorkflowServiceService extends InterpretorService {
         const obs = this.serviceConnection(url, heads, bodyData, type.toUpperCase(), responseType);
         return obs.pipe(
             map((res: AxiosResponse) => {
-                if (responseType === 'text') {
-                    let body;
-                    try {
-                        body = JSON.parse(res.data);
-                    } catch (e) {
-                        body = res.data;
-                    }
-                    return { headers: res.headers, body }
+                if (responseType !== 'blob') {
+                    return { headers: res.headers, body: res.data }
                 }
                 return this.responseBlob(res);
             }),

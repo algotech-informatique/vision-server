@@ -33,7 +33,7 @@ export class SmartObjectsHead {
     }
 
     cache(data: { identity: IdentityRequest, date: string, uuid?: string[] }) {
-        return this.smartObjectService.cache(data.identity.customerKey, data.date, data.uuid, false);
+        return this.smartObjectService.cache(data.identity.customerKey, data.date, data.uuid);
     }
 
     import(data: { identity: IdentityRequest, file: Buffer, content: ImportSoDto }): Observable<{ success: boolean }> {

@@ -1,9 +1,9 @@
 import { IdentityRequest, SnModel } from '../interfaces';
 import { Identity } from '../common/@decorators';
 import { NatsService, SmartNodesHead } from '../providers';
-import { Controller, Post, Body, Get, Param, UseGuards, Put, Delete, Patch, UseInterceptors } from '@nestjs/common';
+import { Controller, Post, Body, Get, Param, UseGuards, Put, Delete, Patch, UseInterceptors, Query } from '@nestjs/common';
 import { Observable } from 'rxjs';
-import { SnModelDto, PatchPropertyDto, CacheDto } from '@algotech-ce/core';
+import { SnModelDto, PatchPropertyDto, CacheDto, SnSynoticSearchDto, SnSynoticSearchQueryDto } from '@algotech-ce/core';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
 import { ApiTags } from '@nestjs/swagger';
@@ -12,8 +12,7 @@ import { Roles } from '../common/@decorators/roles/roles.decorator';
 @Controller('smartnodes')
 @ApiTags('Smart Nodes')
 export class SmartNodesController {
-
-    constructor(private smartNodesHead: SmartNodesHead, private readonly nats: NatsService) { }
+    constructor(private smartNodesHead: SmartNodesHead, private readonly nats: NatsService) {}
 
     @Get()
     @UseGuards(JwtAuthGuard)
@@ -43,16 +42,19 @@ export class SmartNodesController {
     @UseGuards(JwtAuthGuard)
     @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
     create(@Identity() identity: IdentityRequest, @Body() data: SnModelDto): Observable<SnModelDto> {
-        return this.nats.httpResult(this.smartNodesHead.create({ identity, data: { customerKey: identity.customerKey, deleted: false, ...data } as SnModel }), SnModelDto);
+        return this.nats.httpResult(
+            this.smartNodesHead.create({
+                identity,
+                data: { customerKey: identity.customerKey, deleted: false, ...data } as SnModel,
+            }),
+            SnModelDto,
+        );
     }
 
     @Get('cache/:date')
     @UseGuards(JwtAuthGuard)
     @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
-    cache(
-        @Identity() identity: IdentityRequest,
-        @Param('date') date: string,
-    ): Observable<CacheDto> {
+    cache(@Identity() identity: IdentityRequest, @Param('date') date: string): Observable<CacheDto> {
         return this.nats.httpResult(this.smartNodesHead.cache({ identity, date }), CacheDto);
     }
 
@@ -60,7 +62,13 @@ export class SmartNodesController {
     @UseGuards(JwtAuthGuard)
     @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
     update(@Identity() identity: IdentityRequest, @Body() data: SnModelDto) {
-        return this.nats.httpResult(this.smartNodesHead.update({ identity, data: { customerKey: identity.customerKey, deleted: false, ...data } as SnModel }), SnModelDto);
+        return this.nats.httpResult(
+            this.smartNodesHead.update({
+                identity,
+                data: { customerKey: identity.customerKey, deleted: false, ...data } as SnModel,
+            }),
+            SnModelDto,
+        );
     }
 
     @Patch(':uuid')
@@ -77,4 +85,27 @@ export class SmartNodesController {
         return this.nats.httpResult(this.smartNodesHead.delete({ identity, data: data.uuid }));
     }
 
+    @Post('references')
+    @UseGuards(JwtAuthGuard)
+    @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
+    references(
+        @Identity() identity: IdentityRequest,
+        @Query('skip') skip,
+        @Query('limit') limit,
+        @Body() query: SnSynoticSearchQueryDto,
+    ): Observable<SnSynoticSearchDto> {
+        return this.nats.httpResult(this.smartNodesHead.search(query, skip, limit), SnSynoticSearchDto);
+    }
+
+    @Post('search')
+    @UseGuards(JwtAuthGuard)
+    @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
+    search(
+        @Identity() identity: IdentityRequest,
+        @Query('skip') skip,
+        @Query('limit') limit,
+        @Body() query: SnSynoticSearchQueryDto,
+    ): Observable<SnModelDto> {
+        return this.nats.httpResult(this.smartNodesHead.search(query, skip, limit), SnSynoticSearchDto);
+    }
 }

@@ -214,11 +214,11 @@ describe('search', () => {
 
     //test startsWith critera
 
-    it('/POST search SO - criteria startsWith string wee', () => {
+    it('/POST search SO - criteria startsWith string zmb', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'startsWith', value: 'wee', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'startsWith', value: 'zmb', type: 'string' } },
             ],
             order: []
         }
@@ -608,11 +608,11 @@ describe('search', () => {
 
     //test notStartsWith critera
     
-    it('/POST search SO - criteria notStartsWith string wee', () => {
+    it('/POST search SO - criteria notStartsWith string zmb', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'notStartsWith', value: 'wee', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'notStartsWith', value: 'zmb', type: 'string' } },
             ],
             order: []
         }
@@ -1002,11 +1002,11 @@ describe('search', () => {
 
     //test for endWith  
 
-    it('/POST search SO - criteria endWith string esh', () => {
+    it('/POST search SO - criteria endWith string eaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'endWith', value: 'esh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'endWith', value: 'eaà', type: 'string' } },
             ],
             order: [{
                 key: 'KEY',
@@ -1353,11 +1353,11 @@ describe('search', () => {
 
     //test for contains  
 
-    it('/POST search SO - criteria contains string eeee', () => {
+    it('/POST search SO - criteria contains string eea', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'contains', value: 'eeee', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'contains', value: 'eea', type: 'string' } },
             ],
             order: [{
                 key: 'KEY',
@@ -1704,11 +1704,11 @@ describe('search', () => {
 
     //test for equals  
 
-    it('/POST search SO - criteria equals string weeeeesh', () => {
+    it('/POST search SO - criteria equals string zmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'equals', value: 'weeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'equals', value: 'zmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -2076,11 +2076,11 @@ describe('search', () => {
 
     //test for different  
 
-    it('/POST search SO - criteria different string weeeeesh', () => {
+    it('/POST search SO - criteria different string zmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'different', value: 'weeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'different', value: 'zmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -2481,11 +2481,11 @@ describe('search', () => {
 
     //test for gt  
 
-    it('/POST search SO - criteria gt string weeeeesh', () => {
+    it('/POST search SO - criteria gt string zmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'gt', value: 'weeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'gt', value: 'zmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -2501,11 +2501,11 @@ describe('search', () => {
             });
     });
 
-    it('/POST search SO - criteria gt string Noweeeeesh', () => {
+    it('/POST search SO - criteria gt string Nozmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'gt', value: 'Noweeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'gt', value: 'Nozmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -2787,11 +2787,11 @@ describe('search', () => {
 
     //test for gte  
 
-    it('/POST search SO - criteria gte string weeeeesh', () => {
+    it('/POST search SO - criteria gte string zmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'gte', value: 'weeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'gte', value: 'zmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -2808,11 +2808,11 @@ describe('search', () => {
             });
     });
 
-    it('/POST search SO - criteria gte string Noweeeeesh', () => {
+    it('/POST search SO - criteria gte string Nozmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'gte', value: 'Noweeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'gte', value: 'Nozmbéeaà', type: 'string' } },
             ],
             order: [{
                 key: 'KEY',
@@ -3111,11 +3111,11 @@ describe('search', () => {
 
     //test for lt  
 
-    it('/POST search SO - criteria lt string weeeeesh', () => {
+    it('/POST search SO - criteria lt string zmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'lt', value: 'weeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'lt', value: 'zmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -3132,11 +3132,11 @@ describe('search', () => {
             });
     });
 
-    it('/POST search SO - criteria lt string Noweeeeesh', () => {
+    it('/POST search SO - criteria lt string Nozmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'lt', value: 'Noweeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'lt', value: 'Nozmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -3415,11 +3415,11 @@ describe('search', () => {
 
     //test for lte  
 
-    it('/POST search SO - criteria lte string weeeeesh', () => {
+    it('/POST search SO - criteria lte string zmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'lte', value: 'weeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'lte', value: 'zmbéeaà', type: 'string' } },
             ],
             order: [{
                 key: 'KEY',
@@ -3440,11 +3440,11 @@ describe('search', () => {
             });
     });
 
-    it('/POST search SO - criteria lte string Noweeeeesh', () => {
+    it('/POST search SO - criteria lte string Nozmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'lte', value: 'Noweeeeesh', type: 'string' } },
+                { key: 'STRING', value: { criteria: 'lte', value: 'Nozmbéeaà', type: 'string' } },
             ],
             order: []
         }
@@ -3785,11 +3785,11 @@ describe('search', () => {
     //test for in  
 
 
-    it('/POST search SO - criteria in string weeeeesh', () => {
+    it('/POST search SO - criteria in string zmbéeaà', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
-                { key: 'STRING', value: { criteria: 'in', value: ['Noweeeeesh', 'weeeeesh'], type: 'string' } },
+                { key: 'STRING', value: { criteria: 'in', value: ['Nozmbéeaà', 'zmbéeaà'], type: 'string' } },
             ],
             order: [{
                 key: 'KEY',
@@ -4209,7 +4209,7 @@ describe('search', () => {
             });
     });
 
-    it('/POST fullTextSearch weeeeesh', () => {
+    it('/POST fullTextSearch zmbeeaa', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
@@ -4222,7 +4222,7 @@ describe('search', () => {
         }
 
         return request(app.getHttpServer())
-            .post('/search/smart-objects?search=weeeeesh&skip=0&limit=100')
+            .post('/search/smart-objects?search=zmbeeaa&skip=0&limit=100')
             .set('Authorization', utils.authorizationJWT)
             .send(search)
             .expect(201)
@@ -4256,7 +4256,7 @@ describe('search', () => {
             });
     });
 
-    it('/POST fullTextSearch WEeeeesh', () => {
+    it('/POST fullTextSearch zmbeeaa', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [
@@ -4269,7 +4269,7 @@ describe('search', () => {
         }
 
         return request(app.getHttpServer())
-            .post('/search/smart-objects?search=WEeeeesh&skip=0&limit=100')
+            .post('/search/smart-objects?search=zmbeeaa&skip=0&limit=100')
             .set('Authorization', utils.authorizationJWT)
             .send(search)
             .expect(201)
@@ -4279,7 +4279,7 @@ describe('search', () => {
             });
     });
 
-    it('/POST fullTextSearch WEeeeesh', () => {
+    it('/POST fullTextSearch zmbeeaa', () => {
         const search: SearchSODto = {
             modelKey: 'alltypes',
             filter: [],
@@ -4290,7 +4290,7 @@ describe('search', () => {
         }
 
         return request(app.getHttpServer())
-            .post('/search/smart-objects?search=WEeeeesh&skip=0&limit=100')
+            .post('/search/smart-objects?search=zmbeeaa&skip=0&limit=100')
             .set('Authorization', utils.authorizationJWT)
             .send(search)
             .expect(201)
@@ -4469,7 +4469,7 @@ describe('search', () => {
         }
 
         return request(app.getHttpServer())
-            .post('/search/smart-objects?&search=weeeeesh&skip=0&limit=100')
+            .post('/search/smart-objects?&search=zmbeeaa&skip=0&limit=100')
             .set('Authorization', utils.authorizationJWT)
             .send(search)
             .expect(201)
@@ -4491,7 +4491,7 @@ describe('search', () => {
         }
 
         return request(app.getHttpServer())
-            .post('/search/smart-objects?&search=weeeeesh&skip=0&limit=100')
+            .post('/search/smart-objects?&search=zmbeeaa&skip=0&limit=100')
             .set('Authorization', utils.authorizationJWT)
             .send(search)
             .expect(201)

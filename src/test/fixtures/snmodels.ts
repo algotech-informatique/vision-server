@@ -64,6 +64,15 @@ export const listSnModel: SnModelDto[] = [
                         lines: [],
                         elements: [],
                     },
+                    options: {
+                        variables: [
+                            {
+                                key: 'varKey1',
+                                value: 'val1',
+                                type: 'so:varType1'
+                            }
+                        ]
+                    },
                     id: '727fce50-cd9d-d57b-168c-006846f20fa1',
                 },
             },

@@ -8,10 +8,6 @@ export class EmailHead {
     constructor(
         private readonly emailService: EmailService) { }
 
-    sendEmail(email: any) {
-        return this.emailService.sendEmail(email);
-    }
-
     sendEmailWithDto(data: { identity: IdentityRequest, email: EMailDto }) {
         return this.emailService.sendEmailWithDto(data.identity, data.email);
     }

@@ -64,7 +64,7 @@ export class PatchPropertyService<T> {
                                                 query.pull as UpdateQuery<T>,
                                                 {
                                                     runValidators: true,
-                                                    arrayFilters: query.pullArrayFilters
+                                                    arrayFilters: query.arrayFilters
                                                 }
                                             )
                                             ).pipe(
@@ -101,44 +101,49 @@ export class PatchPropertyService<T> {
 
     private calculQuery(patch: PatchPropertyDto): {
         update: Object, arrayFilters: Object[],
-        pull: Object, pullArrayFilters: Object[]
+        pull: Object
     } {
-        const res = { update: null, arrayFilters: [], pull: null, pullArrayFilters: [] };
+        const res = { update: null, arrayFilters: [], pull: null };
 
         let newPath = '';
         let position = -1;
-
-        const value = patch.op === 'remove' ? true : patch.value;
-        const mongoOperator = this.getMongoOperator(patch);
+        let value = patch.op === 'remove' ? true : patch.value;
+        let mongoOperator = this.getMongoOperator(patch);
+        
         const explosePath = patch.path.split('/');
 
         for (let iPath = 0; iPath < explosePath.length; iPath++) {
 
             const currentPath = explosePath[iPath];
             const lastNode = iPath === explosePath.length - 1;
-
-            // Cas particulier du pull after unset
-            if (lastNode && mongoOperator === '$unset' && RegExp('^(([0-9]+)|([[].*.\]))$').test(currentPath)) {
-                res.pull = {
-                    '$pull': {
-                        [newPath]: null
-                    }
-                };
-                res.pullArrayFilters = _.cloneDeep(res.arrayFilters);
-            }
+            const removeItemOfArray = lastNode && mongoOperator === '$unset' && RegExp('^(([0-9]+)|([[].*.\]))$').test(currentPath);
 
             if (this.pathIsArray(currentPath)) {
-                const queryArray = this.calculQueryArray(currentPath);
+                const queryArray = this.calculQueryArray(currentPath, removeItemOfArray);
                 const vArray = Number(currentPath.slice(1, currentPath.length - 1));
 
                 if (queryArray.arrayFilter) {
-                    res.arrayFilters.push(queryArray.arrayFilter);
-                    newPath = `${newPath}.$[${queryArray.filterName}]`;
+                    // path: /view/nodes/[id:c1774c69-e767-4612-be2d-bdc4378ef8cd]
+                    if (removeItemOfArray) {
+                        mongoOperator = '$pull';
+                        value = queryArray.arrayFilter;
+                    } else {
+                        res.arrayFilters.push(queryArray.arrayFilter);
+                        newPath = `${newPath}.$[${queryArray.filterName}]`;
+                    }
+
                 } else if (!isNaN(vArray)) {
+                    // path: /view/nodes/[12]
                     if (lastNode && mongoOperator === '$push') {
-                        // INSERTING ARRAY
                         position = vArray;
                     } else {
+                        if (removeItemOfArray) {
+                            res.pull = {
+                                '$pull': {
+                                    [newPath]: null
+                                }
+                            };
+                        }
                         newPath = newPath === '' ? currentPath : `${newPath}.${vArray}`;
                     }
                 }
@@ -168,7 +173,7 @@ export class PatchPropertyService<T> {
         return res;
     }
 
-    private calculQueryArray(currentPath): {
+    private calculQueryArray(currentPath, ignoreFilterName: boolean): {
         arrayFilter: Object,
         filterName: string
     } {
@@ -187,7 +192,7 @@ export class PatchPropertyService<T> {
 
             res.filterName = `filter${this.incFilter++}`;
             res.arrayFilter = {
-                [`${res.filterName}.${keyValue[0]}`]: keyValue[1]
+                [ignoreFilterName ? keyValue[0] : `${res.filterName}.${keyValue[0]}`]: keyValue[1]
             };
         }
 

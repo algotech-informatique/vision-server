@@ -14,6 +14,7 @@ import { WorkflowModelsService } from '../../workflow-models/workflow-models.ser
 import { WorkflowUtilsService } from '../workflow-utils/workflow-utils.service';
 import { WorkflowMetricsService } from '../workflow-metrics/workflow-metrics.service';
 import { SettingsDataService } from '../../@base/settings-data.service';
+import { EnvironmentService } from '../../environment/environment.service';
 
 @Injectable()
 export class WorkflowDataService extends InterpretorData {
@@ -25,7 +26,8 @@ export class WorkflowDataService extends InterpretorData {
         private smartflows: SmartFlowsService,
         private workflowInstance: WorkflowInstancesService,
         protected workflowMetricsService: WorkflowMetricsService,
-        private settingsData: SettingsDataService) {
+        private settingsData: SettingsDataService,
+        private environmentService: EnvironmentService) {
         super(workflowUtilsService, workflowDataApi, workflowSoService);
     }
 
@@ -92,7 +94,20 @@ export class WorkflowDataService extends InterpretorData {
                 }
 
                 return Object.assign(smartflow, {
-                    parameters: parameters.filter((param) => param.active) ?? []
+                    parameters: parameters
+                        .filter((param) => param.active)
+                        .map((param) => {
+                            if (!param.password) {
+                                return param;
+                            }
+
+                            return Object.assign(
+                                _.cloneDeep(param),
+                                {
+                                    value: this.environmentService.decryptPassword(param.value)
+                                }
+                            );
+                        })
                 });
             })
         )

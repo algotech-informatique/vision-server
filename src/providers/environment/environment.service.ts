@@ -40,13 +40,13 @@ export class EnvironmentService extends BaseService<Environment> {
     create(customerKey: string, data: Environment): Observable<Environment> {
 
         return from(this.environmentModel.findOne({ customerKey, deleted: false }).lean()
-            ).pipe(mergeMap((findEnvironment: Environment) => {
-                if (findEnvironment !== null) {
-                    throw new BadRequestException('Environment already exist');
-                } else {
-                    return super.create(customerKey, data, true);
-                }
-            }),
+        ).pipe(mergeMap((findEnvironment: Environment) => {
+            if (findEnvironment !== null) {
+                throw new BadRequestException('Environment already exist');
+            } else {
+                return super.create(customerKey, data, true);
+            }
+        }),
         );
     }
 
@@ -102,5 +102,25 @@ export class EnvironmentService extends BaseService<Environment> {
             }),
             map(() => connectors)
         );
+    }
+
+    encryptPassword(password: string) {
+        const Cryptr = require('cryptr');
+        if (!process.env.CRYPTR_SECRET) {
+            throw new Error('CRYPTR_SECRET is not defined')
+        }
+        const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
+
+        return cryptr.encrypt(password);
+    }
+
+    decryptPassword(encryptedString: string) {
+        const Cryptr = require('cryptr');
+        if (!process.env.CRYPTR_SECRET) {
+            throw new Error('CRYPTR_SECRET is not defined')
+        }
+        const cryptr = new Cryptr(process.env.CRYPTR_SECRET);
+
+        return cryptr.decrypt(encryptedString);
     }
 }

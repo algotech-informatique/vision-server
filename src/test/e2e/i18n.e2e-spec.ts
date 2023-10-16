@@ -24,16 +24,9 @@ describe('I18nController (e2e)', () => {
 
     // Finalisation
     afterAll((done) => {
-        return Promise.all([
-            utils.After('customers'),
-            utils.After('snmodels'),
-            utils.After('tags'),
-            utils.After('genericlists'),
-            utils.After('settings'),
-            utils.After('monitoring'),
-        ]).then(() => {
+        return utils.AfterArray(['customers', 'snmodels', 'tags', 'genericlists', 'settings', 'monitoring']).then(() => {
             done();
-        });
+        })
     });
 
     // import test error files

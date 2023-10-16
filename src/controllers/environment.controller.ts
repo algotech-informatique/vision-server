@@ -1,5 +1,5 @@
 import { Controller, Param, Body, Get, Post, Put, UseGuards, Patch, UseInterceptors } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { PatchPropertyDto, EnvironmentDto, EnvironmentConnectorDto } from '@algotech-ce/core';
 import { DataCacheInterceptor } from '../auth/interceptors/data-cache.interceptor';
@@ -60,4 +60,17 @@ export class EnvironmentController {
         return this.nats.httpResult(this.environmentHead.setParameters({ identity, connectors }), EnvironmentConnectorDto);
     }
 
+    @Get('/encrypt/:password')
+    @UseGuards(JwtAuthGuard)
+    @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
+    encrypt(@Param('password') password: string) {
+        return this.nats.httpResult(of(this.environmentHead.encryptPassword(password)));
+    }
+
+    @Get('/decrypt/:encryptedString')
+    @UseGuards(JwtAuthGuard)
+    @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
+    decrypt(@Param('encryptedString') encryptedString: string) {
+        return this.nats.httpResult(of(this.environmentHead.decryptPassword(encryptedString)));
+    }
 }

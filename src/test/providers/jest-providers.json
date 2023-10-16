@@ -1,11 +1,26 @@
 {
-  "moduleFileExtensions": ["js", "json", "ts"],
-  "rootDir": ".",
-  "testEnvironment": "node",
-  "testRegex": ".spec.ts$",
-  "testRunner": "jest-jasmine2",
-  "transform": {
-    "^.+\\.(t|j)s$": "ts-jest"
-  },
-  "testTimeout": 60000
+    "coverageDirectory": "../coverage",
+    "coveragePathIgnorePatterns": [
+        "database",
+        "interfaces",
+        "common",
+        "test/e2e"
+    ],
+    "collectCoverageFrom": [
+        "**/*.(t|j)s"
+    ],
+    "moduleFileExtensions": [
+        "js",
+        "json",
+        "ts"
+    ],
+    "rootDir": "../../../src",
+    "testEnvironment": "node",
+    "testRegex": ".spec.ts$",
+    "testPathIgnorePatterns": [".e2e-spec.ts$"],
+    "testRunner": "jest-jasmine2",
+    "transform": {
+        "^.+\\.(t|j)s$": "ts-jest"
+    },
+    "testTimeout": 60000
 }

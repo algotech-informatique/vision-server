@@ -4,7 +4,6 @@ import * as _ from 'lodash';
 import { catchError, map, mergeMap, toArray } from 'rxjs/operators';
 import { InjectConnection } from '@nestjs/mongoose';
 import { EMailDto } from '@algotech-ce/core';
-import { MailerService } from '@nest-modules/mailer';
 import { Group, IdentityRequest, User } from '../../interfaces';
 import { UsersService } from '../users/users.service';
 import { GroupService } from '../groups/groups.service';
@@ -24,14 +23,33 @@ export class EmailService {
 
     constructor(
         @InjectConnection() private readonly connection,
-        private readonly mailerService: MailerService,
         private readonly documentsHead: DocumentsHead,
         private readonly groupService: GroupService,
         private readonly usersService: UsersService,
     ) { }
 
     sendEmail(email): Observable<any> {
-        return from(this.mailerService.sendMail(email));
+        let transport = require('nodemailer').createTransport({
+            service: 'ovh',
+            host: process.env.SMTP_HOST,
+            port: process.env.SMTP_PORT,
+            secure: process.env.SMTP_SECURE === 'true',
+            auth: {
+                user: process.env.SMTP_USER,
+                pass: process.env.SMTP_PASS,
+            },
+        });
+
+        return new Observable((observer) => {
+            transport.sendMail(email, function (err) {
+                if (err) {
+                    observer.error(err);
+                } else {
+                    observer.next();
+                    observer.complete();
+                }
+            });
+        });
     }
 
     sendEmailWithDto(identity: IdentityRequest, email: EMailDto) {
@@ -80,10 +98,7 @@ export class EmailService {
                 if (email.html) {
                     e.html = (email?.content) ? email.content.replace(/\n/g, '<br>') : ' '; //si html = '' mailService renvoi une erreur
                 } else {
-                    e.template = 'default';
-                    e.context = {
-                        body: email?.content,
-                    };
+                    e.text = email?.content;
                 }
 
                 return this.sendEmail(e);

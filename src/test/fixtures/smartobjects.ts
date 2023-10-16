@@ -679,7 +679,7 @@ export const createSOProperties: SmartObjectDto = {
         },
         {
             key: 'DATE',
-            value: new Date('2020-01-01T08:00:00.000Z'),
+            value: '2020-01-01T08:00:00.000Z',
         },
         {
             key: 'STATES',

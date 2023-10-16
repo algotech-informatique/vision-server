@@ -11,9 +11,7 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('search')
 @ApiTags('Search')
 export class SearchController {
-    constructor(
-        private readonly searchHead: SearchHead,
-        private readonly nats: NatsService) { }
+    constructor(private readonly searchHead: SearchHead, private readonly nats: NatsService) {}
 
     @Post()
     @UseGuards(JwtAuthGuard)
@@ -22,8 +20,8 @@ export class SearchController {
         @Query('skip') skip,
         @Query('limit') limit,
         @Query('target') target = '',
-        @Body() query: QuerySearchDto): Observable<{}> {
-
+        @Body() query: QuerySearchDto,
+    ): Observable<{}> {
         let numskip;
         let numlimit;
         if ((skip && isNaN(skip)) || (limit && isNaN(limit))) {

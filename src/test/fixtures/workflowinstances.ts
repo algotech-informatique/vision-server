@@ -47,6 +47,7 @@ export const workflowInstance2: WorkflowInstanceDto = {
             active: false,
             operations: [],
             reverse: [],
+            transitionKey: 'done',
             saved: false,
         },
         {
@@ -57,6 +58,7 @@ export const workflowInstance2: WorkflowInstanceDto = {
             active: false,
             operations: [],
             reverse: [],
+            transitionKey: 'done',
             saved: false,
         },
         {
@@ -67,6 +69,7 @@ export const workflowInstance2: WorkflowInstanceDto = {
             active: true,
             operations: [],
             reverse: [],
+            transitionKey: 'done',
             saved: false,
         },
     ],

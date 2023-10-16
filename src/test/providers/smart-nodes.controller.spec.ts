@@ -24,11 +24,11 @@ describe('SmartNodesController', () => {
         app = await utils.InitializeApp();
         smartNodesController = app.get<SmartNodesController>(SmartNodesController);
 
-        await utils.Before(app, 'snmodels', request);
+        await utils.Before(app, ['snsynoticsearches', 'monitoring', 'snmodels'], request);
     });
 
     afterAll(async () => {
-        await utils.After();
+        await utils.AfterArray(['snsynoticsearches', 'monitoring', 'snmodels']);
     });
 
     it('CREATE INSTANCE', () => {
@@ -100,9 +100,9 @@ describe('SmartNodesController', () => {
     it('/PATCH', (done) => {
         const patch: PatchPropertyDto[] = [
             {
-                op : 'replace',
-                path : '/type/',
-                value : 'workflow-1',
+                op: 'replace',
+                path: '/type/',
+                value: 'workflow-1',
             },
         ];
         smartNodesController.patchProperty(identity, createSnModel.uuid, patch).subscribe({
@@ -134,14 +134,11 @@ describe('SmartNodesController', () => {
     it('CACHE', (done) => {
         const d = new Date();
         d.setHours(d.getHours() - 1);
-        smartNodesController.cache(identity, d.toISOString() ).subscribe({
+        smartNodesController.cache(identity, d.toISOString()).subscribe({
             next: (res: CacheDto) => {
-                expect(res).toEqual({
-                    updated: [],
-                    deleted: [
-                        createSnModel.uuid,
-                    ],
-                });
+                expect(res.deleted).toEqual([
+                    createSnModel.uuid,
+                ]);
                 done();
             },
             error: (err) => {

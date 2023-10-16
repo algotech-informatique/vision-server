@@ -14,7 +14,7 @@ export class ProcessMonitoringService extends BaseService<ProcessMonitoring> {
     }
 
     cancelAllRunningProcess(): Observable<any> {
-        const filter: Filter<ProcessMonitoring> = { processState: 'inProgress' };
+        const filter: Filter<any> = { processState: 'inProgress' };
         return from(this.ProcessMonitoringModel.bulkWrite([
             {
                 updateMany: {

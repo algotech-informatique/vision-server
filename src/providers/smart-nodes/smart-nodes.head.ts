@@ -1,26 +1,30 @@
-import { IdentityRequest, CustomerInit, SnModel, CustomerInitResult } from '../../interfaces';
+import { IdentityRequest, 
+    CustomerInit, SnModel, CustomerInitResult, ProcessMonitoring, SnSynoticSearch } from '../../interfaces';
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { SmartNodesService } from './smart-nodes.service';
 import { Observable, of, zip } from 'rxjs';
 import { catchError, delayWhen, mergeMap } from 'rxjs/operators';
-import { PatchPropertyDto } from '@algotech-ce/core';
+import { PatchPropertyDto, SnSynoticSearchQueryDto } from '@algotech-ce/core';
 import { WorkflowModelsHead } from '../workflow-models/workflow-models.head';
 import { SmartFlowsHead } from '../smart-flows/smart-flows.head';
 import { ApplicationModelsHead } from '../application-models/application-models.head';
 
 @Injectable()
 export class SmartNodesHead {
-
     constructor(
         private readonly workflowModelsHead: WorkflowModelsHead,
         private readonly smartFlowsHead: SmartFlowsHead,
         private readonly applicationModelsHead: ApplicationModelsHead,
         private readonly smartNodesService: SmartNodesService,
-    ) { }
+    ) {}
 
-    find(
-        data: { identity: IdentityRequest; skip?: number; limit?: number; uuid?: string; key?: string },
-    ): Observable<SnModel | SnModel[] > {
+    find(data: {
+        identity: IdentityRequest;
+        skip?: number;
+        limit?: number;
+        uuid?: string;
+        key?: string;
+    }): Observable<SnModel | SnModel[]> {
         if (data.uuid) {
             return this.smartNodesService.findOne(data.identity.customerKey, data.uuid);
         } else if (data.key) {
@@ -46,21 +50,27 @@ export class SmartNodesHead {
         return this.smartNodesService.update(data.identity.customerKey, data.data);
     }
 
-    patch(data: { identity: IdentityRequest; data: { uuid: string, patches: PatchPropertyDto[] } }): Observable<PatchPropertyDto[]> {
-        const obsPatches = this.smartNodesService.patchByUuid(data.identity.customerKey, data.data.uuid, data.data.patches);
+    patch(data: {
+        identity: IdentityRequest;
+        data: { uuid: string; patches: PatchPropertyDto[] };
+    }): Observable<PatchPropertyDto[]> {
+        const obsPatches = this.smartNodesService.patchByUuid(
+            data.identity.customerKey,
+            data.data.uuid,
+            data.data.patches,
+        );
         return obsPatches;
     }
 
     delete(data: { identity: IdentityRequest; data: string }): Observable<boolean> {
-
         const obsDelete$ = this.smartNodesService.findOne(data.identity.customerKey, data.data).pipe(
-            catchError((err) => {
+            catchError(() => {
                 return of(false);
             }),
             mergeMap((model: SnModel) => {
                 if (model) {
                     return this.smartNodesService.delete(data.identity.customerKey, data.data).pipe(
-                        delayWhen((deleted: boolean) => {
+                        delayWhen(() => {
                             return this.deleteLinkedObjects(data.identity, data.data);
                         }),
                     );
@@ -76,8 +86,18 @@ export class SmartNodesHead {
                 } else {
                     throw new BadRequestException('Delete snModel failed');
                 }
-            },
-        ));
+            }),
+        );
+    }
+
+    tryIndexsnModels(): Observable<any> {
+        return this.smartNodesService.tryIndexsnModels();
+    }
+
+    search(query: SnSynoticSearchQueryDto, skip?, limit?): Observable<SnSynoticSearch[]> {
+        const numskip = skip ? +skip : 0;
+        const numlimit = limit ? +limit : 100;
+        return this.smartNodesService.search(query, numskip, numlimit);
     }
 
     private deleteLinkedObjects(identity: IdentityRequest, snModelUuid: string): Observable<any> {
@@ -87,5 +107,4 @@ export class SmartNodesHead {
             this.applicationModelsHead.delete({ identity, snModelUuid }).pipe(catchError(() => of({}))),
         );
     }
-
 }

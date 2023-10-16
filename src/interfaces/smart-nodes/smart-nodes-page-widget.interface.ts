@@ -8,7 +8,7 @@ export interface SnPageWidget {
     readonly name: string;
     readonly box: SnPageBox;
     readonly group?: {
-        widgets: SnPageWidget[],
+        widgets: SnPageWidget[];
     };
     readonly rules: {
         readonly id: string;

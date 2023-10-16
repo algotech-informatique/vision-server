@@ -17,23 +17,28 @@ const workers: Worker[] = [];
 
 async function bootstrap() {
     if (cluster.isPrimary) {
-
         // schedule tasks
-        workers.push(cluster.fork({
-            utility: 'schedule'
-        }));
+        workers.push(
+            cluster.fork({
+                utility: 'schedule',
+            }),
+        );
 
         // socket
-        workers.push(cluster.fork({
-            utility: 'socket'
-        }));
+        workers.push(
+            cluster.fork({
+                utility: 'socket',
+            }),
+        );
 
         // // multi-core
-        workers.push(...cpus.map(() =>  {
-            return cluster.fork({
-                utility: 'server'
-            });
-        }));
+        workers.push(
+            ...cpus.map(() => {
+                return cluster.fork({
+                    utility: 'server',
+                });
+            }),
+        );
 
         // receive from worker, emit to each workers
         workers.forEach((w) => {
@@ -60,20 +65,22 @@ async function bootstrap() {
         console.log(`Worker ${process.pid} started`);
         console.log('process', process.title, process.argv, process.execArgv, process.pid, process.ppid);
         console.log('process.env', process.env.utility);
-        
+
         switch (process.env.utility) {
-            case 'schedule': {
-                // schedule tasks
-                const app = await getApp(BackModule);
-                app.listen(3002);
-            }
+            case 'schedule':
+                {
+                    // schedule tasks
+                    const app = await getApp(BackModule);
+                    app.listen(3002);
+                }
                 break;
-            case 'socket': {
-                // socket
-                const app = await getApp(WebSocketsModule);
-                app.useWebSocketAdapter(new WsAdapter(app));
-                app.listen(0);
-            }
+            case 'socket':
+                {
+                    // socket
+                    const app = await getApp(WebSocketsModule);
+                    app.useWebSocketAdapter(new WsAdapter(app));
+                    app.listen(0);
+                }
                 break;
             default: {
                 // multi-core

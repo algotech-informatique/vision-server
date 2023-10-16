@@ -128,6 +128,8 @@ export { SnParamSchema } from './smart-nodes/smart-nodes-param.schema';
 export { SnSectionSchema } from './smart-nodes/smart-nodes-section.schema';
 export { SnVersionSchema } from './smart-nodes/smart-nodes-version.schema';
 export { SnViewSchema } from './smart-nodes/smart-nodes-view.schema';
+export { SnSynoticSearchSchema } from './smart-nodes/smart-nodes-synotic-search.schema';
+export { SnPageEventPipeSmartflowResultSchema } from './smart-nodes/smart-nodes-page-event-pipe-smartflow-result.schema';
 
 // smart-objects
 export { SmartObjectSchema } from './smart-objects/smart-object.schema';

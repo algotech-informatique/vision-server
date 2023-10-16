@@ -167,6 +167,8 @@ export { SnParam } from './smart-nodes/smart-nodes-param.interface';
 export { SnSection } from './smart-nodes/smart-nodes-section.interface';
 export { SnVersion } from './smart-nodes/smart-nodes-version.interface';
 export { SnView } from './smart-nodes/smart-nodes-view.interface';
+export { SnSynoticSearch } from './smart-nodes/smart-nodes-synotic-search.interface';
+export { SnPageEventPipeSmartflowResult } from './smart-nodes/smart-nodes-page-event-pipe-smartflow-result.interface';
 
 // smart-objects
 export { SmartObject } from './smart-objects/smart-object.interface';

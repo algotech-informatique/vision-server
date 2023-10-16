@@ -56,7 +56,7 @@ export class DatabaseService {
     }
 
     runQueryMysql(connection: any, request: string): Observable<any> {
-        const mysql = require('mysql');
+        const mysql = require('mysql2');
         const options = mysql.createConnection({
             host: connection.host,
             port: connection.port,

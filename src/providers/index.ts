@@ -52,6 +52,9 @@ export { GenericListsHead } from './glists/glists.head';
 export { TagsService } from './tags/tags.service';
 export { TagsHead } from './tags/tags.head';
 export { SmartNodesService } from './smart-nodes/smart-nodes.service';
+export { SnIndexationUtils } from './smart-nodes/smart-nodes-indextation-utils';
+export { SmartNodesSnAppIndexationService } from './smart-nodes/smart-nodes-snapp-indexation.service';
+export { SmartNodesSnViewIndexationService } from './smart-nodes/smart-nodes-snview-indexation.service';
 export { SmartNodesHead } from './smart-nodes/smart-nodes.head';
 
 export { SchedulesService } from './schedules/schedules.service';

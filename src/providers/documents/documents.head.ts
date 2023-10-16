@@ -21,7 +21,7 @@ export class DocumentsHead {
     ) { }
 
     cache(data: { identity: IdentityRequest, date: string, uuid?: string[] }) {
-        return this.documentsService.cache(data.identity.customerKey, data.date, data.uuid, false);
+        return this.documentsService.cache(data.identity.customerKey, data.date, data.uuid, false, 250);
     }
 
     getFileByUUID(data: { identity: IdentityRequest, uuid: string }) {

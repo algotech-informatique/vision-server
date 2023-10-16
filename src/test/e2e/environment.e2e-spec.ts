@@ -53,7 +53,7 @@ describe('EnvironmentController (e2e)', () => {
     // Initialisation
     beforeAll(() => {
         return utils.InitializeApp().then((nestApp) => {
-            app = nestApp; 
+            app = nestApp;
             return utils.Before(app, 'environment', request);
         });
     });
@@ -65,14 +65,14 @@ describe('EnvironmentController (e2e)', () => {
 
     // Test de la recuperation d'un environment global
     it('/environment (GET)', () => {
-      return request(app.getHttpServer())
-        .get('/environment')
-        .set('Authorization', utils.authorizationJWT)
-        .expect(200)
-        .then((response) => {
-          const retourEnvironment: object[] = utils.clearDates(response.body);
-          expect(retourEnvironment).toEqual(environment);
-        });
+        return request(app.getHttpServer())
+            .get('/environment')
+            .set('Authorization', utils.authorizationJWT)
+            .expect(200)
+            .then((response) => {
+                const retourEnvironment: object[] = utils.clearDates(response.body);
+                expect(retourEnvironment).toEqual(environment);
+            });
     });
 
     // Test de l'ajout d'environment avec environment déja en base
@@ -167,4 +167,26 @@ describe('EnvironmentController (e2e)', () => {
                 expect(smartflows[1].custom).toEqual(connectorsParametersUpdate[1].parameters);
             });
     });
+
+    var encryptedString = '';
+    it('/encrypt', () => {
+        return request(app.getHttpServer())
+            .get('/environment/encrypt/toto')
+            .set('Authorization', utils.authorizationJWT)
+            .expect(200)
+            .then((response) => {
+                encryptedString = response.text;
+                expect(response.text).not.toBe('toto');
+            });
+    })
+
+    it('/decrypt', () => {
+        return request(app.getHttpServer())
+            .get(`/environment/decrypt/${encryptedString}`)
+            .set('Authorization', utils.authorizationJWT)
+            .expect(200)
+            .then((response) => {
+                expect(response.text).toBe('toto');
+            });
+    })
 });

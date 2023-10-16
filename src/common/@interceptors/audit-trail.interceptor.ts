@@ -1,7 +1,7 @@
 import {
     NestInterceptor, ExecutionContext, CallHandler, Injectable,
 } from '@nestjs/common';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { mergeMap, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { UUID } from 'angular2-uuid';
@@ -68,13 +68,14 @@ export class AuditTrailInterceptor implements NestInterceptor {
             duration: Date.now() - data.start,
         });
         if (actionCode && identity) {
-            return this.auditTrailService.getSettings().pipe(
+            this.auditTrailService.getSettings().pipe(
                 mergeMap((settings) => {
                     if (settings && settings.audit && settings.audit.activated) {
                         const id = data.context.getArgByIndex(0).params.uuid ?
                             data.context.getArgByIndex(0).params.uuid :
                             data.context.getArgByIndex(0).params.key ?
-                                data.context.getArgByIndex(0).params.key : '';
+                                data.context.getArgByIndex(0).params.key :
+                                data.handlerData?.uuid ? data.handlerData.uuid : '';
 
                         const log: AuditLog = {
                             eventId: UUID.UUID(),
@@ -90,8 +91,9 @@ export class AuditTrailInterceptor implements NestInterceptor {
                         };
                         return this.auditTrailService.createLog(log);
                     }
+                    return of(null);
                 }),
-            );
+            ).subscribe();
         }
 
     }

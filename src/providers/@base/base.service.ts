@@ -27,10 +27,8 @@ export abstract class BaseService<T extends BaseDocument> {
         return this.cleanMongo(obsCreate);
     }
 
-    cache(customerKey: string, date: string, uuid?: string[], created = true): Observable<CacheDto> {
+    cache(customerKey: string, date: string, uuid?: string[], created = true, limit = null): Observable<CacheDto> {
         // get all and return exception if too large
-        const limit = 250;
-
         if (date === '') {
             return throwError(() => new Error('No date'));
         }
@@ -41,20 +39,20 @@ export abstract class BaseService<T extends BaseDocument> {
 
         const updateRq: FilterQuery<any> = created ?
             {
-                customerKey, deleted: false, updateDate: { $gte: date },
+                customerKey, deleted: false, updateDate: { $gte: d },
             } : { // only updated
                 customerKey, deleted: false, $and: [
                     {
-                        createdDate: { $lte: date},
+                        createdDate: { $lte: d},
                     },
                     {
-                        updateDate: { $gte: date },
+                        updateDate: { $gte: d },
                     },
                 ],
             };
 
         const deleteRq: FilterQuery<any> = {
-            customerKey, deleted: true, updateDate: { $gte: date },
+            customerKey, deleted: true, updateDate: { $gte: d },
         };
 
         if (uuid) {
@@ -62,12 +60,15 @@ export abstract class BaseService<T extends BaseDocument> {
             Object.assign(deleteRq, { uuid: { $in: uuid } });
         }
 
+        const rqFind = this.model.find(updateRq, { _id: 0, __v: 0, customerKey: 0, deleted: 0 });
+        const rqDelete = this.model.find(deleteRq, { _id: 0, __v: 0, customerKey: 0, deleted: 0 });
+
         return zip(
-            from(this.model.find(updateRq, { _id: 0, __v: 0, customerKey: 0, deleted: 0 }).limit(limit)),
-            from(this.model.find(deleteRq, { _id: 0, __v: 0, customerKey: 0, deleted: 0 }).limit(limit)),
+            from(limit ? rqFind.limit(limit) : rqFind),
+            from(limit ? rqDelete.limit(limit) : rqDelete),
         )
             .pipe(map((data: any) => {
-                if (!created && (data[0].length === limit || data[1].length === limit)) {
+                if (!created && !uuid && (data[0].length === limit || data[1].length === limit)) {
                     throw new Error('response was too large');
                 }
                 return {

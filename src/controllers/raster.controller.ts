@@ -1,39 +1,45 @@
 import {
-    Controller, Param, Get, UseGuards, Res, Post,
-    UseInterceptors, BadRequestException, UploadedFile, Body,
+    Controller,
+    Param,
+    Get,
+    UseGuards,
+    Res,
+    Post,
+    UseInterceptors,
+    BadRequestException,
+    UploadedFile,
+    Body,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { Observable } from 'rxjs';
+import { from, map, Observable, of } from 'rxjs';
 import { Metadata } from '@algotech-ce/core';
 import { NatsService, RasterHead } from '../providers';
 import { IdentityRequest, NatsResponse } from '../interfaces';
 import { Identity } from '../common/@decorators';
-import { Client, ClientProxy, Transport } from '@nestjs/microservices';
 import { ApiTags } from '@nestjs/swagger';
 import { Roles } from '../common/@decorators/roles/roles.decorator';
+import { InjectQueue } from '@nestjs/bull';
+import { Queue } from 'bull';
 
 @Controller('rasters')
 @ApiTags('Rasters')
 export class RasterController {
-    constructor(private readonly rasterHead: RasterHead, private readonly nats: NatsService) { }
-
-    @Client({
-        transport: Transport.NATS,
-        options: {
-            url: process.env.NATS_URL,
-            queue: process.env.CUSTOMER_KEY + '_vision',
-        },
-    })
-    client: ClientProxy;
+    constructor(
+        private readonly rasterHead: RasterHead,
+        private readonly nats: NatsService,
+        @InjectQueue(process.env.CUSTOMER_KEY + '-rasters') private readonly rastersQueue: Queue,
+    ) {}
 
     @Post('/metadata/')
     @UseGuards(JwtAuthGuard)
     getMetadata(@Identity() identity: IdentityRequest, @Body() body: Array<string>): Observable<Metadata> {
-        return this.nats.httpResult(this.rasterHead.getRasterMetadata({
-            identity,
-            uuids: body,
-        }));
+        return this.nats.httpResult(
+            this.rasterHead.getRasterMetadata({
+                identity,
+                uuids: body,
+            }),
+        );
     }
 
     @Get(':rasterUuid/:z/:x/:y.png')
@@ -43,15 +49,19 @@ export class RasterController {
         @Param('rasterUuid') rasterUuid: string,
         @Param('z') z: number,
         @Param('x') x: number,
-        @Param('y') y: number) {
-        this.rasterHead.readTile(rasterUuid, z, x, y, res).subscribe((item) => {
-            if (!item) {
-                return res.status(404).end();
-            }
-            item.once('error', () => {
-                return res.status(404).end();
-            }).pipe(res);
-        }, (err) => this.nats.errorResponse(500, err));
+        @Param('y') y: number,
+    ) {
+        this.rasterHead.readTile(rasterUuid, z, x, y, res).subscribe(
+            (item) => {
+                if (!item) {
+                    return res.status(404).end();
+                }
+                item.once('error', () => {
+                    return res.status(404).end();
+                }).pipe(res);
+            },
+            (err) => this.nats.errorResponse(500, err),
+        );
     }
 
     @Post(':uuid')
@@ -66,52 +76,44 @@ export class RasterController {
         if (!file) {
             throw new BadRequestException('no file in body');
         }
-        return this.nats.httpResult(this.rasterHead.uploadRaster({
-            identity,
-            file: { buffer: file.buffer, originalname: file.originalname, mimetype: file.mimetype },
-            uuid,
-        }));
+        return this.nats.httpResult(
+            this.rasterHead.uploadRaster({
+                identity,
+                file: { buffer: file.buffer, originalname: file.originalname, mimetype: file.mimetype },
+                uuid,
+            }),
+        );
     }
 
     @Post('launch/:uuid')
     @UseGuards(JwtAuthGuard)
     @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
-    launchRaster(
-        @Identity() identity: IdentityRequest,
-        @Param('uuid') uuid: string,
-    ): Observable<NatsResponse> {
+    launchRaster(@Identity() identity: IdentityRequest, @Param('uuid') uuid: string): Observable<NatsResponse> {
+        if (!uuid) return of(this.nats.errorResponse(400, 'No raster uuid provided'));
+
         return this.nats.httpResult(
-            this.client.send<NatsResponse>(
-                { cmd: 'raster-launch' },
-                {
+            from(
+                this.rastersQueue.add('raster-launch', {
                     identity,
                     uuid,
-                },
-            ),
-            null,
-            null,
-            false,
+                }),
+            ).pipe(map((d) => ({ rasterUuid: uuid }))),
         );
     }
 
     @Post('deleteFile/:uuid')
     @UseGuards(JwtAuthGuard)
     @Roles(['admin', 'sadmin', 'plan-editor', 'process-manager'])
-    deleteRaster(
-        @Identity() identity: IdentityRequest,
-        @Param('uuid') uuid: string,
-    ): Observable<NatsResponse> {
+    deleteRaster(@Identity() identity: IdentityRequest, @Param('uuid') uuid: string): Observable<NatsResponse> {
+        if (!uuid) return of(this.nats.errorResponse(400, 'No raster uuid provided'));
+
         return this.nats.httpResult(
-            this.client.send<NatsResponse>(
-                { cmd: 'raster-delete-file' },
-                {
+            from(
+                this.rastersQueue.add('raster-delete-file', {
                     identity,
                     uuid,
-                },
-            ),
-            null,
-            null,
-            false,
+                }),
+            ).pipe(map((d) => ({ rasterUuid: uuid }))),
         );
     }
 }

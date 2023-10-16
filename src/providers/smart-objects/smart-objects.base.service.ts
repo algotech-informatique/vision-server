@@ -55,7 +55,7 @@ export abstract class SmartObjectsBaseService extends BaseService<SmartObject> {
                 .map(([key, value]) => {
                     return {
                         key,
-                        value
+                        value: this.formatDateISO(value),
                     }
                 })
         });
@@ -81,6 +81,16 @@ export abstract class SmartObjectsBaseService extends BaseService<SmartObject> {
                 }
                 return result;
             }, `${SmartObjectsBaseService.SEARCH_SEPARATOR}`);
+    }
+
+    formatDateISO(value: any) {
+        const format = (date) => date instanceof Date ? date.toISOString() : date;
+
+        if (Array.isArray(value)) {
+            return value.map((date) => format(date));
+        } else {
+            return format(value);
+        }
     }
 
     formatDate(value: any) {
@@ -134,8 +144,8 @@ export abstract class SmartObjectsBaseService extends BaseService<SmartObject> {
         );
     }
 
-    cache(customerKey: string, date: string, uuid?: string[], created = true): Observable<CacheDto> {
-        return super.cache(customerKey, date, uuid, created).pipe(
+    cache(customerKey: string, date: string, uuid?: string[], created = false, limit = 250): Observable<CacheDto> {
+        return super.cache(customerKey, date, uuid, created, limit).pipe(
             map((data: CacheDto) => ({
                 deleted: data.deleted,
                 updated: this.toDTO(data.updated) as SmartObject[],

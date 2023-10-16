@@ -95,7 +95,7 @@ export const launchOptions = {
       },
       {
         key: 'date',
-        value: moment('2020/12/12').startOf('day').format()
+        value: moment('2020/12/12').utc(true).startOf('day').format()
       },
       {
         key: 'boolean',
@@ -155,7 +155,7 @@ export const launchOptionsMultiple = {
       },
       {
         key: 'date',
-        value: moment('2020/12/12').startOf('day').format()
+        value: moment('2020/12/12').utc(true).startOf('day').format()
       },
       {
         key: 'boolean',
@@ -230,7 +230,7 @@ export const smartflowSimple: WorkflowModel = {
     {
       uuid: '051a8074-2a4e-017a-d33c-af3ad474ebd0',
       key: 'date',
-      type: 'datetime',
+      type: 'date',
       multiple: false,
       use: 'query-parameter',
       description: ''

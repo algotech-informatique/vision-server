@@ -85,35 +85,12 @@ export class TestUtils {
     private _collectionName: string;
     private _objects: any = {};
     private _collection: any = {};
-    private _mongoConnection;
+    private _client;
 
     public mongoClient = require('mongodb').MongoClient;
     public authorizationJWT: string;
     public sadminauthorizationJWT: string;
     public adminAuthorizationJWT: string;
-
-    private callBackFind(err, res, collectionName) {
-        if (err) {
-            return err;
-        }
-        this._objects[collectionName] = res;
-    }
-
-    private callBackConnect(err, db, collectionName) {
-        if (err) {
-            return err;
-        }
-
-        return new Promise((resolve) => {
-            this._collection[collectionName] = db.collection(collectionName);
-            this._collection[collectionName].find({}).toArray(
-                // Closure
-                (error, res) => {
-                    resolve(this.callBackFind(error, res, collectionName));
-                },
-            );
-        });
-    }
 
     public async InitializeApp() {
         try {
@@ -142,15 +119,16 @@ export class TestUtils {
 
 
         if (collectionName) {
-            this._mongoConnection = this.mongoClient.connect(url, {
-                useUnifiedTopology: true,
-            }, (err, client) => {
-                const db = client.db(process.env.MONGO_DB);
-                const collections = _.isArray(collectionName) ? collectionName : (collectionName !== '') ? [collectionName] : [];
-                _.map(collections, async (collection) => {
-                    await this.callBackConnect(err, db, collection);
-                });
-            });
+            const { MongoClient } = require('mongodb');
+            this._client = new MongoClient(url, { useUnifiedTopology: true });
+            const db = this._client.db(process.env.MONGO_DB);
+
+            const collections = _.isArray(collectionName) ? collectionName : (collectionName !== '') ? [collectionName] : [];
+            for (const collection of collections) {
+                this._collection[collection as string] = db.collection(collection);
+                const cursor = this._collection[collection as string].find({});
+                this._objects[collection as string] = await cursor.toArray();
+            };
         }
 
         // SignIn Admin Keycloak
@@ -254,51 +232,33 @@ export class TestUtils {
         console.log('Successfully initialized');
     }
 
-    public AfterArray(collectionsName: string[]): Promise<any> {
-        const promise$: Promise<any>[] = _.each(collectionsName, (collection) => {
-            return this.After(collection);
-        });
-        return promise$[0];
+    public async AfterArray(collectionsName: string[]) {
+        try {
+            for (const collection of collectionsName) {
+                await this.After(collection, false);
+            }
+        } finally {
+            this._client.close();
+        }
     }
 
-    public After(collectionName?): Promise<any> {
+    public async After(collectionName?, closeClient = true) {
         const _collectionName = collectionName ? collectionName : this._collectionName;
-        // Restore Fixtures
-        return new Promise((resolve, reject) => {
 
-            (this._collection[_collectionName]) ? this._collection[_collectionName].deleteMany(
-                (err, res) => {
-                    if (err) {
-                        if (this._mongoConnection) {
-                            this._mongoConnection.close();
-                        }
-                        reject(err);
-                    }
+        try {
+            if (!this._collection[_collectionName]) {
+                throw new Error(`collection ${_collectionName} not find`);
+            }
+            await this._collection[_collectionName].deleteMany({});
 
-                    if (Array.isArray(this._objects[_collectionName]) && this._objects[_collectionName].length > 0) {
-                        this._collection[_collectionName].insertMany(this._objects[_collectionName],
-                            (error, result) => {
-                                if (error) {
-                                    if (this._mongoConnection) {
-                                        this._mongoConnection.close();
-                                    }
-                                    reject(error);
-                                }
-
-                                if (this._mongoConnection) {
-                                    this._mongoConnection.close();
-                                }
-                                resolve(result);
-                            });
-                    } else {
-                        if (this._mongoConnection) {
-                            this._mongoConnection.close();
-                        }
-                        resolve(true);
-                    }
-                },
-            ) : reject(new Error(`collection ${_collectionName} not find`));
-        });
+            if (Array.isArray(this._objects[_collectionName]) && this._objects[_collectionName].length > 0) {
+                await this._collection[_collectionName].insertMany(this._objects[_collectionName]);
+            }
+        } finally {
+            if (closeClient) {
+                this._client.close();
+            }
+        }
     }
 
     public insert(collectionName: string, objects: any[]) {

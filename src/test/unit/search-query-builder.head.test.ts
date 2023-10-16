@@ -32,43 +32,43 @@ describe(SearchQueryBuilderHead.name, () => {
 
   describe(SearchQueryBuilderHead.prototype._escapRegex.name, () => {
     it('should return escaped regex', () => {
-      const request = sqbuilder._escapRegex('\\, ., -, ?, +, *, [, ], {, }, (, ), ^, $, |val');
-      expect(request).toEqual('\\\\, \\., \\-, \\?, \\+, \\*, \\[, \\], \\{, \\}, \\(, \\), \\^, \\$, \\|val');
+      const request = sqbuilder._escapRegex('\\, ., -, ?, +, *, [, ], {, }, (, ), ^, $, |vaE');
+      expect(request).toEqual('\\\\, \\., \\-, \\?, \\+, \\*, \\[, \\], \\{, \\}, \\(, \\), \\^, \\$, \\|v[aàáãâåä][eèéêë]');
     });
   });
 
   describe(SearchQueryBuilderHead.prototype._startsWith.name, () => {
     it('should return startWith regex', () => {
       const request = sqbuilder._startsWith('val', 'prop');
-      expect(request).toEqual({ 'properties.prop': /^val.*/i });
+      expect(request).toEqual({ 'properties.prop': /^v[aàáãâåä]l.*/i });
     });
   });
 
   describe(SearchQueryBuilderHead.prototype._dontStartsWith.name, () => {
     it('should return dontStartsWith regex', () => {
       const request = sqbuilder._dontStartsWith('val', 'prop');
-      expect(request).toEqual({ 'properties.prop': /^(?!val).*/i });
+      expect(request).toEqual({ 'properties.prop': /^(?!v[aàáãâåä]l).*/i });
     });
   });
 
   describe(SearchQueryBuilderHead.prototype._endsWith.name, () => {
     it('should return _endsWith regex', () => {
       const request = sqbuilder._endsWith('val1', 'prop');
-      expect(request).toEqual({ 'properties.prop': /.*val1$/i });
+      expect(request).toEqual({ 'properties.prop': /.*v[aàáãâåä]l1$/i });
     });
   });
   
   describe(SearchQueryBuilderHead.prototype._doesntContain.name, () => {
     it('should return _doesntContain regex', () => {
       const request = sqbuilder._doesntContain('val2', 'prop');
-      expect(request).toEqual({ 'properties.prop': /^(?!.*val2).*/i });
+      expect(request).toEqual({ 'properties.prop': /^(?!.*v[aàáãâåä]l2).*/i });
     });
   });
 
   describe(SearchQueryBuilderHead.prototype._contains.name, () => {
     it('should return _contains regex', () => {
       const request = sqbuilder._contains('val2', 'prop');
-      expect(request).toEqual({ 'properties.prop': /.*val2.*/i });
+      expect(request).toEqual({ 'properties.prop': /.*v[aàáãâåä]l2.*/i });
     });
   });
 
@@ -432,10 +432,10 @@ describe(SearchQueryBuilderHead.name, () => {
 
   describe(SearchQueryBuilderHead.prototype.fullTextSearch.name, () => {
     it('should return full contains regex with all properties', () => {
-      const request = sqbuilder.fullTextSearch(['model1'], 'weeeeeeeesh');
+      const request = sqbuilder.fullTextSearch(['model1'], 'zmj');
       expect(request).toEqual({$match: {
         modelKey: { $in: ['model1'] },
-        'properties.~__searchtext': /.*weeeeeeeesh.*/i 
+        'properties.~__searchtext': /.*zmj.*/i 
       }});
     });
   });

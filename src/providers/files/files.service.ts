@@ -9,7 +9,6 @@ import { FileInfo, Metadata } from '@algotech-ce/core';
 import { IdentityRequest, UploadFile } from '../../interfaces';
 import { Readable } from 'stream';
 import { IGridFSObject, MongoGridFS } from 'mongo-gridfs';
-import { createBucket } from 'mongoose-gridfs';
 
 @Injectable()
 export class FilesService {
@@ -98,6 +97,9 @@ export class FilesService {
                 item.on('end', (done) => {
                     subject.next(Buffer.concat(bufferArray));
                     subject.complete();
+                })
+                item.on('error', (e) => {
+                    subject.error(e);
                 })
                 return subject.asObservable();
             })
@@ -337,22 +339,16 @@ export class FilesService {
     }
 
     _deleteBucket(id): Observable<boolean> {
-        const attachment = createBucket(
-            {
-                bucketName: 'documents',
-                connection: this.connection,
-            }
+        return zip(
+            from(this.connection.db.collection('documents.files').deleteMany({ _id: id })),
+            from(this.connection.db.collection('documents.chunks').deleteMany({ files_id: id }))
+        ).pipe(
+            map(() => {
+                return true;
+            }),
+            catchError((err) => {
+                return of(false);
+            }),
         );
-
-        return new Observable((obs) => {
-            attachment.deleteFile(id, (error, results) => {
-                if (error) {
-                    obs.error(false);
-                } else {
-                    obs.next(true);
-                    obs.complete();
-                }
-            });
-        });
     }
 }

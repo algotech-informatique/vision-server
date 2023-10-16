@@ -38,15 +38,10 @@ describe('WorkflowInstances', () => {
     });
 
     // Finalisation
-    afterAll(() => {
-        return Promise.all([
-            utils.After('workflowinstances'),
-            utils.After('smartobjects'),
-            utils.After('document'),
-            utils.After('documents.files'),
-            utils.After('documents.chunks'),
-            utils.After('schedules')
-        ]);
+    afterAll((done) => {
+        return utils.AfterArray(['workflowinstances', 'smartobjects', 'document', 'documents.files', 'documents.chunks', 'schedules']).then(() => {
+            done();
+        })
     });
 
     // Test la récupération de l'ensemble des workflow-instances

@@ -35,7 +35,16 @@ export class SearchQueryBuilderHead {
             const pieces = value.split(car);
             value = pieces.join(`\\${car}`);
         }
-        return value;
+        // accent
+        return value
+            .replace(/a|A/g, '[aàáãâåä]')
+            .replace(/c|C/g, '[cç]')
+            .replace(/e|E/g, '[eèéêë]')
+            .replace(/i|I/g, '[iìíîï]')
+            .replace(/n|N/g, '[nñ]')
+            .replace(/o|O/g, '[oòóôõö]')
+            .replace(/u|U/g, '[uùúûü]')
+            .replace(/y|Y/g, '[yÿ]');
     }
 
     _startsWith(value: string, propertyKey: string) {
@@ -476,7 +485,8 @@ export class SearchQueryBuilderHead {
     _mergeSimilarFacets(filters: SearchSOFilterDto[]): FacetAggregationPipeline[] {
         return _.reduce(filters
             .filter((filter: SearchSOFilterDto) => filter.key && filter.value.models &&
-                filter.value.models.length > 0),
+                filter.value.models.length > 0 && 
+                !(filter.value.models.length === 1 && ['exists', 'isNull'].indexOf(filter.value.criteria) !== -1)),
             (results, filter) => {
                 const keys = (filter.key as string).split('.');
                 let key;

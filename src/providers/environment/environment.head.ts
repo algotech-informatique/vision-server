@@ -46,4 +46,12 @@ export class EnvironmentHead {
         return this.environmentService.setParameters(data.identity.customerKey, data.connectors);
     }
 
+    encryptPassword(password: string) {
+        return this.environmentService.encryptPassword(password);
+    }
+
+    decryptPassword(encryptedString: string) {
+        return this.environmentService.decryptPassword(encryptedString);
+    }
+
 }

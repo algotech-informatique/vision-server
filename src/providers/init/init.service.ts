@@ -1,22 +1,21 @@
 import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { InjectConnection } from '@nestjs/mongoose';
 import { Observable, from, of, zip } from 'rxjs';
-import { tap, catchError, retryWhen } from 'rxjs/operators';
+import { tap, catchError, retryWhen, mergeMap, retry } from 'rxjs/operators';
 import { AdminHead } from '../admin/admin.head';
-import { RxExtendService } from '../rx-extend/rx-extend.service';
 import { SmartTasksHead } from '../smart-tasks/smart-tasks.head';
 import { ProcessMonitoringHead } from '../process-monitoring/process-monitoring.head';
 import { CustomerInit, WorkerMessage } from '../../interfaces';
+import { SmartNodesHead } from '../smart-nodes/smart-nodes.head';
 
 @Injectable()
 export class InitService implements OnApplicationBootstrap {
-
     constructor(
         @InjectConnection() private readonly connection,
-        private readonly rxExtend: RxExtendService,
         private readonly adminHead: AdminHead,
         private readonly smartTasks: SmartTasksHead,
-        private readonly monitoringHead: ProcessMonitoringHead
+        private readonly monitoringHead: ProcessMonitoringHead,
+        private readonly smartNodesHead: SmartNodesHead,
     ) {
         process.on('message', (msg: WorkerMessage) => {
             if (msg.cmd === 'reload-schedule-tasks') {
@@ -41,7 +40,10 @@ export class InitService implements OnApplicationBootstrap {
                 process.stdout.write('Agenda failed to start');
             }
         });
-        this.monitoringHead.cancelAllRunningProcess().subscribe();
+        this.monitoringHead
+            .cancelAllRunningProcess()
+            .pipe(mergeMap(() => this.smartNodesHead.tryIndexsnModels())) //update snModels index au démarrage
+            .subscribe();
     }
 
     createPipelineAndTemplates() {
@@ -50,17 +52,24 @@ export class InitService implements OnApplicationBootstrap {
                 customerKey: '', firstName: '', lastName: '', email: '', languages: [], login: '', password: '', defaultapplications: []
             };
 
-            this.adminHead.resetESPipelineAndTempates(customer).pipe(
-                retryWhen(this.rxExtend.genericRetryStrategy(8, 15000)),
-                tap((res) => {
-                    Logger.log('Reset ES Pipeine And templates')
-                    res.forEach(res => Logger.log(`${res.key}: ${res.value}`))
-                }),
-                catchError((e) => {
-                    Logger.log('Error: Reset ES Pipeine And templates ' + e);
-                    return of({});
-                }),
-            ).subscribe();
+            this.adminHead
+                .resetESPipelineAndTempates(customer)
+                .pipe(
+                    // retryWhen deprcated relplacé par retry
+                    retry({
+                        count: 8,
+                        delay: 15000,
+                    }),
+                    tap((res) => {
+                        Logger.log('Reset ES Pipeine And templates');
+                        res.forEach((res) => Logger.log(`${res.key}: ${res.value}`));
+                    }),
+                    catchError((e) => {
+                        Logger.log('Error: Reset ES Pipeine And templates ' + e);
+                        return of({});
+                    }),
+                )
+                .subscribe();
         }
     }
 
@@ -84,8 +93,7 @@ export class InitService implements OnApplicationBootstrap {
             this._indexCreator('genericlists', { customerKey: 1 }),
             this._indexCreator('groups', { key: 1 }),
             this._indexCreator('groups', { customerKey: 1 }),
-            this._indexCreator('icons.chunks', { files_id: 1 }),
-            this._indexCreator('icons.chunks', { 'metadata.tags': 1 }),
+            this._indexCreator('icons', { tags: 1 }),
             this._indexCreator('notifications', { uuid: 1 }),
             this._indexCreator('notifications', { customerKey: 1 }),
             this._indexCreator('schedules', { customerKey: 1 }),
@@ -110,8 +118,8 @@ export class InitService implements OnApplicationBootstrap {
             this._indexCreator('smartobjects', { 'skills.atDocument.documents': 1 }),
             this._indexCreator('smartobjects', {
                 'skills.atGeolocation.geo.geometries.0.coordinates': '2d',
-                'customerKey': 1,
-                'modelKey': 1,
+                customerKey: 1,
+                modelKey: 1,
             }),
             this._indexCreator('smartobjects', { 'properties.$**': 1 }),
             this._indexCreator('smartobjects', {
@@ -146,13 +154,18 @@ export class InitService implements OnApplicationBootstrap {
             this._indexCreator('monitoring', { uuid: 1 }),
             this._indexCreator('monitoring', { processType: 1 }),
             this._indexCreator('monitoring', { processState: 1 }),
+            this._indexCreator('snsynoticsearches', { updateDate: 1 }),
+            this._indexCreator('snsynoticsearches', { type: 1 }),
+            this._indexCreator('snsynoticsearches', { elementUuid: 1 }),
+            this._indexCreator('snsynoticsearches', { snViewUuid: 1 }),
+            this._indexCreator('snsynoticsearches', { snModelUuid: 1 }),
+            this._indexCreator('snsynoticsearches', { texts: 1 }),
         ];
         zip(...indexes$).subscribe();
     }
 
     _indexCreator(collection, conf: any): Observable<any> {
-        const index$ = from(this.connection.collection(collection)
-            .createIndex(conf));
+        const index$ = from(this.connection.collection(collection).createIndex(conf));
         return index$.pipe(
             catchError(() => of('!!!!!!!!!! No index')),
             tap((res) => Logger.log(`${res} has been created`)),

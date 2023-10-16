@@ -438,4 +438,23 @@ describe('SmartFlowsModels', () => {
                 expect(response.body).toEqual('toto');
             });
     });
+
+    // startsmartflows
+    it('/smartflows/startsmartflows should return password', () => {
+        
+        return request(app.getHttpServer())
+        .post('/smartflows/startsmartflows')
+        .set('authorization', utils.authorizationJWT)
+        .send({
+            key: 'test_password',
+            inputs: []
+        })
+        .expect(200)
+        .then(response => {
+            expect(response.body).toEqual({
+                login: 'algotech',
+                password: 'motdepasse'
+            });
+        });
+    });
 });

@@ -271,7 +271,7 @@ export const filterisIn: SearchSOFilterDto = {
   value: {
     criteria: 'in',
     type: 'string',
-    value: ['weeeeee', 'eeeeesh']
+    value: ['zm', 'mj']
   }
 };
 
@@ -376,7 +376,7 @@ export const gteRequest = { 'properties.key8': { $gte: 10 } };
 export const lteRequest = { 'properties.key9': { $lte: 11 } };
 export const nullKey1Request = { $or: [{ 'properties.key10': { $eq: null } }, { 'properties.key10': { $size: 0 } }] };
 export const nullKey2Request = { $or: [{ 'properties.key11': { $eq: null } }, { 'properties.key11': { $size: 0 } }] };
-export const inRequest = { 'properties.key12': { $in: ['weeeeee', 'eeeeesh'] } };
+export const inRequest = { 'properties.key12': { $in: ['zm', 'mj'] } };
 export const betWeenRequest = { 'properties.key13': { $gte: 1, $lte: 5 } };
 export const existsRequest = { 'properties.key14': { $exists: true } };
 
@@ -387,8 +387,8 @@ export const searchequls = { 'properties.~__searchtext': /.*¤50¤.*/i };
 export const searchDifferent = { 'properties.~__searchtext': /^(?!.*¤55¤).*/i };
 export const searchisIn = {
   $or: [
-    { 'properties.~__searchtext': /.*¤weeeeee¤.*/i },
-    { 'properties.~__searchtext': /.*¤eeeeesh¤.*/i }
+    { 'properties.~__searchtext': /.*¤zm¤.*/i },
+    { 'properties.~__searchtext': /.*¤mj¤.*/i }
   ]
 };
 
@@ -461,7 +461,7 @@ export const filtersSubDoc: SearchSOFilterDto[] = [{
   value: {
     criteria: 'equals',
     type: 'string',
-    value: 'ma-gueule'
+    value: 'ma-tete'
   }
 },
 {
@@ -469,7 +469,7 @@ export const filtersSubDoc: SearchSOFilterDto[] = [{
   value: {
     criteria: 'equals',
     type: 'string',
-    value: 'ma-gueule',
+    value: 'ma-tete',
     models: []
   }
 },
@@ -478,7 +478,7 @@ export const filtersSubDoc: SearchSOFilterDto[] = [{
   value: {
     criteria: 'equals',
     type: 'string',
-    value: 'ma-gueule',
+    value: 'ma-tete',
     models: ['model1']
   },
 }, {
@@ -486,7 +486,7 @@ export const filtersSubDoc: SearchSOFilterDto[] = [{
   value: {
     criteria: 'equals',
     type: 'string',
-    value: 'ta-gueule',
+    value: 'ta-tete',
     models: ['model1']
   },
 },
@@ -495,7 +495,7 @@ export const filtersSubDoc: SearchSOFilterDto[] = [{
   value: {
     criteria: 'contains',
     type: 'string',
-    value: 'weeeeesh',
+    value: 'zmj',
     models: ['model2']
   },
 }
@@ -517,10 +517,10 @@ export const facetsResutls = [
             ]
           },
           'properties.titi': {
-            $eq: 'ma-gueule'
+            $eq: 'ma-tete'
           },
           'properties.tutu': {
-            $eq: 'ta-gueule'
+            $eq: 'ta-tete'
           }
         }
       },
@@ -578,7 +578,7 @@ export const facetsResutls = [
               'model2'
             ]
           },
-          'properties.titi': /.*weeeeesh.*/i
+          'properties.titi': /.*zmj.*/i
         }
       },
       {

@@ -28,12 +28,9 @@ describe('database', () => {
 
     // Finalisation
     afterAll((done) => {
-        return Promise.all([
-            utils.After('smartobjects'),
-            utils.After('monitoring'),
-        ]).then(() => {
+        return utils.AfterArray(['smartobjects', 'monitoring']).then(() => {
             done();
-        });
+        })
     });
 
     it('/DELETE smart-objects/sos by modelKey', () => {

@@ -101,13 +101,13 @@ const patchSetError: PatchPropertyDto = {
 
 const patchSetNoRespectModel: PatchPropertyDto = {
     op: 'add',
-    path: '/steps/[uuid:66fc4312-1b2d-11e9-ab14-d663bd873d93]/tasks/[uuid:6b443bbe-1b2d-11e9-ab14-d663bd873d93]/general/displayName/0/caption',
+    path: '/steps/[uuid:66fc4312-1b2d-11e9-ab14-d663bd873d93]/tasks/[uuid:6b443bbe-1b2d-11e9-ab14-d663bd873d93]/general/displayName/[0]/caption',
     value: 'Caption',
 };
 
 const patchPull: PatchPropertyDto = {
     op: 'remove',
-    path: '/steps/[uuid:66fc4312-1b2d-11e9-ab14-d663bd873d93]/tasks/[uuid:6b443bbe-1b2d-11e9-ab14-d663bd873d93]/general/displayName/1',
+    path: '/steps/[uuid:66fc4312-1b2d-11e9-ab14-d663bd873d93]/tasks/[uuid:6b443bbe-1b2d-11e9-ab14-d663bd873d93]/general/displayName/[1]',
 };
 
 const patchRemove: PatchPropertyDto = {

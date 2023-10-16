@@ -143,12 +143,9 @@ describe('SmartObjects', () => {
 
     // Finalisation
     afterAll((done) => {
-        return Promise.all([
-            utils.After('smartobjects'),
-            utils.After('monitoring'),
-        ]).then(() => {
+        return utils.AfterArray(['smartobjects', 'monitoring']).then(() => {
             done();
-        });
+        })
     });
 
     it('/GET unique values of a property with skip 1 and limit 1 order asc', () => {

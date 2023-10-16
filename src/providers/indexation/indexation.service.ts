@@ -263,7 +263,6 @@ export class IndexationService {
                         mergeMap((r: IndexationResult[]) => {
                             proc.current += r.filter(indexDoc => indexDoc.indexed).length;
                             this.processMonitoringHead.update(identity.customerKey, proc).subscribe();
-                            results.concat(r);
                             return this._indexByStep(identity, model, minIndexationDate, ++skip, limit, results, proc)}),
                     );
                 }

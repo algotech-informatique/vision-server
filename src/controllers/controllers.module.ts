@@ -1,14 +1,12 @@
 /* eslint-disable prettier/prettier */
-import { Module } from '@nestjs/common';
+import { Inject, MiddlewareConsumer, Module } from '@nestjs/common';
 import { AuthModule } from '../auth/auth.module';
 import { ProvidersModule } from '../providers/providers.module';
 import * as controllers from './index';
+import { BullModule } from '@nestjs/bull';
 
 @Module({
-    imports: [
-        ProvidersModule,
-        AuthModule,
-    ],
+    imports: [ProvidersModule, AuthModule, BullModule.registerQueue({ name: process.env.CUSTOMER_KEY + '-rasters' })],
     controllers: [
         controllers.SmartModelsController,
         controllers.SmartObjectsController,
@@ -48,4 +46,5 @@ import * as controllers from './index';
         controllers.I18nController,
     ],
 })
-export class ControllersModule { }
+export class ControllersModule {
+}

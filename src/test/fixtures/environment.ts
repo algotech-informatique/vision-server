@@ -55,6 +55,15 @@ export const environment: EnvironmentDto = {
                 key: 'test',
                 value: 'toto',
                 active: true,
+            }, {
+                key: 'login',
+                value: 'algotech',
+                active: true,
+            }, {
+                key: 'password',
+                value: '97cbde1f089e26be5dc41ae3b25c1047f4384467759d230946e6',
+                password: true,
+                active: true,
             }]
         },
     ],
@@ -81,6 +90,15 @@ export const connectorsParameters: EnvironmentConnectorDto[] = [{
     parameters: [{
         key: 'test',
         value: 'toto',
+        active: true,
+    }, {
+        key: 'login',
+        value: 'algotech',
+        active: true,
+    }, {
+        key: 'password',
+        value: '97cbde1f089e26be5dc41ae3b25c1047f4384467759d230946e6',
+        password: true,
         active: true,
     }]
 }];

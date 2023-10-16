@@ -1,5 +1,4 @@
 /* eslint-disable prettier/prettier */
-import { MailerModule } from '@nest-modules/mailer';
 import { Module } from '@nestjs/common';
 import { HttpModule } from '@nestjs/axios';
 import { DatabaseModule } from '../database/database.module';
@@ -14,7 +13,6 @@ import * as interpretor from './workflow-interpretor/index';
             maxContentLength: Number.MAX_SAFE_INTEGER,
         }),
         DatabaseModule,
-        MailerModule,
     ],
     controllers: [],
     providers: [
@@ -68,6 +66,8 @@ import * as interpretor from './workflow-interpretor/index';
         providers.AdminService,
         providers.TagsService,
         providers.SmartNodesService,
+        providers.SmartNodesSnAppIndexationService,
+        providers.SmartNodesSnViewIndexationService,
         providers.SchedulesService,
         providers.SearchScheduleService,
         providers.SmartTasksLogsService,
