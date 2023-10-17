@@ -77,6 +77,9 @@ export class SmartNodesSnAppIndexationService {
         if (widget.custom.text && Array.isArray(widget.custom.text)) {
             texts += SnIndexationUtils.indexLang(widget.custom.text, '');
         }
+        if (widget.custom.preview && Array.isArray(widget.custom.preview)) {
+            texts += SnIndexationUtils.indexLang(widget.custom.preview, '');
+        }
         if (widget.custom.title && Array.isArray(widget.custom.title)) {
             texts += SnIndexationUtils.indexLang(widget.custom.title, '');
         }
