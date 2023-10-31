@@ -1,20 +1,22 @@
 import { BadRequestException, Injectable, InternalServerErrorException, Logger } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Observable, from, of } from 'rxjs';
+import { InjectConnection, InjectModel } from '@nestjs/mongoose';
+import { Connection, Model } from 'mongoose';
+import { Observable, from, of, zip } from 'rxjs';
 import { UUID } from 'angular2-uuid';
-import { map, catchError, mergeMap } from 'rxjs/operators';
+import { map, catchError, mergeMap, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { UsersService } from '../users/users.service';
 import { Customer, CustomerInit, CustomerInitResult, CustomerSearch, User } from '../../interfaces';
 import { RxExtendService } from '../rx-extend/rx-extend.service';
 import { CustomerInitResultDto } from '@algotech-ce/core';
 import { deleteDocQuery, deletequeries, docIndexQuery, putqueries, postqueries, pipelineQuery } from './init-cmd';
-
+import cluster from 'cluster';
+import { InitService } from '../init/init.service';
 @Injectable()
 export class AdminService {
     constructor(
+        @InjectConnection() private readonly connection,
         @InjectModel('Customer') private readonly customerModel: Model<Customer>,
         private readonly usersService: UsersService,
         private readonly httpService: HttpService,
@@ -273,5 +275,62 @@ export class AdminService {
         _.forEach(postqueries, (query) => cmds$.push(this._setPostESQuery(customer, query)));
 
         return this.rxExt.sequence(cmds$);
+    }
+
+    applyRestore() {
+        return from(this.customerModel.findOne({})).pipe(
+            mergeMap((customer: Customer) => {
+                if (customer.customerKey === process.env.CUSTOMER_KEY) {
+                    return of(null);
+                }
+                return this.updateCustomerKey();
+            }),
+            mergeMap(() => from(this.customerModel.updateOne({}, { $set: { restoreId: UUID.UUID() }}))),
+            tap(() => {
+                this.applyMongoIndexes();
+                this.clearCache();
+            }),
+            map(() => true)
+        );
+    }
+
+    private applyMongoIndexes() {
+        InitService.applyMongoIndexes(this.connection);
+    }
+
+    private clearCache() {
+        if (cluster.isWorker) {
+            process.emit('message', { cmd: 'clear-data-cache' }, this);
+        }
+    }
+
+    private updateCustomerKey() {
+        const customerKey = process.env.CUSTOMER_KEY;
+        const request$: Observable<any>[] = [];
+
+        return from((this.connection as Connection).db.collections()).pipe(
+            mergeMap((collections) => {
+                request$.push(...collections.map((collection) => {
+                    return from(collection.updateMany(
+                        { customerKey: { $exists: true } },
+                        { $set: { customerKey: customerKey } }
+                    ));
+                }));
+                request$.push(
+                    from((this.connection as Connection).collection('agendaJob')
+                        .updateMany({ 'data.customerKey': { $exists: true } }, { $set: { 'data.customerKey': customerKey } }))
+                );
+                request$.push(
+                    from((this.connection as Connection).collection('documents.files')
+                        .updateMany({ 'metadata.customerKey': { $exists: true } }, { $set: { 'metadata.customerKey': customerKey } }))
+                );
+                request$.push(
+                    from((this.connection as Connection).collection('tiles.files')
+                        .updateMany({ 'metadata.customerKey': { $exists: true } }, { $set: { 'metadata.customerKey': customerKey } }))
+                );
+
+                return zip(...request$);
+            }),
+        );
     }
 }

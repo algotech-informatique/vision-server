@@ -1,7 +1,8 @@
 import { CustomerInitResultDto } from '@algotech-ce/core';
 import { Injectable } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { Customer, CustomerInit, CustomerInitResult, CustomerSearch } from '../../interfaces';
+import { Connection, Mongoose } from 'mongoose';
+import { from, map, Observable, of, tap } from 'rxjs';
+import { Customer, CustomerInit, CustomerInitResult, CustomerSearch, IdentityRequest } from '../../interfaces';
 import { EnvironmentHead } from '../environment/environment.head';
 import { GroupHead } from '../groups/groups.head';
 import { SettingsHead } from '../settings/settings.head';
@@ -76,5 +77,9 @@ export class AdminHead {
 
     resetdocIndex(customer: CustomerInit): Observable<CustomerInitResultDto[]> {
         return this.adminService.resetdocIndex(customer);
+    }
+
+    applyRestore() {
+        return this.adminService.applyRestore();
     }
 }

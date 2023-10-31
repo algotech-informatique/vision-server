@@ -31,7 +31,7 @@ export class InitService implements OnApplicationBootstrap {
     }
 
     onApplicationBootstrap() {
-        this.applyMongoIndexes();
+        InitService.applyMongoIndexes(this.connection);
         this.createPipelineAndTemplates();
         this.smartTasks.unlockAndBindJobs().subscribe((started) => {
             if (started) {
@@ -73,102 +73,102 @@ export class InitService implements OnApplicationBootstrap {
         }
     }
 
-    applyMongoIndexes() {
+    static applyMongoIndexes(connection) {
+        const indexCreator = (connection, collection, conf: any): Observable<any> => {
+            const index$ = from(connection.collection(collection).createIndex(conf));
+            return index$.pipe(
+                catchError(() => of('!!!!!!!!!! No index')),
+                tap((res) => Logger.log(`${res} has been created`)),
+            );
+        }
+
         const indexes$ = [
-            this._indexCreator('customers', { customerKey: 1 }),
-            this._indexCreator('document', { uuid: 1 }),
-            this._indexCreator('document', { createdDate: 1 }),
-            this._indexCreator('document', { updateDate: 1 }),
-            this._indexCreator('document', { name: 'text' }),
-            this._indexCreator('document', { indexStatus: 1 }),
-            this._indexCreator('document', { lastIndexDate: 1 }),
-            this._indexCreator('documents.chunks', { files_id: 1 }),
-            this._indexCreator('documents.files', {
+            indexCreator(connection, 'customers', { customerKey: 1 }),
+            indexCreator(connection, 'document', { uuid: 1 }),
+            indexCreator(connection, 'document', { createdDate: 1 }),
+            indexCreator(connection, 'document', { updateDate: 1 }),
+            indexCreator(connection, 'document', { name: 'text' }),
+            indexCreator(connection, 'document', { indexStatus: 1 }),
+            indexCreator(connection, 'document', { lastIndexDate: 1 }),
+            indexCreator(connection, 'documents.chunks', { files_id: 1 }),
+            indexCreator(connection, 'documents.files', {
                 'metadata.uuid': 1,
                 'metadata.customerKey': 1,
             }),
-            this._indexCreator('domains', { key: 1 }),
-            this._indexCreator('domains', { customerKey: 1 }),
-            this._indexCreator('genericlists', { key: 1 }),
-            this._indexCreator('genericlists', { customerKey: 1 }),
-            this._indexCreator('groups', { key: 1 }),
-            this._indexCreator('groups', { customerKey: 1 }),
-            this._indexCreator('icons', { tags: 1 }),
-            this._indexCreator('notifications', { uuid: 1 }),
-            this._indexCreator('notifications', { customerKey: 1 }),
-            this._indexCreator('schedules', { customerKey: 1 }),
-            this._indexCreator('schedules', { beginPlannedDate: 1 }),
-            this._indexCreator('schedules', { endPlannedDate: 1 }),
-            this._indexCreator('schedules', { emitterUuid: 1 }),
-            this._indexCreator('settings', { customerKey: 1 }),
-            this._indexCreator('smartflowmodels', { uuid: 1 }),
-            this._indexCreator('smartflowmodels', { customerKey: 1 }),
-            this._indexCreator('smartflowmodels', { key: 1 }),
-            this._indexCreator('smartmodelconfigs', { uuid: 1 }),
-            this._indexCreator('smartmodelconfigs', { customerKey: 1 }),
-            this._indexCreator('smartmodelconfigs', { domainKey: 1 }),
-            this._indexCreator('smartmodelconfigs', { modelKey: 1 }),
-            this._indexCreator('smartmodels', { key: 1 }),
-            this._indexCreator('smartmodels', { customerKey: 1 }),
-            this._indexCreator('smartobjects', { uuid: 1 }),
-            this._indexCreator('smartobjects', { createdDate: 1 }),
-            this._indexCreator('smartobjects', { updateDate: 1 }),
-            this._indexCreator('smartobjects', { modelKey: 1 }),
-            this._indexCreator('smartobjects', { deleted: 1 }),
-            this._indexCreator('smartobjects', { 'skills.atDocument.documents': 1 }),
-            this._indexCreator('smartobjects', {
+            indexCreator(connection, 'domains', { key: 1 }),
+            indexCreator(connection, 'domains', { customerKey: 1 }),
+            indexCreator(connection, 'genericlists', { key: 1 }),
+            indexCreator(connection, 'genericlists', { customerKey: 1 }),
+            indexCreator(connection, 'groups', { key: 1 }),
+            indexCreator(connection, 'groups', { customerKey: 1 }),
+            indexCreator(connection, 'icons', { tags: 1 }),
+            indexCreator(connection, 'notifications', { uuid: 1 }),
+            indexCreator(connection, 'notifications', { customerKey: 1 }),
+            indexCreator(connection, 'schedules', { customerKey: 1 }),
+            indexCreator(connection, 'schedules', { beginPlannedDate: 1 }),
+            indexCreator(connection, 'schedules', { endPlannedDate: 1 }),
+            indexCreator(connection, 'schedules', { emitterUuid: 1 }),
+            indexCreator(connection, 'settings', { customerKey: 1 }),
+            indexCreator(connection, 'smartflowmodels', { uuid: 1 }),
+            indexCreator(connection, 'smartflowmodels', { customerKey: 1 }),
+            indexCreator(connection, 'smartflowmodels', { key: 1 }),
+            indexCreator(connection, 'smartmodelconfigs', { uuid: 1 }),
+            indexCreator(connection, 'smartmodelconfigs', { customerKey: 1 }),
+            indexCreator(connection, 'smartmodelconfigs', { domainKey: 1 }),
+            indexCreator(connection, 'smartmodelconfigs', { modelKey: 1 }),
+            indexCreator(connection, 'smartmodels', { key: 1 }),
+            indexCreator(connection, 'smartmodels', { customerKey: 1 }),
+            indexCreator(connection, 'smartobjects', { uuid: 1 }),
+            indexCreator(connection, 'smartobjects', { createdDate: 1 }),
+            indexCreator(connection, 'smartobjects', { updateDate: 1 }),
+            indexCreator(connection, 'smartobjects', { modelKey: 1 }),
+            indexCreator(connection, 'smartobjects', { deleted: 1 }),
+            indexCreator(connection, 'smartobjects', { 'skills.atDocument.documents': 1 }),
+            indexCreator(connection, 'smartobjects', {
                 'skills.atGeolocation.geo.geometries.0.coordinates': '2d',
                 customerKey: 1,
                 modelKey: 1,
             }),
-            this._indexCreator('smartobjects', { 'properties.$**': 1 }),
-            this._indexCreator('smartobjects', {
+            indexCreator(connection, 'smartobjects', { 'properties.$**': 1 }),
+            indexCreator(connection, 'smartobjects', {
                 'skills.atMagnet.zones.appKey': 'text',
                 'skills.atMagnet.zones.magnetsZoneKey': 'text',
                 'skills.atMagnet.zones.boardInstance': 'text',
             }),
-            this._indexCreator('tags', { customerKey: 1 }),
-            this._indexCreator('tags', { uuid: 1 }),
-            this._indexCreator('tags', { 'tags.key': 1 }),
-            this._indexCreator('tiles.chunks', { files_id: 1 }),
-            this._indexCreator('tiles.files', {
+            indexCreator(connection, 'tags', { customerKey: 1 }),
+            indexCreator(connection, 'tags', { uuid: 1 }),
+            indexCreator(connection, 'tags', { 'tags.key': 1 }),
+            indexCreator(connection, 'tiles.chunks', { files_id: 1 }),
+            indexCreator(connection, 'tiles.files', {
                 'metadata.rasterUuid': 1,
                 'metadata.x': 1,
                 'metadata.y': 1,
                 'metadata.z': 1,
             }),
-            this._indexCreator('users', { uuid: 1 }),
-            this._indexCreator('users', { email: 1 }),
-            this._indexCreator('users', { customerKey: 1 }),
-            this._indexCreator('workflowinstances', { uuid: 1 }),
-            this._indexCreator('workflowinstances', { customerKey: 1 }),
-            this._indexCreator('workflowinstances', { state: 1 }),
-            this._indexCreator('workflowinstances', { 'workflowModel.uuid': 1 }),
-            this._indexCreator('workflowmodels', { uuid: 1 }),
-            this._indexCreator('workflowmodels', { customerKey: 1 }),
-            this._indexCreator('workflowmodels', { key: 1 }),
-            this._indexCreator('indexationErrors', { createdDate: 1 }),
-            this._indexCreator('indexationErrors', { updateDate: 1 }),
-            this._indexCreator('monitoring', { createdDate: 1 }),
-            this._indexCreator('monitoring', { updateDate: 1 }),
-            this._indexCreator('monitoring', { uuid: 1 }),
-            this._indexCreator('monitoring', { processType: 1 }),
-            this._indexCreator('monitoring', { processState: 1 }),
-            this._indexCreator('snsynoticsearches', { updateDate: 1 }),
-            this._indexCreator('snsynoticsearches', { type: 1 }),
-            this._indexCreator('snsynoticsearches', { elementUuid: 1 }),
-            this._indexCreator('snsynoticsearches', { snViewUuid: 1 }),
-            this._indexCreator('snsynoticsearches', { snModelUuid: 1 }),
-            this._indexCreator('snsynoticsearches', { texts: 1 }),
+            indexCreator(connection, 'users', { uuid: 1 }),
+            indexCreator(connection, 'users', { email: 1 }),
+            indexCreator(connection, 'users', { customerKey: 1 }),
+            indexCreator(connection, 'workflowinstances', { uuid: 1 }),
+            indexCreator(connection, 'workflowinstances', { customerKey: 1 }),
+            indexCreator(connection, 'workflowinstances', { state: 1 }),
+            indexCreator(connection, 'workflowinstances', { 'workflowModel.uuid': 1 }),
+            indexCreator(connection, 'workflowmodels', { uuid: 1 }),
+            indexCreator(connection, 'workflowmodels', { customerKey: 1 }),
+            indexCreator(connection, 'workflowmodels', { key: 1 }),
+            indexCreator(connection, 'indexationErrors', { createdDate: 1 }),
+            indexCreator(connection, 'indexationErrors', { updateDate: 1 }),
+            indexCreator(connection, 'monitoring', { createdDate: 1 }),
+            indexCreator(connection, 'monitoring', { updateDate: 1 }),
+            indexCreator(connection, 'monitoring', { uuid: 1 }),
+            indexCreator(connection, 'monitoring', { processType: 1 }),
+            indexCreator(connection, 'monitoring', { processState: 1 }),
+            indexCreator(connection, 'snsynoticsearches', { updateDate: 1 }),
+            indexCreator(connection, 'snsynoticsearches', { type: 1 }),
+            indexCreator(connection, 'snsynoticsearches', { elementUuid: 1 }),
+            indexCreator(connection, 'snsynoticsearches', { snViewUuid: 1 }),
+            indexCreator(connection, 'snsynoticsearches', { snModelUuid: 1 }),
+            indexCreator(connection, 'snsynoticsearches', { texts: 1 }),
         ];
         zip(...indexes$).subscribe();
-    }
-
-    _indexCreator(collection, conf: any): Observable<any> {
-        const index$ = from(this.connection.collection(collection).createIndex(conf));
-        return index$.pipe(
-            catchError(() => of('!!!!!!!!!! No index')),
-            tap((res) => Logger.log(`${res} has been created`)),
-        );
     }
 }

@@ -9,6 +9,8 @@ export interface Customer extends BaseDocument {
     readonly languages: Lang[];
     readonly applicationsKeys: string[];
     readonly licenceKey: string;
+    readonly restoreId?: string;
+    readonly version?: string;
     readonly oauth2?: CustomerOAuth2;
     readonly catchboxUrl?: string;
     readonly dataretreiverUrl?: string;

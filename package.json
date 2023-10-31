@@ -30,7 +30,7 @@
         "openapi": "export JWT_SECRET=dummy && npx ts-node ./src/generate-openapi.ts"
     },
     "dependencies": {
-        "@algotech-ce/core": "3.1.0",
+        "@algotech-ce/core": "3.1.1",
         "@algotech-ce/interpretor": "3.1.3",
         "@nestjs/axios": "2.0.0",
         "@nestjs/bull": "0.6.3",

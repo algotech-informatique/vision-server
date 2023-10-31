@@ -24,6 +24,10 @@ export class CustomerHead {
         return this.customerService.findByCustomerKey(data.identity.customerKey);
     }
 
+    find(): Observable<Customer> {
+        return this.customerService.findByCustomerKey(process.env.CUSTOMER_KEY);
+    }
+
     create(data: { identity: IdentityRequest, customer: Customer }): Observable<Customer> {
         return this.customerService.create(data.identity.customerKey, data.customer);
     }

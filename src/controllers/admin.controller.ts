@@ -1,8 +1,8 @@
 import { Controller, Post, Body, BadRequestException, Get, Query, Logger, Delete, UseGuards } from '@nestjs/common';
 import { Observable, of, throwError } from 'rxjs';
-import { CustomerDto, CustomerSearchDto, CustomerInitResultDto } from '@algotech-ce/core';
-import { catchError, mergeMap, tap } from 'rxjs/operators';
-import { AdminHead, DocumentsHead, NatsService, UtilsService } from '../providers';
+import { CustomerDto, CustomerSearchDto, CustomerInitDto, CustomerInitResultDto, InformationDto } from '@algotech-ce/core';
+import { catchError, map, mergeMap, tap } from 'rxjs/operators';
+import { AdminHead, CustomerHead, DocumentsHead, NatsService, UtilsService } from '../providers';
 import { Customer, CustomerInit, IdentityRequest } from '../interfaces';
 import { ApiTags } from '@nestjs/swagger';
 import { Identity } from '../common/@decorators';
@@ -18,14 +18,26 @@ export class AdminController {
         private readonly nats: NatsService,
         private readonly documentsHead: DocumentsHead,
         private readonly adminHead: AdminHead,
+        private readonly customerHead: CustomerHead,
         private readonly utils: UtilsService,
     ) { }
 
     @Get('information')
-    information(): Observable<any> {
-        return of({
-            date: new Date().toISOString(),
-        });
+    information(): Observable<InformationDto> {
+        return this.customerHead.find().pipe(
+            map((customer) => {
+                const info: InformationDto = {
+                    date: new Date().toISOString(),
+                };
+                if (customer.restoreId) {
+                    info.restoreId = customer.restoreId;
+                }
+                if (customer.version) {
+                    info.version = customer.version;
+                }
+                return info;
+            })
+        );
     }
 
     @Post('customers')
@@ -89,11 +101,11 @@ export class AdminController {
         @Query('start') start?: string,
         @Query('end') end?: string,
         @Query('max') max?: string): Observable<any> {
-        
+
         if (!process.env.ES_URL) {
             return of(false)
         }
-        
+
         let data = { identity };
         data = soUuid ? Object.assign(data, { soUuid }) : data;
         data = fileId ? Object.assign(data, { fileId }) : data;
@@ -117,6 +129,24 @@ export class AdminController {
                     tap(() => console.log('----End of Indexation----')),
                 )),
             ),
+        );
+    }
+
+    @Post('restore')
+    @UseGuards(JwtAuthGuard)
+    @KcAdmin()
+    restore(@Identity() identity: IdentityRequest): Observable<boolean> {
+        return this.adminHead.applyRestore().pipe(
+            mergeMap(() => {
+                const customer: CustomerInitDto = {
+                    customerKey: process.env.CUSTOMER_KEY, name: '', email: '', languages: [], licenceKey: '', login: '', password: '',
+                };
+                return this.adminHead.resetdocIndex(customer).pipe(
+                    mergeMap(() => this.documentsHead.indexation({ identity }).pipe(
+                        tap(() => console.log('----End of Indexation----')),
+                    )),
+                );
+            }),
         );
     }
 }

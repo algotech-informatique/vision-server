@@ -13,6 +13,8 @@ export const CustomerSchema = new mongoose.Schema({
     languages: [LangSchema],
     applicationsKeys: [String],
     licenceKey: String,
+    restoreId: String,
+    version: String,
     oauth2: CustomerOAuth2Schema,    
     catchboxUrl: String,
     dataretreiverUrl: String,
