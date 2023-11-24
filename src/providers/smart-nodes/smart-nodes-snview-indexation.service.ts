@@ -64,6 +64,12 @@ export class SmartNodesSnViewIndexationService {
         }, '');
 
         texts += snNode.flows.reduce((accumulator: string, flow: SnFlow) => {
+            if (Array.isArray(flow.displayName)) {
+                accumulator += SnIndexationUtils.indexLang(
+                    flow.displayName,
+                    '',
+                );
+            }
             accumulator += flow.params.reduce(
                 (result: string, param: SnParam) =>
                     result + this._getsnParmTokens(param, flow.paramsEditable, connectedTo),

@@ -5,14 +5,15 @@ import { ApiTags } from '@nestjs/swagger';
 import { Observable } from 'rxjs';
 import { Identity } from '../common/@decorators';
 import { IdentityRequest } from '../interfaces';
-import { NatsService, TemplateHead } from '../providers';
+import { NatsService, TemplateHead, UtilsService } from '../providers';
 import { Roles } from '../common/@decorators/roles/roles.decorator';
 
 @Controller('templates')
 @ApiTags('Templates')
 export class TemplatesController {
 
-    constructor(private readonly nats: NatsService, private readonly templateHead: TemplateHead) { }
+    constructor(private readonly nats: NatsService, private readonly templateHead: TemplateHead,
+        private readonly utils: UtilsService) { }
 
     @Post(':uuid')
     @UseGuards(JwtAuthGuard)
@@ -29,7 +30,7 @@ export class TemplatesController {
         return this.nats.httpResult(
             this.templateHead.uploadTemplate({
                     identity,
-                    file: { buffer: file.buffer, originalname: file.originalname, mimetype: file.mimetype },
+                    file: { buffer: file.buffer, originalname: this.utils.getFileNameToUTF8(file), mimetype: file.mimetype },
                     uuid,
                 },
             ),

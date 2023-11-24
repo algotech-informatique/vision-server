@@ -42,7 +42,7 @@ export class InitService implements OnApplicationBootstrap {
         });
         this.monitoringHead
             .cancelAllRunningProcess()
-            .pipe(mergeMap(() => this.smartNodesHead.tryIndexsnModels())) //update snModels index au démarrage
+            .pipe(mergeMap(() => this.smartNodesHead.tryIndexsnModels(true))) //update snModels index au démarrage
             .subscribe();
     }
 

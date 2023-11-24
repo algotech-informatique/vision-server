@@ -235,7 +235,7 @@ export class SmartObjectsController {
 
     @Delete('sos')
     @UseGuards(JwtAuthGuard)
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     @ActionCode('D')
     deleteSos(
         @Identity() identity: IdentityRequest,
@@ -268,7 +268,7 @@ export class SmartObjectsController {
 
     @Post('so/restore')
     @UseGuards(JwtAuthGuard)
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     @ActionCode('U')
     retoreObjects(@Identity() identity: IdentityRequest, @Query('modelKey') modelKey, @Body() uuids: string[]) {
         return this.nats.httpResult(this.smartObjectsHead.restore(identity, modelKey, uuids));
@@ -406,7 +406,7 @@ export class SmartObjectsController {
 
     @Post('/count')
     @UseGuards(JwtAuthGuard)
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     countSos(
         @Identity() identity: IdentityRequest,
         @Query('search') search = '',
@@ -416,7 +416,7 @@ export class SmartObjectsController {
 
     @Post('doc/indexation')
     @UseGuards(JwtAuthGuard)
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     indexation(
         @Identity() identity: IdentityRequest,
         @Query('soUuid') soUuid?: string,

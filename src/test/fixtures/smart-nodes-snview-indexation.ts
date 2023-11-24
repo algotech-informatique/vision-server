@@ -150,14 +150,7 @@ export const param7: SnParam = {
 export const flow1: SnFlow = {
     id: 'idFlow1',
     key: 'keyFlow1',
-    displayName: [{
-        lang: 'fr',
-        value: 'frFlow1'
-    },
-    {
-        lang: 'es',
-        value: 'esFlow1'
-    }],
+    displayName: 'frFlow1',
     paramsEditable: true,
     params: [param3]
 }
@@ -165,14 +158,7 @@ export const flow1: SnFlow = {
 export const flow2: SnFlow = {
     id: 'idFlow2',
     key: 'keyFlow2',
-    displayName: [{
-        lang: 'fr',
-        value: 'frFlow2'
-    },
-    {
-        lang: 'es',
-        value: 'esFlow2'
-    }],
+    displayName: 'frFlow2',
     paramsEditable: false,
     params: [param4]
 }
@@ -180,14 +166,7 @@ export const flow2: SnFlow = {
 export const flow3: SnFlow = {
     id: 'idFlow3',
     key: 'keyFlow3',
-    displayName: [{
-        lang: 'fr',
-        value: 'frFlow3'
-    },
-    {
-        lang: 'es',
-        value: 'esFlow3'
-    }],
+    displayName: 'frFlow3',
     paramsEditable: false,
     params: []
 }
@@ -1117,7 +1096,7 @@ export const node3ToIndex = {
     displayName: node3.displayName,
     connectedTo: ['sf:smartflow1', 'so:typeSoNode3'],
     type: 'node',
-    texts: '¤Appeler un smartflow¤Call a smartflow¤LLamar a un smartflow¤smartflow1¤string¤false¤boolean¤so:typeSoNode3¤number¤string¤object¤'
+    texts: '¤Appeler un smartflow¤Call a smartflow¤LLamar a un smartflow¤smartflow1¤string¤false¤boolean¤Succès¤Success¤Fin correcto¤so:typeSoNode3¤Erreur¤Error¤Error¤number¤string¤object¤'
 };
 
 export const node4ToIndex = {

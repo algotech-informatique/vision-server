@@ -89,7 +89,7 @@ export class FilesController {
         return this.nats.httpResult(
             this.documentsHead.uploadDocument({
                 identity,
-                file: { buffer: file.buffer, originalname: file.originalname, size: file.size, mimetype: file.mimetype },
+                file: { buffer: file.buffer, originalname: this.utils.getFileNameToUTF8(file), size: file.size, mimetype: file.mimetype },
                 uuid,
             }));
     }
@@ -109,7 +109,7 @@ export class FilesController {
         return this.nats.httpResult(
             this.documentsHead.uploadIconPlayer({
                 identity,
-                file: { buffer: file.buffer, originalname: file.originalname, size: file.size, mimetype: file.mimetype }
+                file: { buffer: file.buffer, originalname: this.utils.getFileNameToUTF8(file), size: file.size, mimetype: file.mimetype }
             }));
     }
 
@@ -132,7 +132,7 @@ export class FilesController {
             identity,
             file: file ? {
                 buffer: file.buffer,
-                originalname: file.originalname,
+                originalname: this.utils.getFileNameToUTF8(file),
                 size: file.size,
                 mimetype: file.mimetype,
             } : null,
@@ -188,7 +188,7 @@ export class FilesController {
                     identity,
                     signature: {
                         buffer: signature.buffer,
-                        originalname: signature.originalname,
+                        originalname: this.utils.getFileNameToUTF8(signature),
                         size: signature.size,
                         mimetype: signature.mimetype,
                     },

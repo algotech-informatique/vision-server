@@ -32,6 +32,10 @@ export class UtilsService {
         return buff.toString('utf-8');
     }
 
+    getFileNameToUTF8(file) {
+        return Buffer.from(file.originalname, 'latin1').toString('utf8')
+    }
+
     public strToBool(value: any) {
         return [
             'yes',

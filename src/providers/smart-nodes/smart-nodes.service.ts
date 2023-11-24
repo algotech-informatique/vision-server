@@ -12,7 +12,7 @@ import { Model } from 'mongoose';
 import { Injectable, BadRequestException, InternalServerErrorException, Logger } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Observable, from, of, zip } from 'rxjs';
-import { map, catchError, mergeMap } from 'rxjs/operators';
+import { map, catchError, mergeMap, tap } from 'rxjs/operators';
 import * as _ from 'lodash';
 import { CacheDto, PatchPropertyDto, SnSynoticSearchQueryDto } from '@algotech-ce/core';
 import { BaseService } from '../@base/base.service';
@@ -214,7 +214,7 @@ export class SmartNodesService extends BaseService<SnModel> {
         return result;
     }
 
-    tryIndexsnModels(): Observable<any> {
+    tryIndexsnModels(indexAll = false): Observable<any> {
         const customerKey: string = process.env.CUSTOMER_KEY ? process.env.CUSTOMER_KEY : 'vision';
         let lock: ProcessMonitoring;
         return this.processMonitoringService.findOne(customerKey, 'indexation_lock').pipe(
@@ -238,6 +238,10 @@ export class SmartNodesService extends BaseService<SnModel> {
                     if (lock.processState === 'inProgress') {
                         return of([]);
                     }
+                }
+
+                if (indexAll) {
+                    return this.getAll(customerKey);
                 }
 
                 return lock?.result?.indexationDate
@@ -307,6 +311,7 @@ export class SmartNodesService extends BaseService<SnModel> {
                 }
                 return zip(this.processMonitoringService.update(customerKey, lock, false), of(!!data));
             }),
+            tap(() => console.log('----End of Indexation (snmodels)----'))
         );
     }
 

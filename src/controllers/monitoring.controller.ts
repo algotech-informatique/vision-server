@@ -22,7 +22,7 @@ export class ProcessMonitoringController {
     @UseInterceptors(AuthorizationInterceptor)
     @UseGuards(JwtAuthGuard)
     @ActionCode('R')
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     getStatusAllProcess(
         @Identity() identity: IdentityRequest,
         @Body() processSearch: ProcessMonitoringSearchDto,
@@ -36,7 +36,7 @@ export class ProcessMonitoringController {
     @UseInterceptors(AuthorizationInterceptor)
     @UseGuards(JwtAuthGuard)
     @ActionCode('R')
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     getStatusImportSo(
         @Identity() identity: IdentityRequest,
         @Query('skip') skip,
@@ -51,7 +51,7 @@ export class ProcessMonitoringController {
     @UseInterceptors(AuthorizationInterceptor)
     @UseGuards(JwtAuthGuard)
     @ActionCode('R')
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     getStatusImportDoc(
         @Identity() identity: IdentityRequest,
         @Query('skip') skip,
@@ -65,7 +65,7 @@ export class ProcessMonitoringController {
     @UseInterceptors(AuthorizationInterceptor)
     @UseGuards(JwtAuthGuard)
     @ActionCode('R')
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     getStatusImporti18n(
         @Identity() identity: IdentityRequest,
         @Query('skip') skip,
@@ -79,7 +79,7 @@ export class ProcessMonitoringController {
     @UseInterceptors(AuthorizationInterceptor)
     @UseGuards(JwtAuthGuard)
     @ActionCode('R')
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     getStatusIndexationSo(
         @Identity() identity: IdentityRequest,
         @Query('skip') skip,
@@ -93,7 +93,7 @@ export class ProcessMonitoringController {
     @UseInterceptors(AuthorizationInterceptor)
     @UseGuards(JwtAuthGuard)
     @ActionCode('R')
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     getStatusIndexationDoc(
         @Identity() identity: IdentityRequest,
         @Query('skip') skip,
@@ -107,7 +107,7 @@ export class ProcessMonitoringController {
     @UseInterceptors(AuthorizationInterceptor)
     @UseGuards(JwtAuthGuard)
     @ActionCode('R')
-    @Roles(['sadmin'])
+    @Roles(['sadmin', 'process-manager'])
     getStatusDeleteSo(
         @Identity() identity: IdentityRequest,
         @Query('skip') skip,

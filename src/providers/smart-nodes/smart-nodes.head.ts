@@ -90,8 +90,8 @@ export class SmartNodesHead {
         );
     }
 
-    tryIndexsnModels(): Observable<any> {
-        return this.smartNodesService.tryIndexsnModels();
+    tryIndexsnModels(indexAll = false): Observable<any> {
+        return this.smartNodesService.tryIndexsnModels(indexAll);
     }
 
     search(query: SnSynoticSearchQueryDto, skip?, limit?): Observable<SnSynoticSearch[]> {

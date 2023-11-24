@@ -14,7 +14,7 @@ import { JwtAuthGuard } from '../auth/guards/jwt-auth-guard';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { from, map, Observable, of } from 'rxjs';
 import { Metadata } from '@algotech-ce/core';
-import { NatsService, RasterHead } from '../providers';
+import { NatsService, RasterHead, UtilsService } from '../providers';
 import { IdentityRequest, NatsResponse } from '../interfaces';
 import { Identity } from '../common/@decorators';
 import { ApiTags } from '@nestjs/swagger';
@@ -28,6 +28,7 @@ export class RasterController {
     constructor(
         private readonly rasterHead: RasterHead,
         private readonly nats: NatsService,
+        private readonly utils: UtilsService,
         @InjectQueue(process.env.CUSTOMER_KEY + '-rasters') private readonly rastersQueue: Queue,
     ) {}
 
@@ -79,7 +80,7 @@ export class RasterController {
         return this.nats.httpResult(
             this.rasterHead.uploadRaster({
                 identity,
-                file: { buffer: file.buffer, originalname: file.originalname, mimetype: file.mimetype },
+                file: { buffer: file.buffer, originalname: this.utils.getFileNameToUTF8(file), mimetype: file.mimetype },
                 uuid,
             }),
         );

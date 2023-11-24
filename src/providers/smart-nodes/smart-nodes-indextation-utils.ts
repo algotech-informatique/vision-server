@@ -75,6 +75,8 @@ export class SnIndexationUtils {
             ) {
                 accumulator += Array.isArray(object[property]) && object[property].length > 0 && !(object[property][0] instanceof Object)
                         ? this.indexStrings(object[property], '')
+                        : Array.isArray(object[property]) && object[property].length > 0 && (object[property][0]?.lang)
+                        ? this.indexLang(object[property], '')
                         : !(object[property] instanceof Object)
                         ? object[property] + SmartNodesService.SEARCH_SEPARATOR
                         : '';
