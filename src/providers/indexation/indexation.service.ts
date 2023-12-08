@@ -398,7 +398,7 @@ export class IndexationService {
     }
 
     esRequest(customerKey, raw) {
-        const headers = { 'Content-Type': 'application/json' };
+        const headers = { 'Content-Type': 'application/x-ndjson' };
         const fullUrl = `${es_url}/_bulk?pretty&refresh`;
 
         return this.http.post(fullUrl, raw, { headers })
