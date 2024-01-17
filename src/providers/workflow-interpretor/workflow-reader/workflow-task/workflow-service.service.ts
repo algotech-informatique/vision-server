@@ -1,6 +1,6 @@
 import { Injectable, HttpException } from '@nestjs/common';
 import { HttpService } from '@nestjs/axios';
-import { ServiceReturnModelDto } from '@algotech-ce/core';
+import { ServiceReturnModelDto, FileUtils } from '@algotech-ce/core';
 import { SmartObjectDto, PairDto, WorkflowInstanceContextDto } from '@algotech-ce/core';
 import { Observable, throwError } from 'rxjs';
 import { InterpretorFormData, InterpretorService } from '@algotech-ce/interpretor';
@@ -90,8 +90,11 @@ export class WorkflowServiceService extends InterpretorService {
     responseBlob(serviceResult: AxiosResponse) {
         const disposition = serviceResult.headers['content-disposition'];
         const mimeType = serviceResult.headers['content-type'];
-
-        let fileName: string = disposition.split('=').pop();
+        const ext = FileUtils.mimeTypeToExt(mimeType);
+        
+        let fileName: string = disposition ? disposition.split('=').pop() :
+            (ext ? `file.${ext}` : '');
+        
         fileName = fileName.replace(/"/g, '');
 
         return {
