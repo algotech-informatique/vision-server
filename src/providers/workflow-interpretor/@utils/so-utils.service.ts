@@ -24,12 +24,13 @@ export class SoUtilsService extends SoUtils {
     public csvToSo(file: Buffer, smartModel: SmartModelDto, options: ImportOptionsDto): Observable<SmartObjectDto[]> {
 
         const papa = require('papaparse');
-        const stream = Readable.from(file.toString());
+        const stream = Readable.from(file.toString(options.encoding as BufferEncoding));
 
         return new Observable((observer) => {
             papa.parse(stream, {
                 delimiter: options.delimiter ?? '',
                 newline: options.newline ?? '',
+                encoding: options.encoding ?? 'utf8',
                 worker: true,
                 skipEmptyLines: true,
                 complete: (res) => {
